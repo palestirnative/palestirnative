@@ -1,24 +1,27 @@
 import TagInput from "./tag-input.tsx";
-import { ArrowUpTraySolid } from "https://esm.sh/preact-heroicons"
-import { useState, useMemo } from "preact/hooks";
+import { ArrowUpTraySolid } from "https://esm.sh/preact-heroicons";
+import { useMemo, useState } from "preact/hooks";
 
 export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [logoSource, setLogoSource] = useState(toBeUpdated?.logoURL || null);
-  
+
   const submitURL = useMemo(() => {
-    return toBeUpdated ? `/boycott/${toBeUpdated._id}` : "/boycott";   
-  },[])
+    return toBeUpdated ? `/boycott/${toBeUpdated._id}` : "/boycott";
+  }, []);
 
   const submitMethod = useMemo(() => {
     return toBeUpdated ? "PUT" : "POST";
-  },[])
+  }, []);
 
-  const [selectedCategories, setSelectedCategories] = useState((toBeUpdated?.categories || []).map((category) => ({
-    value: category,
-    label: categories.find((c) => c._id.toString() === category.toString()).name,
-  })));
+  const [selectedCategories, setSelectedCategories] = useState(
+    (toBeUpdated?.categories || []).map((category) => ({
+      value: category,
+      label:
+        categories.find((c) => c._id.toString() === category.toString()).name,
+    })),
+  );
   const [categoryOptions, setCategoryOptions] = useState(
     categories.map((category) => ({
       value: category._id,
@@ -40,10 +43,15 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
     );
   };
 
-  const [selectedAlternatives, setSelectedAlternatives] = useState((toBeUpdated?.alternatives || []).map((alternative) => ({
-    value: alternative.alternative,
-    label: alternatives.find((a) => a._id.toString() === alternative.alternative.toString()).name,
-  })));
+  const [selectedAlternatives, setSelectedAlternatives] = useState(
+    (toBeUpdated?.alternatives || []).map((alternative) => ({
+      value: alternative.alternative,
+      label:
+        alternatives.find((a) =>
+          a._id.toString() === alternative.alternative.toString()
+        ).name,
+    })),
+  );
   const [alternativeOptions, setAlternativeOptions] = useState(
     alternatives.map((alternative) => ({
       value: alternative._id,
@@ -68,7 +76,6 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
   };
 
   const handleSubmit = async (event) => {
-
     event.preventDefault();
 
     setIsLoading(true);
@@ -93,7 +100,7 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
 
     if (!response.ok) {
       if (response.status === 500) {
-        setError("Something went wrong. Please try again later."); 
+        setError("Something went wrong. Please try again later.");
       } else {
         setError(await response.text());
       }
@@ -104,11 +111,11 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
 
   const handleLogoChange = (event) => {
     const logo = event.target.files[0];
-    
+
     if (logo) {
       setLogoSource(URL.createObjectURL(logo));
     }
-  }
+  };
 
   return (
     <>
@@ -124,7 +131,7 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
         <div class="my-2 flex flex-col items-center">
           <img
             hidden={!logoSource}
-            src={logoSource} 
+            src={logoSource}
             alt="Logo"
             class="w-32 h-32 my-2 rounded-full"
           />
@@ -133,7 +140,7 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
             for="logo"
           >
             <ArrowUpTraySolid class="w-5 h-5" />
-            { logoSource ? "Change Logo" : "Choose Logo" }
+            {logoSource ? "Change Logo" : "Choose Logo"}
           </label>
 
           <input
@@ -208,7 +215,7 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
             disabled={isLoading}
             class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
           >
-            { isLoading ? "Saving..." : "Save"}
+            {isLoading ? "Saving..." : "Save"}
           </button>
         </div>
       </form>

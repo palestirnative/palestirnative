@@ -1,12 +1,12 @@
 import TagInput from "./tag-input.tsx";
-import { ArrowUpTraySolid } from "https://esm.sh/preact-heroicons"
-import { useState, useMemo } from "preact/hooks";
-import countries from "../../utils/countries.ts"
+import { ArrowUpTraySolid } from "https://esm.sh/preact-heroicons";
+import { useMemo, useState } from "preact/hooks";
+import countries from "../../utils/countries.ts";
 
 const indexedCountries = countries.reduce((acc, item) => ({
   ...acc,
-  [item.code.toLowerCase()]: item.name
-}) ,{})
+  [item.code.toLowerCase()]: item.name,
+}), {});
 
 const countryOptionTemplate = (country) => (
   <div class="flex items-center">
@@ -17,7 +17,7 @@ const countryOptionTemplate = (country) => (
     />
     <span>{country.label}</span>
   </div>
-)
+);
 
 const boycottOptionTemplate = (boycott) => (
   <div class="flex items-center">
@@ -28,72 +28,89 @@ const boycottOptionTemplate = (boycott) => (
     />
     <span>{boycott.label}</span>
   </div>
-)
+);
 
 export default function AlternativeForm({ toBeUpdated, boycotts }) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [logoSource, setLogoSource] = useState(toBeUpdated?.logoURL || null);
-  
+
   const submitURL = useMemo(() => {
-    return toBeUpdated ? `/alternative/${toBeUpdated._id}` : "/alternative";   
-  },[])
+    return toBeUpdated ? `/alternative/${toBeUpdated._id}` : "/alternative";
+  }, []);
 
   const submitMethod = useMemo(() => {
     return toBeUpdated ? "PUT" : "POST";
-  },[])
+  }, []);
 
-  const [selectedCountries, setSelectedCountries] = useState((toBeUpdated?.countries || []).map((country) => ({
-    value: country,
-    label: indexedCountries[country],
-  })))
+  const [selectedCountries, setSelectedCountries] = useState(
+    (toBeUpdated?.countries || []).map((country) => ({
+      value: country,
+      label: indexedCountries[country],
+    })),
+  );
 
-  const [countryOptions, setCountryOptions] = useState(countries.map((country) => ({
-    value: country.code.toLowerCase(),
-    label: country.name,
-  })).filter((option) => !selectedCountries.includes(option)))
+  const [countryOptions, setCountryOptions] = useState(
+    countries.map((country) => ({
+      value: country.code.toLowerCase(),
+      label: country.name,
+    })).filter((option) => !selectedCountries.includes(option)),
+  );
 
   const handleSelectCountry = (country) => {
     setSelectedCountries([...selectedCountries, country]);
-    setCountryOptions( countryOptions.filter((option) => option.value !== country.value))
-  }
+    setCountryOptions(
+      countryOptions.filter((option) => option.value !== country.value),
+    );
+  };
 
   const handleUnselectCountry = (country) => {
     setCountryOptions([...countryOptions, country]);
-    setSelectedCountries(selectedCountries.filter((option) => option.value !== country.value))
-  }
+    setSelectedCountries(
+      selectedCountries.filter((option) => option.value !== country.value),
+    );
+  };
 
-  const [selectedBoycotts, setSelectedBoycotts] = useState((toBeUpdated?.boycotts || []).map((boycott) => ({
-    value: boycott._id,
-    label: boycott.name, 
-    logoURL: boycott.logoURL
-  })))
+  const [selectedBoycotts, setSelectedBoycotts] = useState(
+    (toBeUpdated?.boycotts || []).map((boycott) => ({
+      value: boycott._id,
+      label: boycott.name,
+      logoURL: boycott.logoURL,
+    })),
+  );
 
-  const [boycottOptions, setBoycottOptions] = useState(boycotts.map((boycott) => ({
-    value: boycott._id,
-    label: boycott.name, 
-    logoURL: boycott.logoURL
-  })))
+  const [boycottOptions, setBoycottOptions] = useState(
+    boycotts.map((boycott) => ({
+      value: boycott._id,
+      label: boycott.name,
+      logoURL: boycott.logoURL,
+    })),
+  );
 
   const handleSelectBoycott = (boycott) => {
     setSelectedBoycotts([...selectedBoycotts, boycott]);
-    setBoycottOptions(boycottOptions.filter((option) => option.value !== boycott.value))
-  }
+    setBoycottOptions(
+      boycottOptions.filter((option) => option.value !== boycott.value),
+    );
+  };
 
   const handleUnselectBoycott = (boycott) => {
     setBoycottOptions([...boycottOptions, boycott]);
-    setSelectedBoycotts(selectedBoycotts.filter((option) => option.value !== boycott.value))
-  }
+    setSelectedBoycotts(
+      selectedBoycotts.filter((option) => option.value !== boycott.value),
+    );
+  };
 
   const handleSubmit = async (event) => {
-
     event.preventDefault();
 
     setIsLoading(true);
 
     const formData = new FormData(event.target);
 
-    const countries = selectedCountries.map((country) => country.value).join(",");
+    const countries = selectedCountries.map((country) => country.value).join(
+      ",",
+    );
     formData.append("countries", countries);
 
     const boycotts = selectedBoycotts.map((boycott) => boycott.value).join(",");
@@ -108,7 +125,7 @@ export default function AlternativeForm({ toBeUpdated, boycotts }) {
 
     if (!response.ok) {
       if (response.status === 500) {
-        setError("Something went wrong. Please try again later."); 
+        setError("Something went wrong. Please try again later.");
       } else {
         setError(await response.text());
       }
@@ -119,11 +136,11 @@ export default function AlternativeForm({ toBeUpdated, boycotts }) {
 
   const handleLogoChange = (event) => {
     const logo = event.target.files[0];
-    
+
     if (logo) {
       setLogoSource(URL.createObjectURL(logo));
     }
-  }
+  };
 
   return (
     <>
@@ -139,7 +156,7 @@ export default function AlternativeForm({ toBeUpdated, boycotts }) {
         <div class="my-2 flex flex-col items-center">
           <img
             hidden={!logoSource}
-            src={logoSource} 
+            src={logoSource}
             alt="Logo"
             class="w-32 h-32 my-2 rounded-full"
           />
@@ -148,7 +165,7 @@ export default function AlternativeForm({ toBeUpdated, boycotts }) {
             for="logo"
           >
             <ArrowUpTraySolid class="w-5 h-5" />
-            { logoSource ? "Change Logo" : "Choose Logo" }
+            {logoSource ? "Change Logo" : "Choose Logo"}
           </label>
 
           <input
@@ -176,42 +193,42 @@ export default function AlternativeForm({ toBeUpdated, boycotts }) {
           </div>
         </div>
 
-          <div>
-            <label class="text-gray-700 dark:text-gray-200" for="categories">
-              Countries
-            </label>
-            <TagInput
-              name="countriesInput"
-              tags={selectedCountries}
-              handleSelect={handleSelectCountry}
-              options={countryOptions}
-              handleRemove={handleUnselectCountry}
-              optionTemplate={countryOptionTemplate}
-              tagTemplate={countryOptionTemplate}
-            />
-          </div>
+        <div>
+          <label class="text-gray-700 dark:text-gray-200" for="categories">
+            Countries
+          </label>
+          <TagInput
+            name="countriesInput"
+            tags={selectedCountries}
+            handleSelect={handleSelectCountry}
+            options={countryOptions}
+            handleRemove={handleUnselectCountry}
+            optionTemplate={countryOptionTemplate}
+            tagTemplate={countryOptionTemplate}
+          />
+        </div>
 
-          <div>
-            <label class="text-gray-700 dark:text-gray-200" for="categories">
-              Boycotts
-            </label>
-            <TagInput
-              name="boycottsInput"
-              tags={selectedBoycotts}
-              handleSelect={handleSelectBoycott}
-              options={boycottOptions}
-              handleRemove={handleUnselectBoycott}
-              optionTemplate={boycottOptionTemplate}
-              tagTemplate={boycottOptionTemplate}
-            />
-          </div>
+        <div>
+          <label class="text-gray-700 dark:text-gray-200" for="categories">
+            Boycotts
+          </label>
+          <TagInput
+            name="boycottsInput"
+            tags={selectedBoycotts}
+            handleSelect={handleSelectBoycott}
+            options={boycottOptions}
+            handleRemove={handleUnselectBoycott}
+            optionTemplate={boycottOptionTemplate}
+            tagTemplate={boycottOptionTemplate}
+          />
+        </div>
 
         <div class="flex justify-end mt-6">
           <button
             disabled={isLoading}
             class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
           >
-            { isLoading ? "Saving..." : "Save"}
+            {isLoading ? "Saving..." : "Save"}
           </button>
         </div>
       </form>

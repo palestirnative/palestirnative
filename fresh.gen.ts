@@ -18,6 +18,7 @@ import * as $index from "./routes/index.tsx";
 import * as $lang from "./routes/lang.ts";
 import * as $form_alternative_form from "./islands/form/alternative-form.tsx";
 import * as $form_boycott_form from "./islands/form/boycott-form.tsx";
+import * as $form_country_dropdown from "./islands/form/country-dropdown.tsx";
 import * as $form_tag_input from "./islands/form/tag-input.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -41,6 +42,7 @@ const manifest = {
   islands: {
     "./islands/form/alternative-form.tsx": $form_alternative_form,
     "./islands/form/boycott-form.tsx": $form_boycott_form,
+    "./islands/form/country-dropdown.tsx": $form_country_dropdown,
     "./islands/form/tag-input.tsx": $form_tag_input,
   },
   baseUrl: import.meta.url,

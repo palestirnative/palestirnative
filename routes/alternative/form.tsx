@@ -1,20 +1,21 @@
 import AlternativeFormIsland from "../../islands/form/alternative-form.tsx";
 import db from "../../utils/db/db.ts";
-import { ObjectId } from "mongodb"
+import { ObjectId } from "mongodb";
 
 export const handler: Handlers = {
   async GET(req, ctx) {
-
     const id = new URL(req.url).searchParams.get("id");
 
     const boycotts = await db.collection("boycotts").find().toArray();
 
     let toBeUpdated;
     if (id) {
-      toBeUpdated = await db.collection("alternatives").findOne({ _id: new ObjectId(id) })
+      toBeUpdated = await db.collection("alternatives").findOne({
+        _id: new ObjectId(id),
+      });
       toBeUpdated.boycotts = await db.collection("boycotts").find({
-        "alternatives.alternative": toBeUpdated._id
-      }).toArray()
+        "alternatives.alternative": toBeUpdated._id,
+      }).toArray();
     }
 
     return ctx.render({ toBeUpdated, boycotts });
@@ -22,7 +23,6 @@ export const handler: Handlers = {
 };
 
 export default function AlternativeForm({ data }) {
-
   const { toBeUpdated, boycotts } = data;
 
   return (

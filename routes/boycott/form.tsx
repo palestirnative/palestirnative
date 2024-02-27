@@ -1,6 +1,6 @@
 import BoycottFormIsland from "../../islands/form/boycott-form.tsx";
 import db from "../../utils/db/db.ts";
-import { ObjectId } from "mongodb"
+import { ObjectId } from "mongodb";
 
 export const handler: Handlers = {
   async GET(req, ctx) {
@@ -11,7 +11,9 @@ export const handler: Handlers = {
 
     let toBeUpdated;
     if (id) {
-      toBeUpdated = await db.collection("boycotts").findOne({ _id: new ObjectId(id) })
+      toBeUpdated = await db.collection("boycotts").findOne({
+        _id: new ObjectId(id),
+      });
     }
 
     return ctx.render({ categories, alternatives, toBeUpdated });

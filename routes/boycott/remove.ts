@@ -11,7 +11,7 @@ export const handler: Handler = {
 
     const removeResult = await db.collection("boycotts").deleteOne({
       _id: new ObjectId(id),
-    })
+    });
 
     if (!removeResult.acknowledged) {
       throw new Deno.errors.NotFound();
@@ -22,7 +22,6 @@ export const handler: Handler = {
       headers: {
         Location: "/boycott",
       },
-    })
-
-  }
-}
+    });
+  },
+};

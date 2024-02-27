@@ -23,15 +23,17 @@ export const handler: Handler = {
       }
     }
 
-    const boycotts = form.get("boycotts")?.split(",").filter(Boolean).map((boycott) => {
-      return new ObjectId(boycott);      
-    });
+    const boycotts = form.get("boycotts")?.split(",").filter(Boolean).map(
+      (boycott) => {
+        return new ObjectId(boycott);
+      },
+    );
 
     alternative.countries = alternative.countries?.split(",").filter(Boolean);
 
     const allAreCountryCodes = alternative.countries.every((country) => {
       return /^[a-z]{2}$/.test(country);
-    })
+    });
 
     if (alternative.countries.length === 0 || !allAreCountryCodes) {
       return new Response("Invalid countries", {
@@ -95,8 +97,8 @@ export const handler: Handler = {
     }, {
       $pull: {
         alternatives: { alternative: new ObjectId(id) },
-      }
-    })
+      },
+    });
 
     const updateBoycottsResult = await db.collection("boycotts").updateMany({
       _id: { $in: boycotts },

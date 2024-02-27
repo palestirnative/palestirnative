@@ -27,11 +27,13 @@ export const handler: Handler = {
 
     if (updateData.alternatives) {
       try {
-        const parsedAlternatives = updateData.alternatives.split(",").filter(Boolean).map((alternative) => {
+        const parsedAlternatives = updateData.alternatives.split(",").filter(
+          Boolean,
+        ).map((alternative) => {
           return {
             alternative: new ObjectId(alternative),
             status: AlternativeStatus.Approved,
-          }; 
+          };
         });
         updateData.alternatives = parsedAlternatives;
       } catch (e) {
@@ -47,7 +49,7 @@ export const handler: Handler = {
           category: string,
         ) => new ObjectId(category));
       }
-    } catch(e) {
+    } catch (e) {
       return new Response("Invalid categories", {
         status: 400,
       });
@@ -92,7 +94,6 @@ export const handler: Handler = {
 
       updateData.logoURL = logoURL;
     }
-
 
     const updateResult = await db.collection("boycotts").updateOne({
       _id: new ObjectId(id),

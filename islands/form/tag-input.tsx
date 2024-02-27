@@ -1,21 +1,25 @@
 import { useMemo, useState } from "preact/hooks";
 
 export default function TagInput(
-  { name, tags, handleSelect, handleRemove, options, optionTemplate, tagTemplate },
+  {
+    name,
+    tags,
+    handleSelect,
+    handleRemove,
+    options,
+    optionTemplate,
+    tagTemplate,
+  },
 ) {
   const [inputValue, setInputValue] = useState("");
 
   const usedOptionTemplate = (option) => (
-    optionTemplate
-      ? optionTemplate(option)
-      : <span>{option.label}</span> 
-  )
+    optionTemplate ? optionTemplate(option) : <span>{option.label}</span>
+  );
 
   const usedTagTemplate = (tag) => (
-    tagTemplate
-      ? tagTemplate(tag)
-      : <span>{tag.label}</span> 
-  )
+    tagTemplate ? tagTemplate(tag) : <span>{tag.label}</span>
+  );
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);

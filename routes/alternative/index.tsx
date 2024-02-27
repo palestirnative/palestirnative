@@ -1,7 +1,11 @@
 import { Handler } from "$fresh/server.ts";
 import { AlternativeCreationData } from "../../types/alternative.ts";
 import { AlternativeStatus } from "../../types/boycott.ts";
-import { CheckBadgeSolid, CalendarSolid, TagSolid } from "https://esm.sh/preact-heroicons"
+import {
+  CalendarSolid,
+  CheckBadgeSolid,
+  TagSolid,
+} from "https://esm.sh/preact-heroicons";
 import db from "../../utils/db/db.ts";
 import upload from "../../utils/upload.ts";
 import { ObjectId } from "mongodb";
@@ -28,7 +32,7 @@ export const handler: Handler = {
     const parsedCountries = form.get("countries").split(",");
     const allAreCountryCodes = parsedCountries.every((country) => {
       return /^[a-z]{2}$/.test(country);
-    })
+    });
     if (parsedCountries.length === 0 || !allAreCountryCodes) {
       return new Response("Invalid countries", {
         status: 400,
@@ -37,7 +41,7 @@ export const handler: Handler = {
 
     const logo = form.get("logo") as File;
 
-    if (!logo instanceof File || !logo.type.startsWith("image/")) {
+    if ((!logo) instanceof File || !logo.type.startsWith("image/")) {
       return new Response("Invalid logo file", {
         status: 400,
       });
@@ -87,9 +91,9 @@ export const handler: Handler = {
       _id: insertResult.insertedId,
     };
 
-    const boycottIds = form.get("boycotts").split(",").filter(Boolean).map((boycott: string) =>
-      new ObjectId(boycott)
-    );
+    const boycottIds = form.get("boycotts").split(",").filter(Boolean).map((
+      boycott: string,
+    ) => new ObjectId(boycott));
 
     const updateBoycottsResult = await db.collection("boycotts").updateMany({
       _id: { $in: boycottIds },
@@ -136,7 +140,7 @@ export const handler: Handler = {
           localField: "_id",
           foreignField: "alternatives.alternative",
           as: "boycotts",
-        }, 
+        },
       },
       { $skip: (page - 1) * 10 },
       { $limit: 10 },
@@ -318,7 +322,8 @@ export default function Alternative({ data }) {
                           <div class="flex items-center gap-x-6">
                             <a
                               href={`/alternative/remove?id=${alternative._id}`}
-                              class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                              class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
+                            >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -337,7 +342,8 @@ export default function Alternative({ data }) {
 
                             <a
                               href={`/alternative/form?id=${alternative._id}`}
-                              class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                              class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none"
+                            >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"

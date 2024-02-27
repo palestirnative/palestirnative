@@ -16,5 +16,5 @@ export const handler: Handler = {
       path: "/",
       secure: true,
     });
- }
-}
+  },
+};

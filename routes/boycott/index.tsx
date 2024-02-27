@@ -1,16 +1,22 @@
 import { Handler } from "$fresh/server.ts";
-import { BoycottCreationData, BoycottStatus, AlternativeStatus } from "../../types/boycott.ts";
-import { CheckBadgeSolid, CalendarSolid, TagSolid } from "https://esm.sh/preact-heroicons"
+import {
+  AlternativeStatus,
+  BoycottCreationData,
+  BoycottStatus,
+} from "../../types/boycott.ts";
+import {
+  CalendarSolid,
+  CheckBadgeSolid,
+  TagSolid,
+} from "https://esm.sh/preact-heroicons";
 import upload from "../../utils/upload.ts";
 import { ObjectId } from "mongodb";
 import db from "../../utils/db/db.ts";
 
 export const handler: Handler = {
   async POST(req, ctx) {
-
     const url = new URL(req.url);
     const form = await req.formData();
-
 
     const requiredFields = [
       "name",
@@ -29,12 +35,11 @@ export const handler: Handler = {
 
     const logo = form.get("logo") as File;
 
-    if (!logo instanceof File || !logo.type.startsWith("image/")) {
+    if ((!logo) instanceof File || !logo.type.startsWith("image/")) {
       return new Response("Invalid logo file", {
         status: 400,
       });
     }
-
 
     const boycott: BoycottCreationData = {
       name: form.get("name"),
@@ -44,12 +49,13 @@ export const handler: Handler = {
         category: string,
       ) => new ObjectId(category)),
       status: BoycottStatus.Approved,
-      alternatives: (form.get("alternatives") ?? "").split(",").filter(Boolean).map((
-        alternative: string,
-      ) => ({
-        alternative,
-        status: AlternativeStatus.Approved,
-      })),
+      alternatives: (form.get("alternatives") ?? "").split(",").filter(Boolean)
+        .map((
+          alternative: string,
+        ) => ({
+          alternative,
+          status: AlternativeStatus.Approved,
+        })),
       createdAt: new Date(),
     };
 
@@ -74,7 +80,9 @@ export const handler: Handler = {
     }
 
     const alternatives = await db.collection("alternatives").find({
-      _id: { $in: boycott.alternatives.map((alternative) => alternative.alternative) },
+      _id: {
+        $in: boycott.alternatives.map((alternative) => alternative.alternative),
+      },
     }).toArray();
 
     if (alternatives.length !== boycott.alternatives.length) {
@@ -115,7 +123,8 @@ export const handler: Handler = {
     });
   },
   async GET(req, ctx) {
-    let page = parseInt(new URL(req.url).searchParams.get("page"));
+    const url = new URL(req.url);
+    let page = parseInt(url.searchParams?.get("page"));
 
     if (isNaN(page)) {
       page = 1;
@@ -135,8 +144,15 @@ export const handler: Handler = {
           localField: "categories",
           foreignField: "_id",
           as: "categories",
-        }, 
+        },
       },
+      ...(ctx.state.category
+        ? [{
+          $match: {
+            "categories.nameSlug": ctx.state.category,
+          },
+        }]
+        : []),
       {
         $lookup: {
           from: "alternatives",
@@ -145,6 +161,24 @@ export const handler: Handler = {
           as: "attachedAlternatives",
         },
       },
+      ...(ctx.state.search
+        ? [{
+          $match: {
+            $or: [
+              { name: { $regex: ctx.state.search, $options: "i" } },
+              {
+                "attachedAlternatives.name": {
+                  $regex: ctx.state.search,
+                  $options: "i",
+                },
+              },
+              {
+                "categories.name": { $regex: ctx.state.search, $options: "i" },
+              },
+            ],
+          },
+        }]
+        : []),
       { $skip: (page - 1) * 10 },
       { $limit: 10 },
     ]).toArray();
@@ -229,61 +263,62 @@ export default function Boycott({ data, state }) {
             <div class="flex items-center my-4 border border-gray-200 shadow-sm bg-white rounded-lg">
               <div>
                 <div class="flex items-center border-e border-gray-200 justify-center px-4 py-2">
-                  <span class="font-medium text-lg w-full">{state.locale["Replace these criminals"]}:</span>
+                  <span class="font-medium text-lg w-full">
+                    {state.locale["Replace these criminals"]}:
+                  </span>
                 </div>
                 <div class="flex">
-                    <div class="flex flex-col items-center border-e border-gray-200 px-4 py-2 w-72">
-                      <div
-                        class="relative mb-2 mt-6"
-                      >
-                        <img
-                          src={boycott.logoURL}
-                          alt={boycott.name}
-                          class="w-36 h-36 rounded-full grayscale"
-                        />
-                        <span
-                          class="text-creepy text-2xl text-red-700 absolute -rotate-45 bg-white bg-opacity-50 -left-6 top-6 p-2 border-4 border-red-700"
-                        >
-                          CRIMINALS
-                        </span>
-                      </div>
-                      <span class="text-creepy text-red-700">{boycott.name}</span>
-                      <a
-                        href={boycott.reasonURL}
-                        target="_blank"
-                        class="text-blue-500 hover:underline"
-                      >
-                        {state.locale["See reason"]}...
-                      </a>
-
+                  <div class="flex flex-col justify-center items-center border-e border-gray-200 px-4 py-2 w-72 h-72">
+                    <div class="relative mb-2 mt-6">
+                      <img
+                        src={boycott.logoURL}
+                        alt={boycott.name}
+                        class="w-36 h-36 rounded-full grayscale"
+                      />
+                      <span class="text-creepy text-2xl text-red-700 absolute -rotate-45 bg-white bg-opacity-50 -left-6 top-6 p-2 border-4 border-red-700">
+                        CRIMINALS
+                      </span>
                     </div>
+                    <span class="text-creepy text-red-700">{boycott.name}</span>
+                    <a
+                      href={boycott.reasonURL}
+                      target="_blank"
+                      class="text-blue-500 hover:underline"
+                    >
+                      {state.locale["See reason"]}...
+                    </a>
+                  </div>
                 </div>
               </div>
               <div class="flex-1">
                 <div class="flex items-center justify-center px-4 py-2">
-                  <span class="font-medium text-lg w-full">{state.locale["By these"]}:</span>
+                  <span class="font-medium text-lg w-full">
+                    {state.locale["By these"]}:
+                  </span>
                 </div>
                 <div class="flex">
                   {boycott.attachedAlternatives.map((alternative) => (
                     <a
                       href={`/alternative/${alternative.id}`}
-                      class="flex flex-col hover:bg-gray-100 cursor-pointer items-center border-x border-t border-gray-200 px-4 py-2 w-72">
+                      class="flex flex-col hover:bg-gray-100 cursor-pointer items-center border-x border-t border-gray-200 px-4 py-2 w-72 h-72"
+                    >
                       <img
                         src={alternative.logoURL}
                         alt={alternative.name}
                         class="w-36 h-36 rounded-full mb-2 mt-6"
                       />
-                      <span class="font-medium text-2xl">{alternative.name}</span>
+                      <span class="font-medium text-2xl">
+                        {alternative.name}
+                      </span>
                       <div class="flex my-2">
-                      {alternative.countries.map((country) => (
-                        <img
-                          src={`/flags/${country}.svg`}
-                          alt={`${country} flag`}
-                          class="w-6 h-6 mx-1 rounded-full"
-                        />
-                      ))}
+                        {alternative.countries.map((country) => (
+                          <img
+                            src={`/flags/${country}.svg`}
+                            alt={`${country} flag`}
+                            class="w-6 h-6 mx-1 rounded-full"
+                          />
+                        ))}
                       </div>
-
                     </a>
                   ))}
                 </div>
