@@ -1,8 +1,17 @@
 import { type PageProps } from "$fresh/server.ts";
 
-export default function App({ Component }: PageProps) {
+const rtlLanguages = [
+  "ar",
+  "fa",
+];
+
+export default function App({ Component, state }: PageProps) {
+  const direction = rtlLanguages.includes(state.selectedLanguage)
+    ? "rtl"
+    : "ltr";
+
   return (
-    <html>
+    <html lang={state.selectedLanguage} dir={direction}>
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

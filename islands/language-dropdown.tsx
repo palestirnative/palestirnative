@@ -1,39 +1,27 @@
 import { useMemo, useState } from "preact/hooks";
-import { createCountryURL } from "../../utils/create-url.ts";
-import countries from "../../utils/countries.ts";
+import { languages } from "../locales/index.ts";
 
-export default function CountryDropdown({ state }) {
-  const {
-    locale: { countries: localeCountries },
-    search,
-    category,
-    pathname,
-  } = state;
+const createLanguageURL = (lang) => `/lang?language=${lang}`;
 
-  const currentCountry = useMemo(() => {
-    return state.country || "all";
-  }, [state.country]);
-
+export default function LanguageDropdown({ currentLanguage }) {
   const [shouldShow, setShouldShow] = useState(false);
 
   const toggleDropdown = () => {
     setShouldShow(!shouldShow);
   };
 
-  const unfilteredOptions = useMemo(() => {
-    const all = { name: localeCountries.All, code: "all" };
-    return [all, ...countries];
-  }, []);
+  const currentLanguageName = useMemo(() => {
+    return languages.find((language) => language.code === currentLanguage)
+      ?.name;
+  }, [currentLanguage]);
 
   const options = useMemo(() => {
-    return unfilteredOptions.filter((country) =>
-      country.code !== currentCountry
+    return languages.filter((language) => language !== currentLanguage).sort(
+      (a, b) => {
+        return a.code.localeCompare(b.code);
+      },
     );
-  }, [unfilteredOptions, currentCountry]);
-
-  const currentOption = useMemo(() => {
-    return unfilteredOptions.find((country) => country.code === currentCountry);
-  }, [currentCountry, unfilteredOptions]);
+  }, [currentLanguage]);
 
   return (
     <div class="relative">
@@ -45,15 +33,7 @@ export default function CountryDropdown({ state }) {
         type="button"
         onClick={toggleDropdown}
       >
-        {currentOption?.code !== "all" && (
-          <img
-            src={`/flags/${currentOption.code.toLowerCase()}.svg`}
-            alt={`${currentOption.name} flag`}
-            class="w-4 h-4 mr-2 rounded-full"
-          />
-        )}
-
-        {currentOption?.name}
+        {currentLanguageName}
         <svg
           class="w-2.5 h-2.5 ms-3"
           aria-hidden="true"
@@ -80,23 +60,13 @@ export default function CountryDropdown({ state }) {
           class="h-48 py-2 overflow-y-auto text-gray-700 dark:text-gray-200"
           aria-labelledby="dropdownUsersButton"
         >
-          {options.map((country) => (
+          {options.map((language) => (
             <li>
               <a
-                href={createCountryURL(
-                  { pathname, category, search },
-                  country.code,
-                )}
+                href={createLanguageURL(language.code)}
                 class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
-                {country.code !== "all" && (
-                  <img
-                    class="w-6 h-6 me-2 rounded-full"
-                    src={`/flags/${country.code.toLowerCase()}.svg`}
-                    alt={country.name}
-                  />
-                )}
-                <span>{country.name}</span>
+                <span>{language.name}</span>
               </a>
             </li>
           ))}

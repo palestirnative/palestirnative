@@ -2,9 +2,11 @@ import { PageProps } from "$fresh/server.ts";
 import { ArrowRightStartOnRectangleOutline } from "https://esm.sh/preact-heroicons";
 import { createCategoryURL } from "../utils/create-url.ts";
 import CountryDropdown from "../islands/form/country-dropdown.tsx";
+import LanguageDropdown from "../islands/language-dropdown.tsx";
 
 export default function Layout({ state, Component }: PageProps) {
   // do something with state here
+
   return (
     <>
       <nav class="relative bg-white shadow dark:bg-gray-800">
@@ -55,7 +57,7 @@ export default function Layout({ state, Component }: PageProps) {
                       <input type="submit" hidden />
                     </div>
                   </div>
-                  <CountryDropdown name="country" />
+                  <CountryDropdown state={state} />
                 </div>
               </form>
 
@@ -99,7 +101,7 @@ export default function Layout({ state, Component }: PageProps) {
             </div>
 
             <div class="absolute inset-x-0 z-20 w-full px-6 py-2 transition-all duration-300 ease-in-out bg-white top-24 dark:bg-gray-800 md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center">
-              <div class="flex flex-col md:flex-row md:mx-1">
+              <div class="flex flex-col items-center md:flex-row md:mx-1">
                 <a
                   class="my-2 text-sm leading-5 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0"
                   href="/alternative"
@@ -112,12 +114,7 @@ export default function Layout({ state, Component }: PageProps) {
                 >
                   Boycotts
                 </a>
-                <a
-                  class="my-2 text-sm leading-5 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0"
-                  href="#"
-                >
-                  English
-                </a>
+                <LanguageDropdown currentLanguage={state.selectedLanguage} />
               </div>
 
               <div class="my-4 md:hidden">

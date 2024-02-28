@@ -6,20 +6,23 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $_layout from "./routes/_layout.tsx";
 import * as $_middleware from "./routes/_middleware.ts";
-import * as $alternative_id_ from "./routes/alternative/[id].tsx";
+import * as $alternative_id_index from "./routes/alternative/[id]/index.tsx";
 import * as $alternative_form from "./routes/alternative/form.tsx";
 import * as $alternative_index from "./routes/alternative/index.tsx";
-import * as $alternative_remove from "./routes/alternative/remove.ts";
-import * as $boycott_id_ from "./routes/boycott/[id].tsx";
+import * as $boycott_id_index from "./routes/boycott/[id]/index.tsx";
+import * as $boycott_id_suggestAlternative from "./routes/boycott/[id]/suggestAlternative.tsx";
 import * as $boycott_form from "./routes/boycott/form.tsx";
 import * as $boycott_index from "./routes/boycott/index.tsx";
-import * as $boycott_remove from "./routes/boycott/remove.ts";
 import * as $index from "./routes/index.tsx";
 import * as $lang from "./routes/lang.ts";
 import * as $form_alternative_form from "./islands/form/alternative-form.tsx";
+import * as $form_autocomplete_input from "./islands/form/autocomplete-input.tsx";
 import * as $form_boycott_form from "./islands/form/boycott-form.tsx";
 import * as $form_country_dropdown from "./islands/form/country-dropdown.tsx";
 import * as $form_tag_input from "./islands/form/tag-input.tsx";
+import * as $language_dropdown from "./islands/language-dropdown.tsx";
+import * as $suggest_alternative from "./islands/suggest-alternative.tsx";
+import * as $suggest_boycott from "./islands/suggest-boycott.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -28,22 +31,26 @@ const manifest = {
     "./routes/_app.tsx": $_app,
     "./routes/_layout.tsx": $_layout,
     "./routes/_middleware.ts": $_middleware,
-    "./routes/alternative/[id].tsx": $alternative_id_,
+    "./routes/alternative/[id]/index.tsx": $alternative_id_index,
     "./routes/alternative/form.tsx": $alternative_form,
     "./routes/alternative/index.tsx": $alternative_index,
-    "./routes/alternative/remove.ts": $alternative_remove,
-    "./routes/boycott/[id].tsx": $boycott_id_,
+    "./routes/boycott/[id]/index.tsx": $boycott_id_index,
+    "./routes/boycott/[id]/suggestAlternative.tsx":
+      $boycott_id_suggestAlternative,
     "./routes/boycott/form.tsx": $boycott_form,
     "./routes/boycott/index.tsx": $boycott_index,
-    "./routes/boycott/remove.ts": $boycott_remove,
     "./routes/index.tsx": $index,
     "./routes/lang.ts": $lang,
   },
   islands: {
     "./islands/form/alternative-form.tsx": $form_alternative_form,
+    "./islands/form/autocomplete-input.tsx": $form_autocomplete_input,
     "./islands/form/boycott-form.tsx": $form_boycott_form,
     "./islands/form/country-dropdown.tsx": $form_country_dropdown,
     "./islands/form/tag-input.tsx": $form_tag_input,
+    "./islands/language-dropdown.tsx": $language_dropdown,
+    "./islands/suggest-alternative.tsx": $suggest_alternative,
+    "./islands/suggest-boycott.tsx": $suggest_boycott,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

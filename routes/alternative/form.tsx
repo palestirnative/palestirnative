@@ -4,36 +4,24 @@ import { ObjectId } from "mongodb";
 
 export const handler: Handlers = {
   async GET(req, ctx) {
-    const id = new URL(req.url).searchParams.get("id");
-
     const boycotts = await db.collection("boycotts").find().toArray();
 
-    let toBeUpdated;
-    if (id) {
-      toBeUpdated = await db.collection("alternatives").findOne({
-        _id: new ObjectId(id),
-      });
-      toBeUpdated.boycotts = await db.collection("boycotts").find({
-        "alternatives.alternative": toBeUpdated._id,
-      }).toArray();
-    }
-
-    return ctx.render({ toBeUpdated, boycotts });
+    return ctx.render({ boycotts });
   },
 };
 
-export default function AlternativeForm({ data }) {
-  const { toBeUpdated, boycotts } = data;
+export default function AlternativeForm({ data, state }) {
+  const { boycotts } = data;
 
   return (
     <>
       <section class="max-w-4xl p-6 mx-auto mt-10 bg-white rounded-md shadow-md dark:bg-gray-800">
         <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">
-          New Alternative
+          {state.locale["Suggest a alternative"]}
         </h2>
 
         <AlternativeFormIsland
-          toBeUpdated={toBeUpdated}
+          state={state}
           boycotts={boycotts}
         />
       </section>

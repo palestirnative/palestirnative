@@ -2,30 +2,40 @@ import TagInput from "./tag-input.tsx";
 import { ArrowUpTraySolid } from "https://esm.sh/preact-heroicons";
 import { useMemo, useState } from "preact/hooks";
 
-export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
+const categoryTemplate = (category) => (
+  <span>{category.icon} {category.label}</span>
+);
+
+const alternativeTemplate = (alternative) => (
+  <div class="flex items-center">
+    <img
+      src={alternative.logoURL}
+      alt={`${alternative.label} logo`}
+      class="w-4 h-4 mr-2 rounded-full"
+    />
+    <span>{alternative.label}</span>
+  </div>
+);
+
+export default function BoycottForm({ categories, alternatives, state }) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [logoSource, setLogoSource] = useState(toBeUpdated?.logoURL || null);
+  const [logoSource, setLogoSource] = useState(null);
 
   const submitURL = useMemo(() => {
-    return toBeUpdated ? `/boycott/${toBeUpdated._id}` : "/boycott";
+    return "/boycott";
   }, []);
 
   const submitMethod = useMemo(() => {
-    return toBeUpdated ? "PUT" : "POST";
+    return "POST";
   }, []);
 
-  const [selectedCategories, setSelectedCategories] = useState(
-    (toBeUpdated?.categories || []).map((category) => ({
-      value: category,
-      label:
-        categories.find((c) => c._id.toString() === category.toString()).name,
-    })),
-  );
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [categoryOptions, setCategoryOptions] = useState(
     categories.map((category) => ({
       value: category._id,
       label: category.name,
+      icon: category.icon,
     })),
   );
 
@@ -43,19 +53,12 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
     );
   };
 
-  const [selectedAlternatives, setSelectedAlternatives] = useState(
-    (toBeUpdated?.alternatives || []).map((alternative) => ({
-      value: alternative.alternative,
-      label:
-        alternatives.find((a) =>
-          a._id.toString() === alternative.alternative.toString()
-        ).name,
-    })),
-  );
+  const [selectedAlternatives, setSelectedAlternatives] = useState([]);
   const [alternativeOptions, setAlternativeOptions] = useState(
     alternatives.map((alternative) => ({
       value: alternative._id,
       label: alternative.name,
+      logoURL: alternative.logoURL,
     })),
   );
 
@@ -140,7 +143,9 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
             for="logo"
           >
             <ArrowUpTraySolid class="w-5 h-5" />
-            {logoSource ? "Change Logo" : "Choose Logo"}
+            {logoSource
+              ? state.locale["Change logo"]
+              : state.locale["Set a logo"]}
           </label>
 
           <input
@@ -156,12 +161,11 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
           <div>
             <label class="text-gray-700 dark:text-gray-200" for="name">
-              Name
+              {state.locale["Name"]}
             </label>
             <input
               id="name"
               name="name"
-              value={toBeUpdated?.name}
               type="text"
               class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
             />
@@ -169,12 +173,11 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
 
           <div>
             <label class="text-gray-700 dark:text-gray-200" for="reasonurl">
-              Reason
+              {state.locale["Reason URL"]}
             </label>
             <input
               id="reasonurl"
               name="reasonurl"
-              value={toBeUpdated?.reasonURL}
               type="url"
               class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
             />
@@ -182,7 +185,7 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
 
           <div>
             <label class="text-gray-700 dark:text-gray-200" for="categories">
-              Categories
+              {state.locale["Categories"]}
             </label>
             <TagInput
               name="categoriesInput"
@@ -190,6 +193,8 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
               handleSelect={handleSelectCategory}
               options={categoryOptions}
               handleRemove={handleUnselectCategory}
+              optionTemplate={categoryTemplate}
+              tagTemplate={categoryTemplate}
             />
           </div>
 
@@ -198,7 +203,7 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
               class="text-gray-700 dark:text-gray-200"
               for="alternatives"
             >
-              Alternatives
+              {state.locale["Alternatives"]}
             </label>
             <TagInput
               name="alternativesInput"
@@ -206,6 +211,8 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
               handleSelect={handleSelectAlternative}
               options={alternativeOptions}
               handleRemove={handleUnselectAlternative}
+              optionTemplate={alternativeTemplate}
+              tagTemplate={alternativeTemplate}
             />
           </div>
         </div>
@@ -215,7 +222,7 @@ export default function BoycottForm({ categories, alternatives, toBeUpdated }) {
             disabled={isLoading}
             class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
           >
-            {isLoading ? "Saving..." : "Save"}
+            {isLoading ? state.locale["Submitting..."] : state.locale["Submit"]}
           </button>
         </div>
       </form>

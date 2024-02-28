@@ -46,6 +46,7 @@ export async function handler(req, ctx) {
   ctx.state.pathname = url.pathname;
   ctx.state.search = url.searchParams?.get("search");
   ctx.state.category = url.searchParams?.get("category");
+  ctx.state.country = url.searchParams?.get("country");
 
   const response = await ctx.next();
   return response;

@@ -41,6 +41,7 @@ export const handler: Handler = {
       });
     }
 
+    const formAlternatives = form.get("alternatives") as string;
     const boycott: BoycottCreationData = {
       name: form.get("name"),
       nameSlug: form.get("name")!.toLowerCase().replace(/\s+/g, "-"),
@@ -48,13 +49,11 @@ export const handler: Handler = {
       categories: (form.get("categories") ?? "").split(",").map((
         category: string,
       ) => new ObjectId(category)),
-      status: BoycottStatus.Approved,
-      alternatives: (form.get("alternatives") ?? "").split(",").filter(Boolean)
-        .map((
-          alternative: string,
-        ) => ({
+      status: BoycottStatus.Pending,
+      alternatives: formAlternatives.split(",").filter(Boolean)
+        .map((alternative: string) => ({
           alternative,
-          status: AlternativeStatus.Approved,
+          status: AlternativeStatus.Pending,
         })),
       createdAt: new Date(),
     };
@@ -179,6 +178,13 @@ export const handler: Handler = {
           },
         }]
         : []),
+      ...(ctx.state.country
+        ? [{
+          $match: {
+            "attachedAlternatives.countries": ctx.state.country.toLowerCase(),
+          },
+        }]
+        : []),
       { $skip: (page - 1) * 10 },
       { $limit: 10 },
     ]).toArray();
@@ -269,7 +275,10 @@ export default function Boycott({ data, state }) {
                 </div>
                 <div class="flex">
                   <div class="flex flex-col justify-center items-center border-e border-gray-200 px-4 py-2 w-72 h-72">
-                    <div class="relative mb-2 mt-6">
+                    <a
+                      href={`/boycott/${boycott.nameSlug}`}
+                      class="relative mb-2 mt-6"
+                    >
                       <img
                         src={boycott.logoURL}
                         alt={boycott.name}
@@ -278,8 +287,13 @@ export default function Boycott({ data, state }) {
                       <span class="text-creepy text-2xl text-red-700 absolute -rotate-45 bg-white bg-opacity-50 -left-6 top-6 p-2 border-4 border-red-700">
                         CRIMINALS
                       </span>
-                    </div>
-                    <span class="text-creepy text-red-700">{boycott.name}</span>
+                    </a>
+                    <a
+                      href={`/boycott/${boycott.nameSlug}`}
+                      class="text-creepy text-red-700"
+                    >
+                      {boycott.name}
+                    </a>
                     <a
                       href={boycott.reasonURL}
                       target="_blank"
@@ -290,17 +304,24 @@ export default function Boycott({ data, state }) {
                   </div>
                 </div>
               </div>
-              <div class="flex-1">
-                <div class="flex items-center justify-center px-4 py-2">
-                  <span class="font-medium text-lg w-full">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between px-4 py-2 w-full">
+                  <span class="font-medium text-lg">
                     {state.locale["By these"]}:
                   </span>
+                  <div class="flex gap-4">
+                    {boycott.categories.map((category) => (
+                      <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
+                        {category.name}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div class="flex">
+                <div class="flex overflow-x-auto">
                   {boycott.attachedAlternatives.map((alternative) => (
                     <a
-                      href={`/alternative/${alternative.id}`}
-                      class="flex flex-col hover:bg-gray-100 cursor-pointer items-center border-x border-t border-gray-200 px-4 py-2 w-72 h-72"
+                      href={`/alternative/${alternative.nameSlug}`}
+                      class="flex flex-col hover:bg-gray-100 cursor-pointer items-center border-x border-t border-gray-200 px-4 py-2 min-w-72 h-72"
                     >
                       <img
                         src={alternative.logoURL}

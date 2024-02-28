@@ -7,7 +7,7 @@ export const handler: Handler = {
 
     const headers = new Headers();
     setCookie(headers, {
-      name: "auth",
+      name: "language",
       value: language, // this should be a unique value for each session
       // 3 years
       maxAge: 60 * 60 * 24 * 365 * 3,
@@ -15,6 +15,13 @@ export const handler: Handler = {
       domain: url.hostname,
       path: "/",
       secure: true,
+    });
+
+    headers.set("Location", req.referer || "/");
+
+    return new Response(null, {
+      status: 303,
+      headers,
     });
   },
 };

@@ -30,25 +30,20 @@ const boycottOptionTemplate = (boycott) => (
   </div>
 );
 
-export default function AlternativeForm({ toBeUpdated, boycotts }) {
+export default function AlternativeForm({ boycotts, state }) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [logoSource, setLogoSource] = useState(toBeUpdated?.logoURL || null);
+  const [logoSource, setLogoSource] = useState(null);
 
   const submitURL = useMemo(() => {
-    return toBeUpdated ? `/alternative/${toBeUpdated._id}` : "/alternative";
+    return "/alternative";
   }, []);
 
   const submitMethod = useMemo(() => {
-    return toBeUpdated ? "PUT" : "POST";
+    return "POST";
   }, []);
 
-  const [selectedCountries, setSelectedCountries] = useState(
-    (toBeUpdated?.countries || []).map((country) => ({
-      value: country,
-      label: indexedCountries[country],
-    })),
-  );
+  const [selectedCountries, setSelectedCountries] = useState([]);
 
   const [countryOptions, setCountryOptions] = useState(
     countries.map((country) => ({
@@ -71,13 +66,7 @@ export default function AlternativeForm({ toBeUpdated, boycotts }) {
     );
   };
 
-  const [selectedBoycotts, setSelectedBoycotts] = useState(
-    (toBeUpdated?.boycotts || []).map((boycott) => ({
-      value: boycott._id,
-      label: boycott.name,
-      logoURL: boycott.logoURL,
-    })),
-  );
+  const [selectedBoycotts, setSelectedBoycotts] = useState([]);
 
   const [boycottOptions, setBoycottOptions] = useState(
     boycotts.map((boycott) => ({
@@ -165,7 +154,9 @@ export default function AlternativeForm({ toBeUpdated, boycotts }) {
             for="logo"
           >
             <ArrowUpTraySolid class="w-5 h-5" />
-            {logoSource ? "Change Logo" : "Choose Logo"}
+            {logoSource
+              ? state.locale["Change logo"]
+              : state.locale["Set a logo"]}
           </label>
 
           <input
@@ -178,16 +169,26 @@ export default function AlternativeForm({ toBeUpdated, boycotts }) {
           />
         </div>
 
-        <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+        <div class="grid grid-cols-1 gap-6 my-4 sm:grid-cols-2">
           <div>
             <label class="text-gray-700 dark:text-gray-200" for="name">
-              Name
+              {state.locale["Name"]}
             </label>
             <input
               id="name"
               name="name"
-              value={toBeUpdated?.name}
               type="text"
+              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+            />
+          </div>
+          <div>
+            <label class="text-gray-700 dark:text-gray-200" for="website">
+              {state.locale["Website"]}
+            </label>
+            <input
+              id="website"
+              name="website"
+              type="url"
               class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
             />
           </div>
@@ -195,7 +196,7 @@ export default function AlternativeForm({ toBeUpdated, boycotts }) {
 
         <div>
           <label class="text-gray-700 dark:text-gray-200" for="categories">
-            Countries
+            {state.locale["Countries"]}
           </label>
           <TagInput
             name="countriesInput"
@@ -210,7 +211,7 @@ export default function AlternativeForm({ toBeUpdated, boycotts }) {
 
         <div>
           <label class="text-gray-700 dark:text-gray-200" for="categories">
-            Boycotts
+            {state.locale["Boycotts"]}
           </label>
           <TagInput
             name="boycottsInput"
@@ -228,7 +229,7 @@ export default function AlternativeForm({ toBeUpdated, boycotts }) {
             disabled={isLoading}
             class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
           >
-            {isLoading ? "Saving..." : "Save"}
+            {isLoading ? state.locale["Submitting..."] : state.locale["Submit"]}
           </button>
         </div>
       </form>
