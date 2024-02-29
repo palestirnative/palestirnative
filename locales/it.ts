@@ -256,7 +256,7 @@ export default {
     Tajikistan: "Tagikistan",
     "Tanzania, United Republic Of": "Tanzania",
     Thailand: "Thailandia",
-    Timor-Leste: "Timor Est",
+    'Timor-Leste': "Timor Est",
     Togo: "Togo",
     Tokelau: "Tokelau",
     Tonga: "Tonga",

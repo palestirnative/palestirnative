@@ -98,7 +98,7 @@ export default {
     "Cook Islands": "Ilhas Cook",
     "Costa Rica": "Costa Rica",
     "Cote D'Ivoire": "Costa do Marfim",
-    Croatia: "Cro�cia",
+    Croatia: "Cro�cia",
     Cuba: "Cuba",
     Cyprus: "Chipre",
     "Czech Republic": "República Tcheca",
@@ -284,5 +284,6 @@ export default {
     Yemen: "Iêmen",
     Zambia: "Zâmbia",
     Zimbabwe: "Zimbábue",
+    
   },
 };

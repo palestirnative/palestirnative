@@ -186,7 +186,7 @@ export default function Layout({ state, Component }: PageProps) {
           </div>
         </div>
       </nav>
-      <div class="flex relative min-h-screen bg-gray-100 dark:bg-gray-900">
+      <div class="flex relative min-h-screen bg-gray-100 dark:bg-gray-900 mb-4">
         <div class="flex-1">
           <Component />
         </div>

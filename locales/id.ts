@@ -101,7 +101,7 @@ export default {
     Croatia: "Kroasia",
     Cuba: "Kuba",
     Cyprus: "Siprus",
-    Czech Republic: "Republik Ceko",
+    "Czech Republic": "Republik Ceko",
     Denmark: "Denmark",
     Djibouti: "Djibouti",
     Dominica: "Dominika",
