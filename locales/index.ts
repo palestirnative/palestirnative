@@ -1,9 +1,39 @@
 import en from "./en.ts";
 import ar from "./ar.ts";
+import fr from "./fr.ts";
+import tr from "./tr.ts";
+import ru from "./ru.ts";
+import es from "./es.ts";
+import ms from "./ms.ts";
+import bs from "./bs.ts";
+import fa from "./fa.ts";
+import hi from "./hi.ts";
+import ur from "./ur.ts";
+import bn from "./bn.ts";
+import id from "./id.ts";
+import de from "./de.ts";
+import pt from "./pt.ts";
+import sq from "./sq.ts";
+import it from "./it.ts";
 
 export default {
   en,
   ar,
+  fr,
+  tr,
+  ru,
+  es,
+  ms,
+  bs,
+  fa,
+  hi,
+  ur,
+  bn,
+  id,
+  de,
+  pt,
+  sq,
+  it,
 };
 
 export const languages = [
