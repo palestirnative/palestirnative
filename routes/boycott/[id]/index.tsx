@@ -46,7 +46,10 @@ export default function BoycottPage({ data, state }) {
 
   return (
     <div class="container mx-auto my-20">
-      <div class="flex flex-col items-center gap-6">
+      <div class="flex flex-col items-center gap-6 relative">
+      {boycott.status === BoycottStatus.Pending && <span class="top-2 left-2 text-xs text-gray-700">
+              {state.locale["Waiting for approval"]}
+            </span>}
         <img
           class="w-36 h-36 rounded-full grayscale"
           src={boycott.logoURL}

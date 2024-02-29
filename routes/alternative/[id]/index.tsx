@@ -6,6 +6,7 @@ import upload from "../../../utils/upload.ts";
 import { Handler } from "$fresh/server.ts";
 import { Boycott } from "../../../types/boycott.ts";
 import AlternativesGrid from "../../../components/alternativesGrid.tsx";
+import LabelLongTag from "../../../components/LabelLongTag.tsx";
 import SuggestBoycott from "../../../islands/suggest-boycott.tsx";
 
 export const handler: Handler = {
@@ -50,6 +51,9 @@ export default function BoycottPage({ data, state }) {
         <div class="text-3xl font-bold">
           {alternative.name}
         </div>
+        <div class="my-4">
+          <LabelLongTag label={alternative.label} />
+        </div>
         <a
           href={alternative.website}
           target="_blank"
@@ -84,29 +88,28 @@ export default function BoycottPage({ data, state }) {
               )?.status;
 
               return (
-              <a
-                href={`/boycott/${boycott.nameSlug}`}
-                class="relative flex flex-col bg-white rounded-xl shadow hover:bg-gray-100 cursor-pointer items-center border-x border border-gray-200 px-4 py-2 w-64 h-64 my-2"
-                style={{
-                  opacity: status === AlternativeStatus.Pending ? 0.5 : 1,
-                }}
-              >
-                {status === AlternativeStatus.Pending && (
-                  <span class="absolute top-2 left-2 text-xs text-gray-700">
-                    {state.locale["Waiting for approval"]}
+                <a
+                  href={`/boycott/${boycott.nameSlug}`}
+                  class="relative flex flex-col bg-white rounded-xl shadow hover:bg-gray-100 cursor-pointer items-center border-x border border-gray-200 px-4 py-2 w-64 h-64 my-2"
+                  style={{
+                    opacity: status === AlternativeStatus.Pending ? 0.5 : 1,
+                  }}
+                >
+                  {status === AlternativeStatus.Pending && (
+                    <span class="absolute top-2 left-2 text-xs text-gray-700">
+                      {state.locale["Waiting for approval"]}
+                    </span>
+                  )}
+                  <img
+                    src={boycott.logoURL}
+                    alt={boycott.name}
+                    class="h-36 rounded-full mb-2 mt-6 grayscale"
+                  />
+                  <span class="font-medium text-2xl">
+                    {boycott.name}
                   </span>
-                )}
-                <img
-                  src={boycott.logoURL}
-                  alt={boycott.name}
-                  class="h-36 rounded-full mb-2 mt-6 grayscale"
-                />
-                <span class="font-medium text-2xl">
-                  {boycott.name}
-                </span>
-              </a>
-                
-                )
+                </a>
+              );
             })}
           </div>
         </div>

@@ -13,7 +13,9 @@ import * as $boycott_id_index from "./routes/boycott/[id]/index.tsx";
 import * as $boycott_id_suggestAlternative from "./routes/boycott/[id]/suggestAlternative.tsx";
 import * as $boycott_form from "./routes/boycott/form.tsx";
 import * as $boycott_index from "./routes/boycott/index.tsx";
+import * as $faq from "./routes/faq.tsx";
 import * as $index from "./routes/index.tsx";
+import * as $labels from "./routes/labels.tsx";
 import * as $lang from "./routes/lang.ts";
 import * as $form_alternative_form from "./islands/form/alternative-form.tsx";
 import * as $form_autocomplete_input from "./islands/form/autocomplete-input.tsx";
@@ -39,7 +41,9 @@ const manifest = {
       $boycott_id_suggestAlternative,
     "./routes/boycott/form.tsx": $boycott_form,
     "./routes/boycott/index.tsx": $boycott_index,
+    "./routes/faq.tsx": $faq,
     "./routes/index.tsx": $index,
+    "./routes/labels.tsx": $labels,
     "./routes/lang.ts": $lang,
   },
   islands: {

@@ -28,6 +28,9 @@ export const handler: Handler = {
       .updateOne(
         { _id: boycottId, alternatives: { $ne: alternative._id } },
         {
+          $set: {
+            updatedAt: new Date(),
+          },
           $push: {
             alternatives: {
               alternative: alternative._id,
@@ -46,7 +49,7 @@ export const handler: Handler = {
     return new Response(null, {
       status: 303,
       headers: {
-        Location: req.referer,
+        Location: req.headers.get("referer"),
       },
     });
   },

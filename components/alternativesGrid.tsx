@@ -1,4 +1,5 @@
 import { AlternativeStatus } from "../types/boycott.ts";
+import LabelTag from "./LabelTag.tsx";
 
 export default function AlternativesGrid({ alternatives, state }) {
   return (
@@ -16,6 +17,9 @@ export default function AlternativesGrid({ alternatives, state }) {
               {state.locale["Waiting for approval"]}
             </span>
           )}
+          <div class="absolute top-2 right-2">
+            {<LabelTag label={alternative.label} />}
+          </div>
           <img
             src={alternative.logoURL}
             alt={alternative.name}
@@ -35,7 +39,9 @@ export default function AlternativesGrid({ alternatives, state }) {
           </div>
           <div class="flex my-2">
             {alternative.boycotts?.length > 0 && (
-              <>{state.locale["Alternative to"]} {alternative.boycotts.length}</>
+              <>
+                {state.locale["Alternative to"]} {alternative.boycotts.length}
+              </>
             )}
           </div>
         </a>
