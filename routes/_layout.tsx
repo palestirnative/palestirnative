@@ -192,7 +192,7 @@ export default function Layout({ state, Component }: PageProps) {
         </div>
       </div>
 
-      <footer class="bg-white dark:bg-gray-900">
+      <footer class="bg-white dark:bg-gray-900 mt-10">
         <div class="container p-6 mx-auto">
             <div class="lg:flex">
                 <div class="w-full -mx-6 lg:w-2/5">
