@@ -12,7 +12,7 @@ export const createCountryURL = (state, countryCode: string) => {
   const params = {
     ...(state.search ? { search: state.search } : {}),
     ...(state.category ? { category: state.category } : {}),
-    ...(countryCode ? { country: countryCode } : {}),
+    ...(countryCode && countryCode !== "all" ? { country: countryCode } : {}),
   };
 
   return `${state.pathname}?${new URLSearchParams(params).toString()}`;
