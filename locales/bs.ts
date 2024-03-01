@@ -30,17 +30,21 @@ export default {
   FAQ: "Često postavljena pitanja",
   "Frequently asked questions": "Često postavljena pitanja",
   "FAQ Q1": "Šta je Palestirnative?",
-  "FAQ A1": "Palestirnative je inicijativa koja ima za cilj pružanje javnog direktorija za slobodne ljude sveta koji su odlučili stati uz Palestinu bojkotujući sve podržavaoce kriminalne Sionske okupacije.",
+  "FAQ A1":
+    "Palestirnative je inicijativa koja ima za cilj pružanje javnog direktorija za slobodne ljude sveta koji su odlučili stati uz Palestinu bojkotujući sve podržavaoce kriminalne Sionske okupacije.",
   "FAQ Q2": "Kako se dodjeljuju oznake alternativama?",
-  "FAQ A2": "Oznake se dodjeljuju alternativama na osnovu njihove podrške Palestini. Koristimo 3 oznake A, B, C i trudimo se da budu što objektivnije.",
+  "FAQ A2":
+    "Oznake se dodjeljuju alternativama na osnovu njihove podrške Palestini. Koristimo 3 oznake A, B, C i trudimo se da budu što objektivnije.",
   "FAQ Q3": "Ko može doprinijeti?",
-  "FAQ A3": "Svaka slobodna osoba na svetu može predložiti brend koji treba bojkotovati ili alternativu.",
+  "FAQ A3":
+    "Svaka slobodna osoba na svetu može predložiti brend koji treba bojkotovati ili alternativu.",
   "Similar initiatives": "Slične inicijative",
   Badeel: "Badeel",
   "Palestirnative labels": "Oznake Palestirnative",
   "404 error": "404 greška",
   "we can't find that page": "ne možemo pronaći tu stranicu",
-  "Sorry, the page you are looking for doesn't exist or has been moved": "Žao nam je, stranica koju tražite ne postoji ili je premještena.",
+  "Sorry, the page you are looking for doesn't exist or has been moved":
+    "Žao nam je, stranica koju tražite ne postoji ili je premještena.",
   "Go back": "Idi nazad",
   "Take me home": "Vodi me kući",
   countries: {
@@ -103,7 +107,7 @@ export default {
     Cyprus: "Kipar",
     "Czech Republic": "Češka",
     Denmark: "Danska",
-    Djibouti:"Džibuti",
+    Djibouti: "Džibuti",
     Dominica: "Dominika",
     "Dominican Republic": "Dominikanska Republika",
     Ecuador: "Ekvador",
@@ -272,8 +276,7 @@ export default {
     "United Arab Emirates": "Ujedinjeni Arapski Emirati",
     "United Kingdom": "Ujedinjeno Kraljevstvo",
     "United States": "Sjedinjene Američke Države",
-    "United States Minor Outlying Islands":
-      "Američki manji vanjski otoci",
+    "United States Minor Outlying Islands": "Američki manji vanjski otoci",
     Uruguay: "Urugvaj",
     Uzbekistan: "Uzbekistan",
     Vanuatu: "Vanuatu",
@@ -287,4 +290,3 @@ export default {
     Zimbabwe: "Zimbabve",
   },
 };
- 

@@ -10,6 +10,7 @@ import db from "../../utils/db/db.ts";
 import upload from "../../utils/upload.ts";
 import AlternativesGrid from "../../components/alternativesGrid.tsx";
 import { ObjectId } from "mongodb";
+import slugify from "../../utils/slugify.ts";
 
 export const handler: Handler = {
   async POST(req, ctx) {
@@ -54,7 +55,7 @@ export const handler: Handler = {
       countries: parsedCountries,
       website: form.get("website"),
       logoURL: form.get("logoURL"),
-      nameSlug: form.get("name")!.toLowerCase().replace(/\s+/g, "-"),
+      nameSlug: slugify(form.get("name")),
       createdAt: new Date(),
       status: AlternativeStatus.Pending,
     };

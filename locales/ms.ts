@@ -25,22 +25,27 @@ export default {
   "Label B": "Mana-mana alternatif bukan untung",
   "Label C": "Jenama Barat yang mengambil sikap neutral.",
   "All": "Semua",
-  "Footer subtitle": "dan berjuang dengan harta benda dan nyawa anda dalam jalan Allah",
+  "Footer subtitle":
+    "dan berjuang dengan harta benda dan nyawa anda dalam jalan Allah",
   About: "Tentang",
   FAQ: "Soalan Lazim",
   "Frequently asked questions": "Soalan Lazim",
   "FAQ Q1": "Apakah Palestirnative?",
-  "FAQ A1": "Palestirnative adalah inisiatif yang bertujuan untuk menyediakan direktori awam bagi orang bebas di seluruh dunia yang memutuskan untuk berdiri bersama Palestin dengan memboikot semua penyokong penjajah Zionis yang jahat.",
+  "FAQ A1":
+    "Palestirnative adalah inisiatif yang bertujuan untuk menyediakan direktori awam bagi orang bebas di seluruh dunia yang memutuskan untuk berdiri bersama Palestin dengan memboikot semua penyokong penjajah Zionis yang jahat.",
   "FAQ Q2": "Bagaimana label diberikan kepada alternatif?",
-  "FAQ A2": "Label diberikan kepada alternatif berdasarkan sokongan mereka kepada Palestin. Kami menggunakan 3 label A, B, C dan berusaha membuatnya seobjektif mungkin.",
+  "FAQ A2":
+    "Label diberikan kepada alternatif berdasarkan sokongan mereka kepada Palestin. Kami menggunakan 3 label A, B, C dan berusaha membuatnya seobjektif mungkin.",
   "FAQ Q3": "Siapa yang boleh menyumbang?",
-  "FAQ A3": "Mana-mana individu bebas di dunia boleh mencadangkan jenama untuk diboykot atau alternatif",
+  "FAQ A3":
+    "Mana-mana individu bebas di dunia boleh mencadangkan jenama untuk diboykot atau alternatif",
   "Similar initiatives": "Inisiatif seumpama",
   Badeel: "Badeel",
   "Palestirnative labels": "Label Palestirnative",
   "404 error": "Ralat 404",
   "we can't find that page": "kami tidak dapat mencari halaman itu",
-  "Sorry, the page you are looking for doesn't exist or has been moved": "Maaf, halaman yang anda cari tidak wujud atau telah dipindahkan.",
+  "Sorry, the page you are looking for doesn't exist or has been moved":
+    "Maaf, halaman yang anda cari tidak wujud atau telah dipindahkan.",
   "Go back": "Pergi kembali",
   "Take me home": "Bawa saya ke rumah",
   countries: {
@@ -287,4 +292,3 @@ export default {
     Zimbabwe: "Zimbabwe",
   },
 };
-

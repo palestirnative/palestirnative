@@ -25,22 +25,27 @@ export default {
   "Label B": "Qualsiasi alternativa senza scopo di lucro",
   "Label C": "Una marca occidentale che adotta una posizione neutrale.",
   "All": "Tutto",
-  "Footer subtitle": "e sforzatevi con i vostri averi e le vostre vite nella causa di Dio",
+  "Footer subtitle":
+    "e sforzatevi con i vostri averi e le vostre vite nella causa di Dio",
   About: "Informazioni",
   FAQ: "Domande frequenti",
   "Frequently asked questions": "Domande frequenti",
   "FAQ Q1": "Cos'è Palestirnative?",
-  "FAQ A1": "Palestirnative è un'iniziativa che mira a fornire un registro pubblico per le persone libere del mondo che hanno deciso di schierarsi con la Palestina boicottando tutti i sostenitori dell'occupazione sionista criminale.",
+  "FAQ A1":
+    "Palestirnative è un'iniziativa che mira a fornire un registro pubblico per le persone libere del mondo che hanno deciso di schierarsi con la Palestina boicottando tutti i sostenitori dell'occupazione sionista criminale.",
   "FAQ Q2": "Come vengono assegnate le etichette alle alternative?",
-  "FAQ A2": "Le etichette vengono assegnate alle alternative in base al loro sostegno alla Palestina. Utilizziamo 3 etichette A, B, C e cerchiamo di renderle il più oggettive possibile.",
+  "FAQ A2":
+    "Le etichette vengono assegnate alle alternative in base al loro sostegno alla Palestina. Utilizziamo 3 etichette A, B, C e cerchiamo di renderle il più oggettive possibile.",
   "FAQ Q3": "Chi può contribuire?",
-  "FAQ A3": "Chiunque persona libera nel mondo può suggerire una marca da boicottare o un'alternativa",
+  "FAQ A3":
+    "Chiunque persona libera nel mondo può suggerire una marca da boicottare o un'alternativa",
   "Similar initiatives": "Iniziative simili",
   Badeel: "Badeel",
   "Palestirnative labels": "Etichette Palestirnative",
   "404 error": "Errore 404",
   "we can't find that page": "non riusciamo a trovare quella pagina",
-  "Sorry, the page you are looking for doesn't exist or has been moved": "Spiacenti, la pagina che stai cercando non esiste o è stata spostata.",
+  "Sorry, the page you are looking for doesn't exist or has been moved":
+    "Spiacenti, la pagina che stai cercando non esiste o è stata spostata.",
   "Go back": "Torna indietro",
   "Take me home": "Portami a casa",
   countries: {
@@ -76,7 +81,8 @@ export default {
     Botswana: "Botswana",
     "Bouvet Island": "Isola Bouvet",
     Brazil: "Brasile",
-    "British Indian Ocean Territory": "Territorio Britannico dell'Oceano Indiano",
+    "British Indian Ocean Territory":
+      "Territorio Britannico dell'Oceano Indiano",
     "Brunei Darussalam": "Brunei",
     Bulgaria: "Bulgaria",
     "Burkina Faso": "Burkina Faso",
@@ -160,7 +166,8 @@ export default {
     Korea: "Corea",
     Kuwait: "Kuwait",
     Kyrgyzstan: "Kirghizistan",
-    "Lao People'S Democratic Republic": "Repubblica Democratica Popolare del Laos",
+    "Lao People'S Democratic Republic":
+      "Repubblica Democratica Popolare del Laos",
     Latvia: "Lettonia",
     Lebanon: "Libano",
     Lesotho: "Lesotho",
@@ -242,7 +249,8 @@ export default {
     "Solomon Islands": "Isole Solomon",
     Somalia: "Somalia",
     "South Africa": "Sudafrica",
-    "South Georgia and the South Sandwich Islands": "Georgia del Sud e Isole Sandwich del Sud",
+    "South Georgia and the South Sandwich Islands":
+      "Georgia del Sud e Isole Sandwich del Sud",
     Spain: "Spagna",
     "Sri Lanka": "Sri Lanka",
     Sudan: "Sudan",
@@ -256,7 +264,7 @@ export default {
     Tajikistan: "Tagikistan",
     "Tanzania, United Republic Of": "Tanzania",
     Thailand: "Thailandia",
-    'Timor-Leste': "Timor Est",
+    "Timor-Leste": "Timor Est",
     Togo: "Togo",
     Tokelau: "Tokelau",
     Tonga: "Tonga",
@@ -271,7 +279,8 @@ export default {
     "United Arab Emirates": "Emirati Arabi Uniti",
     "United Kingdom": "Regno Unito",
     "United States": "Stati Uniti",
-    "United States Minor Outlying Islands": "Isole minori esterne degli Stati Uniti",
+    "United States Minor Outlying Islands":
+      "Isole minori esterne degli Stati Uniti",
     Uruguay: "Uruguay",
     Uzbekistan: "Uzbekistan",
     Vanuatu: "Vanuatu",
@@ -286,4 +295,3 @@ export default {
     Zimbabwe: "Zimbabwe",
   },
 };
-

@@ -25,22 +25,27 @@ export default {
   "Label B": "Jede gemeinnützige Alternative",
   "Label C": "Eine westliche Marke, die eine neutrale Position einnimmt.",
   "All": "Alle",
-  "Footer subtitle": "und strebt mit eurem Besitz und eurem Leben in der Sache Gottes",
+  "Footer subtitle":
+    "und strebt mit eurem Besitz und eurem Leben in der Sache Gottes",
   About: "Über",
   FAQ: "FAQ",
   "Frequently asked questions": "Häufig gestellte Fragen",
   "FAQ Q1": "Was ist Palestirnative?",
-  "FAQ A1": "Palestirnative ist eine Initiative, die ein öffentliches Verzeichnis für die freien Menschen der Welt bereitstellen möchte, die sich entschieden haben, an der Seite Palästinas zu stehen und alle Unterstützer der kriminellen zionistischen Besatzung zu boykottieren.",
+  "FAQ A1":
+    "Palestirnative ist eine Initiative, die ein öffentliches Verzeichnis für die freien Menschen der Welt bereitstellen möchte, die sich entschieden haben, an der Seite Palästinas zu stehen und alle Unterstützer der kriminellen zionistischen Besatzung zu boykottieren.",
   "FAQ Q2": "Wie werden die Etiketten den Alternativen zugewiesen?",
-  "FAQ A2": "Die Etiketten werden den Alternativen auf der Grundlage ihrer Unterstützung für Palästina zugewiesen. Wir verwenden 3 Etiketten A, B, C und versuchen, sie so objektiv wie möglich zu gestalten.",
+  "FAQ A2":
+    "Die Etiketten werden den Alternativen auf der Grundlage ihrer Unterstützung für Palästina zugewiesen. Wir verwenden 3 Etiketten A, B, C und versuchen, sie so objektiv wie möglich zu gestalten.",
   "FAQ Q3": "Wer kann beitragen?",
-  "FAQ A3": "Jeder freie Mensch auf der Welt kann eine Marke zum Boykott oder eine Alternative vorschlagen",
+  "FAQ A3":
+    "Jeder freie Mensch auf der Welt kann eine Marke zum Boykott oder eine Alternative vorschlagen",
   "Similar initiatives": "Ähnliche Initiativen",
   Badeel: "Badeel",
   "Palestirnative labels": "Palestirnative Etiketten",
   "404 error": "404 Fehler",
   "we can't find that page": "wir können diese Seite nicht finden",
-  "Sorry, the page you are looking for doesn't exist or has been moved": "Entschuldigung, die von Ihnen gesuchte Seite existiert nicht oder wurde verschoben.",
+  "Sorry, the page you are looking for doesn't exist or has been moved":
+    "Entschuldigung, die von Ihnen gesuchte Seite existiert nicht oder wurde verschoben.",
   "Go back": "Zurück",
   "Take me home": "Bring mich nach Hause",
   countries: {
@@ -76,7 +81,8 @@ export default {
     Botswana: "Botsuana",
     "Bouvet Island": "Bouvetinsel",
     Brazil: "Brasilien",
-    "British Indian Ocean Territory": "Britisches Territorium im Indischen Ozean",
+    "British Indian Ocean Territory":
+      "Britisches Territorium im Indischen Ozean",
     "Brunei Darussalam": "Brunei Darussalam",
     Bulgaria: "Bulgarien",
     "Burkina Faso": "Burkina Faso",
@@ -242,7 +248,8 @@ export default {
     "Solomon Islands": "Salomonen",
     Somalia: "Somalia",
     "South Africa": "Südafrika",
-    "South Georgia and the South Sandwich Islands": "Südgeorgien und die Südlichen Sandwichinseln",
+    "South Georgia and the South Sandwich Islands":
+      "Südgeorgien und die Südlichen Sandwichinseln",
     Spain: "Spanien",
     "Sri Lanka": "Sri Lanka",
     Sudan: "Sudan",
@@ -271,7 +278,8 @@ export default {
     "United Arab Emirates": "Vereinigte Arabische Emirate",
     "United Kingdom": "Vereinigtes Königreich",
     "United States": "Vereinigte Staaten",
-    "United States Minor Outlying Islands": "Kleinere Inselbesitzungen der Vereinigten Staaten",
+    "United States Minor Outlying Islands":
+      "Kleinere Inselbesitzungen der Vereinigten Staaten",
     Uruguay: "Uruguay",
     Uzbekistan: "Usbekistan",
     Vanuatu: "Vanuatu",
@@ -285,4 +293,3 @@ export default {
     Zimbabwe: "Simbabwe",
   },
 };
-

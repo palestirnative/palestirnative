@@ -30,17 +30,21 @@ export default {
   FAQ: "Perguntas Frequentes",
   "Frequently asked questions": "Perguntas Frequentes",
   "FAQ Q1": "O que é Palestirnative?",
-  "FAQ A1": "Palestirnative é uma iniciativa que visa fornecer um diretório público para pessoas livres do mundo que decidiram apoiar a Palestina boicotando todos os apoiadores da ocupação sionista criminosa.",
+  "FAQ A1":
+    "Palestirnative é uma iniciativa que visa fornecer um diretório público para pessoas livres do mundo que decidiram apoiar a Palestina boicotando todos os apoiadores da ocupação sionista criminosa.",
   "FAQ Q2": "Como são atribuídos rótulos às alternativas?",
-  "FAQ A2": "Os rótulos são atribuídos às alternativas com base em seu apoio à Palestina. Usamos 3 rótulos A, B, C e procuramos torná-los o mais objetivos possível.",
+  "FAQ A2":
+    "Os rótulos são atribuídos às alternativas com base em seu apoio à Palestina. Usamos 3 rótulos A, B, C e procuramos torná-los o mais objetivos possível.",
   "FAQ Q3": "Quem pode contribuir?",
-  "FAQ A3": "Qualquer pessoa livre no mundo pode sugerir uma marca a ser boicotada ou uma alternativa.",
+  "FAQ A3":
+    "Qualquer pessoa livre no mundo pode sugerir uma marca a ser boicotada ou uma alternativa.",
   "Similar initiatives": "Iniciativas Semelhantes",
   Badeel: "Badeel",
   "Palestirnative labels": "Rótulos Palestirnative",
   "404 error": "Erro 404",
   "we can't find that page": "não conseguimos encontrar essa página",
-  "Sorry, the page you are looking for doesn't exist or has been moved": "Desculpe, a página que você procura não existe ou foi movida.",
+  "Sorry, the page you are looking for doesn't exist or has been moved":
+    "Desculpe, a página que você procura não existe ou foi movida.",
   "Go back": "Voltar",
   "Take me home": "Me leve para casa",
   countries: {
@@ -242,7 +246,8 @@ export default {
     "Solomon Islands": "Ilhas Salomão",
     Somalia: "Somália",
     "South Africa": "África do Sul",
-    "South Georgia and the South Sandwich Islands": "Geórgia do Sul e Ilhas Sandwich do Sul",
+    "South Georgia and the South Sandwich Islands":
+      "Geórgia do Sul e Ilhas Sandwich do Sul",
     Spain: "Espanha",
     "Sri Lanka": "Sri Lanka",
     Sudan: "Sudão",
@@ -271,7 +276,8 @@ export default {
     "United Arab Emirates": "Emirados Árabes Unidos",
     "United Kingdom": "Reino Unido",
     "United States": "Estados Unidos",
-    "United States Minor Outlying Islands": "Ilhas Menores Distantes dos Estados Unidos",
+    "United States Minor Outlying Islands":
+      "Ilhas Menores Distantes dos Estados Unidos",
     Uruguay: "Uruguai",
     Uzbekistan: "Uzbequistão",
     Vanuatu: "Vanuatu",
@@ -284,6 +290,5 @@ export default {
     Yemen: "Iêmen",
     Zambia: "Zâmbia",
     Zimbabwe: "Zimbábue",
-    
   },
 };

@@ -30,17 +30,21 @@ export default {
   FAQ: "SSS",
   "Frequently asked questions": "Sıkça sorulan sorular",
   "FAQ Q1": "Palestirnative nedir?",
-  "FAQ A1": "Palestirnative, suçlu Siyonist işgale karşı durmaya karar veren dünya özgür insanları için bir halk rehberi sağlamayı amaçlayan bir inisyatiftir.",
+  "FAQ A1":
+    "Palestirnative, suçlu Siyonist işgale karşı durmaya karar veren dünya özgür insanları için bir halk rehberi sağlamayı amaçlayan bir inisyatiftir.",
   "FAQ Q2": "Etiketler alternatiflere nasıl atanır?",
-  "FAQ A2": "Etiketler, alternatiflerin Filistin'e olan desteğine göre atanır. Mümkün olduğunca objektif olmaya çalışarak A, B, C gibi 3 etiket kullanıyoruz.",
+  "FAQ A2":
+    "Etiketler, alternatiflerin Filistin'e olan desteğine göre atanır. Mümkün olduğunca objektif olmaya çalışarak A, B, C gibi 3 etiket kullanıyoruz.",
   "FAQ Q3": "Kim katkıda bulunabilir?",
-  "FAQ A3": "Dünya genelinde herhangi bir özgür kişi bir markanın boykot edilmesini veya bir alternatif önerisinde bulunabilir",
+  "FAQ A3":
+    "Dünya genelinde herhangi bir özgür kişi bir markanın boykot edilmesini veya bir alternatif önerisinde bulunabilir",
   "Similar initiatives": "Benzer inisiyatifler",
   Badeel: "Badeel",
   "Palestirnative labels": "Palestirnative etiketleri",
   "404 error": "404 hatası",
   "we can't find that page": "bu sayfayı bulamıyoruz",
-  "Sorry, the page you are looking for doesn't exist or has been moved": "Üzgünüz, aradığınız sayfa mevcut değil veya taşınmış.",
+  "Sorry, the page you are looking for doesn't exist or has been moved":
+    "Üzgünüz, aradığınız sayfa mevcut değil veya taşınmış.",
   "Go back": "Geri dön",
   "Take me home": "Beni eve götür",
   countries: {
@@ -102,7 +106,7 @@ export default {
     Cuba: "Küba",
     Cyprus: "Kıbrıs",
     "Czech Republic": "Çek Cumhuriyeti",
-   Denmark: "Danimarka",
+    Denmark: "Danimarka",
     Djibouti: "Cibuti",
     Dominica: "Dominika",
     "Dominican Republic": "Dominik Cumhuriyeti",
@@ -287,4 +291,3 @@ export default {
     Zimbabwe: "Zimbabve",
   },
 };
- 

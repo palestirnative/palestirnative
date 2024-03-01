@@ -3,8 +3,8 @@ import LabelTag from "./LabelTag.tsx";
 
 export default function AlternativesGrid({ alternatives, state }) {
   return (
-    <div class="grid gap-4 grid-flow-col auto-cols-max">
-      {alternatives.map((alternative) => (
+    <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {new Array(20).fill(alternatives[0]).map((alternative) => (
         <a
           href={`/alternative/${alternative.nameSlug}`}
           class="relative flex flex-col bg-white rounded-xl shadow hover:bg-gray-100 cursor-pointer items-center border-x border border-gray-200 px-4 py-2 w-80 h-80 my-2"

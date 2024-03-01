@@ -30,17 +30,21 @@ export default {
   FAQ: "FAQ",
   "Frequently asked questions": "مزید پوچھی جانے والی سوالات",
   "FAQ Q1": "Palestirnative کیا ہے؟",
-  "FAQ A1": "Palestirnative ایک تلاش ہے جو آزاد دنیا کے لوگوں کے لیے عام ڈائریکٹری فراہم کرنے کی کوشش کرتی ہے جو پالیسٹائن کے ساتھ کھڑے ہو کر اسرائیلی زیونست حکومت کے تمام حامیوں کا بویکاٹ کر رہے ہیں۔",
+  "FAQ A1":
+    "Palestirnative ایک تلاش ہے جو آزاد دنیا کے لوگوں کے لیے عام ڈائریکٹری فراہم کرنے کی کوشش کرتی ہے جو پالیسٹائن کے ساتھ کھڑے ہو کر اسرائیلی زیونست حکومت کے تمام حامیوں کا بویکاٹ کر رہے ہیں۔",
   "FAQ Q2": "لیبلز کیسے اختصاص دیے جاتے ہیں؟",
-  "FAQ A2": "لیبلز پالیسٹائن کی حمایت کے احتیاط سے اختصاص دیے جاتے ہیں۔ ہم تینوں لیبلز A, B, C کا استعمال کرتے ہیں اور انہیں قابل انگیزہ نہ کرنے کی کوشش کرتے ہیں۔",
+  "FAQ A2":
+    "لیبلز پالیسٹائن کی حمایت کے احتیاط سے اختصاص دیے جاتے ہیں۔ ہم تینوں لیبلز A, B, C کا استعمال کرتے ہیں اور انہیں قابل انگیزہ نہ کرنے کی کوشش کرتے ہیں۔",
   "FAQ Q3": "کون شامل ہو سکتا ہے؟",
-  "FAQ A3": "دنیا میں کوئی بھی آزاد شخص ایک برینڈ کو بویکاٹ کرنے یا ایک اقتداری طریقہ پیش کرنے کے لیے تجویز دی سکتا ہے۔",
+  "FAQ A3":
+    "دنیا میں کوئی بھی آزاد شخص ایک برینڈ کو بویکاٹ کرنے یا ایک اقتداری طریقہ پیش کرنے کے لیے تجویز دی سکتا ہے۔",
   "Similar initiatives": "مشابہ تلاشیں",
   Badeel: "بدیل",
   "Palestirnative labels": "Palestirnative لیبلز",
   "404 error": "404 خرابی",
   "we can't find that page": "ہم اس پیج کو نہیں پا رہے",
-  "Sorry, the page you are looking for doesn't exist or has been moved": "معذرت، جس پیج کو آپ تلاش رہے ہیں، وہ موجود نہیں ہے یا جا چکی ہے۔",
+  "Sorry, the page you are looking for doesn't exist or has been moved":
+    "معذرت، جس پیج کو آپ تلاش رہے ہیں، وہ موجود نہیں ہے یا جا چکی ہے۔",
   "Go back": "واپس جائیں",
   "Take me home": "مجھے گھر لے جائیں",
   countries: {
@@ -242,7 +246,8 @@ export default {
     "Solomon Islands": "سلیمان ایلینڈز",
     Somalia: "صومالیا",
     "South Africa": "جنوبی افریقیہ",
-    "South Georgia and the South Sandwich Islands": "جنوبی جارجیا و جنوبی سینڈوچ ایلینڈز",
+    "South Georgia and the South Sandwich Islands":
+      "جنوبی جارجیا و جنوبی سینڈوچ ایلینڈز",
     Spain: "اسپین",
     "Sri Lanka": "سری لنکا",
     Sudan: "سودان",
@@ -271,7 +276,8 @@ export default {
     "United Arab Emirates": "متحدہ عرب امارات",
     "United Kingdom": "متحدہ ملک",
     "United States": "ریاستہائے متحدہ امریکا",
-    "United States Minor Outlying Islands": "ریاستہائے متحدہ امریکا کے چھوٹے بیرونی جزائر",
+    "United States Minor Outlying Islands":
+      "ریاستہائے متحدہ امریکا کے چھوٹے بیرونی جزائر",
     Uruguay: "یورگوے",
     Uzbekistan: "ازبیکستان",
     Vanuatu: "وانواتو",
@@ -285,4 +291,3 @@ export default {
     Zimbabwe: "زمبابوے",
   },
 };
-

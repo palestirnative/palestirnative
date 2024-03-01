@@ -3,13 +3,14 @@ import { Alternative } from "../../../types/alternative.ts";
 import { ObjectId } from "mongodb";
 import db from "../../../utils/db/db.ts";
 import upload from "../../../utils/upload.ts";
+import slugify from "../../../utils/slugify.ts";
 
 export const handler: Handler = {
   async POST(req, ctx) {
     const form = await req.formData();
 
     const alternativeName = form.get("alternative");
-    const alternativeNameSlug = alternativeName.replace(/\s+/g, "-")
+    const alternativeNameSlug = slugify(alternativeName)
       .toLowerCase();
     const alternative = await db
       .collection<Alternative>("alternatives")

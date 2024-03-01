@@ -25,22 +25,27 @@ export default {
   "Label B": "Cualquier alternativa sin fines de lucro",
   "Label C": "Una marca occidental que está tomando una posición neutral.",
   "All": "Todos",
-  "Footer subtitle": "y luchad con vuestros bienes y vidas en el camino de Dios",
+  "Footer subtitle":
+    "y luchad con vuestros bienes y vidas en el camino de Dios",
   About: "Acerca de",
   FAQ: "Preguntas frecuentes",
   "Frequently asked questions": "Preguntas frecuentes",
   "FAQ Q1": "¿Qué es Palestirnative?",
-  "FAQ A1": "Palestirnative es una iniciativa que tiene como objetivo proporcionar un directorio público para las personas libres del mundo que han decidido solidarizarse con Palestina boicoteando a todos los partidarios de la ocupación criminal sionista.",
+  "FAQ A1":
+    "Palestirnative es una iniciativa que tiene como objetivo proporcionar un directorio público para las personas libres del mundo que han decidido solidarizarse con Palestina boicoteando a todos los partidarios de la ocupación criminal sionista.",
   "FAQ Q2": "¿Cómo se asignan las etiquetas a las alternativas?",
-  "FAQ A2": "Las etiquetas se asignan a las alternativas según su apoyo a Palestina. Utilizamos 3 etiquetas A, B, C y tratamos de hacerlas lo más objetivas posible.",
+  "FAQ A2":
+    "Las etiquetas se asignan a las alternativas según su apoyo a Palestina. Utilizamos 3 etiquetas A, B, C y tratamos de hacerlas lo más objetivas posible.",
   "FAQ Q3": "¿Quién puede contribuir?",
-  "FAQ A3": "Cualquier persona libre en el mundo puede sugerir una marca para ser boicoteada o una alternativa",
+  "FAQ A3":
+    "Cualquier persona libre en el mundo puede sugerir una marca para ser boicoteada o una alternativa",
   "Similar initiatives": "Iniciativas similares",
   Badeel: "Badeel",
   "Palestirnative labels": "Etiquetas Palestirnative",
   "404 error": "Error 404",
   "we can't find that page": "no podemos encontrar esa página",
-  "Sorry, the page you are looking for doesn't exist or has been moved": "Lo sentimos, la página que está buscando no existe o ha sido movida.",
+  "Sorry, the page you are looking for doesn't exist or has been moved":
+    "Lo sentimos, la página que está buscando no existe o ha sido movida.",
   "Go back": "Volver atrás",
   "Take me home": "Llévame a casa",
   countries: {
@@ -242,7 +247,8 @@ export default {
     "Solomon Islands": "Islas Salomón",
     Somalia: "Somalia",
     "South Africa": "Sudáfrica",
-    "South Georgia and the South Sandwich Islands": "Georgia del Sur y las Islas Sandwich del Sur",
+    "South Georgia and the South Sandwich Islands":
+      "Georgia del Sur y las Islas Sandwich del Sur",
     Spain: "España",
     "Sri Lanka": "Sri Lanka",
     Sudan: "Sudán",
@@ -271,7 +277,8 @@ export default {
     "United Arab Emirates": "Emiratos Árabes Unidos",
     "United Kingdom": "Reino Unido",
     "United States": "Estados Unidos",
-    "United States Minor Outlying Islands": "Islas menores alejadas de Estados Unidos",
+    "United States Minor Outlying Islands":
+      "Islas menores alejadas de Estados Unidos",
     Uruguay: "Uruguay",
     Uzbekistan: "Uzbekistán",
     Vanuatu: "Vanuatu",

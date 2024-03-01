@@ -13,6 +13,7 @@ import upload from "../../utils/upload.ts";
 import { ObjectId } from "mongodb";
 import db from "../../utils/db/db.ts";
 import LabelTag from "../../components/LabelTag.tsx";
+import slugify from "../../utils/slugify.ts";
 
 export const handler: Handler = {
   async POST(req, ctx) {
@@ -45,7 +46,7 @@ export const handler: Handler = {
     const formAlternatives = form.get("alternatives") as string;
     const boycott: BoycottCreationData = {
       name: form.get("name"),
-      nameSlug: form.get("name")!.toLowerCase().replace(/\s+/g, "-"),
+      nameSlug: slugify(form.get("name")),
       reasonURL: form.get("reasonurl"),
       categories: (form.get("categories") ?? "").split(",").map((
         category: string,
@@ -267,7 +268,7 @@ export default function Boycott({ data, state }) {
 
         <div class="flex flex-col my-8">
           {boycotts.map((boycott) => (
-            <div class="flex items-center my-4 border border-gray-200 shadow-sm bg-white rounded-lg">
+            <div class="flex my-4 border border-gray-200 shadow-sm bg-white rounded-lg">
               <div>
                 <div class="flex items-center border-e border-gray-200 justify-center px-4 py-2">
                   <span class="font-medium text-lg w-full">
@@ -276,9 +277,11 @@ export default function Boycott({ data, state }) {
                 </div>
                 <div class="flex">
                   <div class="flex flex-col justify-center items-center border-e border-gray-200 px-4 py-2 w-72 h-72 relative">
-                  {boycott.status === BoycottStatus.Pending && <span class="absolute top-2 left-2 text-xs text-gray-700">
-              {state.locale["Waiting for approval"]}
-            </span>}
+                    {boycott.status === BoycottStatus.Pending && (
+                      <span class="absolute top-2 left-2 text-xs text-gray-700">
+                        {state.locale["Waiting for approval"]}
+                      </span>
+                    )}
                     <a
                       href={`/boycott/${boycott.nameSlug}`}
                       class="relative mb-2 mt-6"
@@ -323,40 +326,47 @@ export default function Boycott({ data, state }) {
                 </div>
                 <div class="flex overflow-x-auto">
                   {boycott.attachedAlternatives.map((alternative) => {
-                    const status = boycott.alternatives.find(a => a.alternative.toString() === alternative._id.toString()).status
+                    const status = boycott.alternatives.find((a) =>
+                      a.alternative.toString() === alternative._id.toString()
+                    ).status;
                     return (
-<a
-                      href={`/alternative/${alternative.nameSlug}`}
-                      class="flex flex-col hover:bg-gray-100 cursor-pointer items-center border-x border-t border-gray-200 px-4 py-2 min-w-72 h-72 relative"
-                      style={{opacity: status === AlternativeStatus.Pending ? 0.5 : 1}}
-                    >
-                      {status === AlternativeStatus.Pending && <span class="absolute top-2 left-2 text-xs text-gray-700">
-              {state.locale["Waiting for approval"]}
-            </span>}
-                      <div class="absolute top-2 right-2">
-                        {<LabelTag label={alternative.label} />}
-                      </div>
-                      <img
-                        src={alternative.logoURL}
-                        alt={alternative.name}
-                        class="w-36 h-36 rounded-full mb-2 mt-6"
-                      />
-                      <span class="font-medium text-2xl">
-                        {alternative.name}
-                      </span>
-                      <div class="flex my-2">
-                        {alternative.countries.map((country) => (
-                          <img
-                            src={`/flags/${country}.svg`}
-                            alt={`${country} flag`}
-                            class="w-6 h-6 mx-1 rounded-full"
-                          />
-                        ))}
-                      </div>
-                    </a>
-                    )
-                    
-                        })}
+                      <a
+                        href={`/alternative/${alternative.nameSlug}`}
+                        class="flex flex-col hover:bg-gray-100 cursor-pointer items-center border-x border-t border-gray-200 px-4 py-2 min-w-72 h-72 relative"
+                        style={{
+                          opacity: status === AlternativeStatus.Pending
+                            ? 0.5
+                            : 1,
+                        }}
+                      >
+                        {status === AlternativeStatus.Pending && (
+                          <span class="absolute top-2 left-2 text-xs text-gray-700">
+                            {state.locale["Waiting for approval"]}
+                          </span>
+                        )}
+                        <div class="absolute top-2 right-2">
+                          {<LabelTag label={alternative.label} />}
+                        </div>
+                        <img
+                          src={alternative.logoURL}
+                          alt={alternative.name}
+                          class="w-36 h-36 rounded-full mb-2 mt-6"
+                        />
+                        <span class="font-medium text-2xl">
+                          {alternative.name}
+                        </span>
+                        <div class="flex my-2">
+                          {alternative.countries.map((country) => (
+                            <img
+                              src={`/flags/${country}.svg`}
+                              alt={`${country} flag`}
+                              class="w-6 h-6 mx-1 rounded-full"
+                            />
+                          ))}
+                        </div>
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>

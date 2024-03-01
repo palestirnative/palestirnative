@@ -30,17 +30,21 @@ export default {
   FAQ: "سوالات متداول",
   "Frequently asked questions": "سوالات متداول",
   "FAQ Q1": "چیست Palestirnative؟",
-  "FAQ A1": "Palestirnative یک تلاش است که به ارائه ی یک فهرست عمومی برای افراد آزاد جهان می پردازد که تصمیم گرفته اند با همه ی حامیان اشغال زیونیستی جنایتکار بویکوت کنند.",
+  "FAQ A1":
+    "Palestirnative یک تلاش است که به ارائه ی یک فهرست عمومی برای افراد آزاد جهان می پردازد که تصمیم گرفته اند با همه ی حامیان اشغال زیونیستی جنایتکار بویکوت کنند.",
   "FAQ Q2": "چگونه برچسب های گزینه ها اختصاص یابند؟",
-  "FAQ A2": "برچسب های گزینه ها بر اساس پشتیبانی از فلسطین اختصاص یابند. ما از 3 برچسب A, B, C استفاده می کنیم و سعی می کنیم آنها را به صورت کاملا ناپذیر به انگیزه سازی شخصی گردانیم.",
+  "FAQ A2":
+    "برچسب های گزینه ها بر اساس پشتیبانی از فلسطین اختصاص یابند. ما از 3 برچسب A, B, C استفاده می کنیم و سعی می کنیم آنها را به صورت کاملا ناپذیر به انگیزه سازی شخصی گردانیم.",
   "FAQ Q3": "کدام شخص اجازه ی همکاری را دارد؟",
-  "FAQ A3": "هر شخص آزاد در جهان می تواند یک برند را برای بویکوت یا گزینه ی دیگر پیشنهاد دهد",
+  "FAQ A3":
+    "هر شخص آزاد در جهان می تواند یک برند را برای بویکوت یا گزینه ی دیگر پیشنهاد دهد",
   "Similar initiatives": "مبادرات مشابه",
   Badeel: "بدیل",
   "Palestirnative labels": "برچسب های Palestirnative",
   "404 error": "خطای 404",
   "we can't find that page": "این صفحه را پیدا نمی کنیم",
-  "Sorry, the page you are looking for doesn't exist or has been moved": "متاسفانه صفحه ای که دنبال آن هستید وجود ندارد یا حذف شده است.",
+  "Sorry, the page you are looking for doesn't exist or has been moved":
+    "متاسفانه صفحه ای که دنبال آن هستید وجود ندارد یا حذف شده است.",
   "Go back": "بازگشت",
   "Take me home": "برگشت به خانه",
   countries: {
@@ -73,7 +77,7 @@ export default {
     Bhutan: "بوتان",
     Bolivia: "بولیوی",
     "Bosnia and Herzegovina": "بوسنی و هرزگوین",
-   Botswana: "بوتسوانا",
+    Botswana: "بوتسوانا",
     "Bouvet Island": "جزیره بووه",
     Brazil: "برزیل",
     "British Indian Ocean Territory": "قلمرو بریتانیا در اقیانوس هند",
@@ -242,7 +246,8 @@ export default {
     "Solomon Islands": "جزایر سلیمان",
     Somalia: "سومالی",
     "South Africa": "جنوب آفریقا",
-    "South Georgia and the South Sandwich Islands": "جورجیای جنوبی و جزایر سندویچ جنوبی",
+    "South Georgia and the South Sandwich Islands":
+      "جورجیای جنوبی و جزایر سندویچ جنوبی",
     Spain: "اسپانیا",
     "Sri Lanka": "سری‌لانکا",
     Sudan: "سودان",
@@ -271,7 +276,8 @@ export default {
     "United Arab Emirates": "امارات متحده عربی",
     "United Kingdom": "بریتانیا",
     "United States": "ایالات متحده آمریکا",
-    "United States Minor Outlying Islands": "جزایر کوچک حاشیه ای ایالات متحده آمریکا",
+    "United States Minor Outlying Islands":
+      "جزایر کوچک حاشیه ای ایالات متحده آمریکا",
     Uruguay: "اروگوئه",
     Uzbekistan: "ازبکستان",
     Vanuatu: "وانواتو",
@@ -285,4 +291,3 @@ export default {
     Zimbabwe: "زیمبابوه",
   },
 };
- 

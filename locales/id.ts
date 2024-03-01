@@ -25,22 +25,27 @@ export default {
   "Label B": "Alternatif tanpa keuntungan",
   "Label C": "Merek Barat yang berada dalam posisi netral.",
   "All": "Semua",
-  "Footer subtitle": "dan berjuanglah dengan harta dan jiwa Anda di jalan Allah",
+  "Footer subtitle":
+    "dan berjuanglah dengan harta dan jiwa Anda di jalan Allah",
   About: "Tentang",
   FAQ: "FAQ",
   "Frequently asked questions": "Pertanyaan yang sering diajukan",
   "FAQ Q1": "Apa itu Palestirnative?",
-  "FAQ A1": "Palestirnative adalah inisiatif yang bertujuan untuk menyediakan direktori publik bagi orang-orang bebas di dunia yang telah memutuskan untuk berdiri dengan Palestina dengan memboikot semua pendukung okupasi zionis kriminal.",
+  "FAQ A1":
+    "Palestirnative adalah inisiatif yang bertujuan untuk menyediakan direktori publik bagi orang-orang bebas di dunia yang telah memutuskan untuk berdiri dengan Palestina dengan memboikot semua pendukung okupasi zionis kriminal.",
   "FAQ Q2": "Bagaimana label diberikan kepada alternatif?",
-  "FAQ A2": "Label diberikan kepada alternatif berdasarkan dukungan mereka kepada Palestina. Kami menggunakan 3 label A, B, C dan mencoba membuatnya seobjektif mungkin.",
+  "FAQ A2":
+    "Label diberikan kepada alternatif berdasarkan dukungan mereka kepada Palestina. Kami menggunakan 3 label A, B, C dan mencoba membuatnya seobjektif mungkin.",
   "FAQ Q3": "Siapa yang dapat berkontribusi?",
-  "FAQ A3": "Siapa pun di dunia yang bebas dapat mensarankan merek untuk diboikot atau alternatif",
+  "FAQ A3":
+    "Siapa pun di dunia yang bebas dapat mensarankan merek untuk diboikot atau alternatif",
   "Similar initiatives": "Inisiatif serupa",
   Badeel: "Badeel",
   "Palestirnative labels": "Label Palestirnative",
   "404 error": "Kesalahan 404",
   "we can't find that page": "kami tidak dapat menemukan halaman itu",
-  "Sorry, the page you are looking for doesn't exist or has been moved": "Maaf, halaman yang Anda cari tidak ada atau telah dipindahkan.",
+  "Sorry, the page you are looking for doesn't exist or has been moved":
+    "Maaf, halaman yang Anda cari tidak ada atau telah dipindahkan.",
   "Go back": "Kembali",
   "Take me home": "Bawakan saya pulang",
   countries: {
@@ -242,7 +247,8 @@ export default {
     "Solomon Islands": "Kepulauan Solomon",
     Somalia: "Somalia",
     "South Africa": "Afrika Selatan",
-    "South Georgia and the South Sandwich Islands": "Georgia Selatan dan Kepulauan Sandwich Selatan",
+    "South Georgia and the South Sandwich Islands":
+      "Georgia Selatan dan Kepulauan Sandwich Selatan",
     Spain: "Spanyol",
     "Sri Lanka": "Sri Lanka",
     Sudan: "Sudan",
@@ -271,7 +277,8 @@ export default {
     "United Arab Emirates": "Emirat-Emirat Arab Bersatu",
     "United Kingdom": "Kesatuan Inggris",
     "United States": "Amerika Serikat",
-    "United States Minor Outlying Islands": "Kepulauan Kecil Jarak Jauh Amerika Serikat",
+    "United States Minor Outlying Islands":
+      "Kepulauan Kecil Jarak Jauh Amerika Serikat",
     Uruguay: "Uruguay",
     Uzbekistan: "Uzbekistan",
     Vanuatu: "Vanuatu",
@@ -285,4 +292,3 @@ export default {
     Zimbabwe: "Zimbabwe",
   },
 };
-

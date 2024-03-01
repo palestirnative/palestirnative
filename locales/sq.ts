@@ -25,22 +25,27 @@ export default {
   "Label B": "Çdo alternativë pa fitim",
   "Label C": "Një markë perëndimore që mban një pozicion neutral.",
   "All": "Të gjitha",
-  "Footer subtitle": "dhe mundohuni me pasuritë dhe jetët tuaja në kauzën e Zotit",
+  "Footer subtitle":
+    "dhe mundohuni me pasuritë dhe jetët tuaja në kauzën e Zotit",
   About: "Rreth nesh",
   FAQ: "Pyetje të Bëra Së Shpeshti",
   "Frequently asked questions": "Pyetje të Bëra Së Shpeshti",
   "FAQ Q1": "Çfarë është Palestirnative?",
-  "FAQ A1": "Palestirnative është një iniciativë që synon të ofrojë një regjistër publik për njerëzit e lirë të botës që kanë vendosur të ngrihen në krah të Palestinës duke bojkotuar të gjithë mbështetësit e okupacionit sionist kriminal.",
+  "FAQ A1":
+    "Palestirnative është një iniciativë që synon të ofrojë një regjistër publik për njerëzit e lirë të botës që kanë vendosur të ngrihen në krah të Palestinës duke bojkotuar të gjithë mbështetësit e okupacionit sionist kriminal.",
   "FAQ Q2": "Si ndahen etiketat për alternativat?",
-  "FAQ A2": "Etiketat i ndahen alternativave bazuar në mbështetjen e tyre për Palestinën. Ne përdorim 3 etiketa A, B, C dhe përpiqemi t'i bëjmë ato sa më objektive të jetë e mundur.",
+  "FAQ A2":
+    "Etiketat i ndahen alternativave bazuar në mbështetjen e tyre për Palestinën. Ne përdorim 3 etiketa A, B, C dhe përpiqemi t'i bëjmë ato sa më objektive të jetë e mundur.",
   "FAQ Q3": "Kush mund të kontribuojë?",
-  "FAQ A3": "Çdo njeri i lirë në botë mund të sugjerojë një markë për të bojkotuar ose një alternativë",
+  "FAQ A3":
+    "Çdo njeri i lirë në botë mund të sugjerojë një markë për të bojkotuar ose një alternativë",
   "Similar initiatives": "Iniciativa të Ngjashme",
   Badeel: "Badeel",
   "Palestirnative labels": "Etiketa Palestirnative",
   "404 error": "Gabim 404",
   "we can't find that page": "nuk mund ta gjejmë atë faqe",
-  "Sorry, the page you are looking for doesn't exist or has been moved": "Na vjen keq, faqja që po kërkoni nuk ekziston ose është zhvendosur.",
+  "Sorry, the page you are looking for doesn't exist or has been moved":
+    "Na vjen keq, faqja që po kërkoni nuk ekziston ose është zhvendosur.",
   "Go back": "Kthehu",
   "Take me home": "Më ço në shtëpi",
   countries: {
@@ -160,7 +165,8 @@ export default {
     Korea: "Koreja",
     Kuwait: "Kuvajti",
     Kyrgyzstan: "Kirgistan",
-    "Lao People'S Democratic Republic": "Republika Popullore Demokratike e Laosit",
+    "Lao People'S Democratic Republic":
+      "Republika Popullore Demokratike e Laosit",
     Latvia: "Letonia",
     Lebanon: "Libani",
     Lesotho: "Lesoto",
@@ -272,7 +278,8 @@ export default {
     "United Arab Emirates": "Emiratet e Bashkuara Arabe",
     "United Kingdom": "Mbretëria e Bashkuar",
     "United States": "Shtetet e Bashkuara",
-    "United States Minor Outlying Islands": "Ishujt Periferikë të Shteteve të Bashkuara",
+    "United States Minor Outlying Islands":
+      "Ishujt Periferikë të Shteteve të Bashkuara",
     Uruguay: "Uruguai",
     Uzbekistan: "Uzbekistani",
     Vanuatu: "Vanuatu",

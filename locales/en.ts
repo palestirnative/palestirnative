@@ -25,22 +25,27 @@ export default {
   "Label B": "Any non-profit alternative",
   "Label C": "A Westerner brand that is taking a neutral position.",
   "All": "All",
-  "Footer subtitle": "and strive with your possessions and your lives in the cause of God",
+  "Footer subtitle":
+    "and strive with your possessions and your lives in the cause of God",
   About: "About",
   FAQ: "FAQ",
   "Frequently asked questions": "Frequently asked questions",
   "FAQ Q1": "What is Palestirnative?",
-  "FAQ A1": "Palestirnative is an initiative that aims to provide a public directory for free people of the world who decided to stand with Palestine by boycotting all the supporters of the criminal Zionist occupation.",
+  "FAQ A1":
+    "Palestirnative is an initiative that aims to provide a public directory for free people of the world who decided to stand with Palestine by boycotting all the supporters of the criminal Zionist occupation.",
   "FAQ Q2": "How are labels assigned to allternatives?",
-  "FAQ A2": "The labels are assigned to alternatives based on their support to Palestine. We use 3 labels A, B, C and try to make them as objective as possible.",
+  "FAQ A2":
+    "The labels are assigned to alternatives based on their support to Palestine. We use 3 labels A, B, C and try to make them as objective as possible.",
   "FAQ Q3": "Who can contribute?",
-  "FAQ A3": "Any free person in the world can suggest a brand to be boycotted or an alternative",
+  "FAQ A3":
+    "Any free person in the world can suggest a brand to be boycotted or an alternative",
   "Similar initiatives": "Similar initiatives",
   Badeel: "Badeel",
   "Palestirnative labels": "Palestirnative labels",
   "404 error": "404 error",
   "we can't find that page": "we can't find that page",
-  "Sorry, the page you are looking for doesn't exist or has been moved": "Sorry, the page you are looking for doesn't exist or has been moved.",
+  "Sorry, the page you are looking for doesn't exist or has been moved":
+    "Sorry, the page you are looking for doesn't exist or has been moved.",
   "Go back": "Go back",
   "Take me home": "Take me home",
   countries: {

@@ -25,22 +25,27 @@ export default {
   "Label B": "Toute alternative à but non lucratif",
   "Label C": "Une marque occidentale adoptant une position neutre.",
   "All": "Tous",
-  "Footer subtitle": "et luttez avec vos biens et vos vies dans la cause de Dieu",
+  "Footer subtitle":
+    "et luttez avec vos biens et vos vies dans la cause de Dieu",
   About: "À propos de",
   FAQ: "FAQ",
   "Frequently asked questions": "Questions fréquemment posées",
   "FAQ Q1": "Qu'est-ce que Palestirnative ?",
-  "FAQ A1": "Palestirnative est une initiative visant à fournir un répertoire public pour les personnes libres du monde entier qui ont décidé de se tenir aux côtés de la Palestine en boycottant tous les partisans de l'occupation sioniste criminelle.",
+  "FAQ A1":
+    "Palestirnative est une initiative visant à fournir un répertoire public pour les personnes libres du monde entier qui ont décidé de se tenir aux côtés de la Palestine en boycottant tous les partisans de l'occupation sioniste criminelle.",
   "FAQ Q2": "Comment les étiquettes sont-elles attribuées aux alternatives ?",
-  "FAQ A2": "Les étiquettes sont attribuées aux alternatives en fonction de leur soutien à la Palestine. Nous utilisons 3 étiquettes A, B, C et essayons de les rendre aussi objectives que possible.",
+  "FAQ A2":
+    "Les étiquettes sont attribuées aux alternatives en fonction de leur soutien à la Palestine. Nous utilisons 3 étiquettes A, B, C et essayons de les rendre aussi objectives que possible.",
   "FAQ Q3": "Qui peut contribuer ?",
-  "FAQ A3": "Toute personne libre dans le monde peut suggérer une marque à boycotter ou une alternative",
+  "FAQ A3":
+    "Toute personne libre dans le monde peut suggérer une marque à boycotter ou une alternative",
   "Similar initiatives": "Initiatives similaires",
   Badeel: "Badeel",
   "Palestirnative labels": "Étiquettes Palestirnative",
   "404 error": "Erreur 404",
   "we can't find that page": "nous ne pouvons pas trouver cette page",
-  "Sorry, the page you are looking for doesn't exist or has been moved": "Désolé, la page que vous recherchez n'existe pas ou a été déplacée.",
+  "Sorry, the page you are looking for doesn't exist or has been moved":
+    "Désolé, la page que vous recherchez n'existe pas ou a été déplacée.",
   "Go back": "Retourner",
   "Take me home": "Mène-moi à la maison",
   countries: {
@@ -76,7 +81,8 @@ export default {
     Botswana: "Botswana",
     "Bouvet Island": "Île Bouvet",
     Brazil: "Brésil",
-    "British Indian Ocean Territory": "Territoire britannique de l'océan Indien",
+    "British Indian Ocean Territory":
+      "Territoire britannique de l'océan Indien",
     "Brunei Darussalam": "Brunéi",
     Bulgaria: "Bulgarie",
     "Burkina Faso": "Burkina Faso",
@@ -287,4 +293,3 @@ export default {
     Zimbabwe: "Zimbabwe",
   },
 };
-
