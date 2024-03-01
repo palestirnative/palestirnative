@@ -48,7 +48,8 @@ export default {
   "Go back": "Вернуться назад",
   "Take me home": "Вернуться на главную",
   countries: {
-    All: "Все страны",
+    "All": "Везде",
+  "Everywhere": "Везде",
     Afghanistan: "Афганистан",
     "Åland Islands": "Аландские острова",
     Albania: "Албания",

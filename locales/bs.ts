@@ -48,7 +48,8 @@ export default {
   "Go back": "Idi nazad",
   "Take me home": "Vodi me kući",
   countries: {
-    All: "Sve Zemlje",
+    "All": "Bilo gdje",
+  "Everywhere": "Svuda",
     Afghanistan: "Afganistan",
     "Åland Islands": "Ålandski otoci",
     Albania: "Albanija",

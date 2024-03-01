@@ -1,4 +1,5 @@
 export default [
+  { name: "Everywhere", code: "WD" },
   { name: "Afghanistan", code: "AF" },
   { name: "Åland Islands", code: "AX" },
   { name: "Albania", code: "AL" },

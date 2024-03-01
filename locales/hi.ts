@@ -48,7 +48,8 @@ export default {
   "Go back": "पिछले में जाएं",
   "Take me home": "मुझे घर ले जाओ",
   countries: {
-    All: "सभी देश",
+    "All": "कहीं भी",
+  "Everywhere": "हर जगह",
     Afghanistan: "अफगानिस्तान",
     "Åland Islands": "ऑलैंड द्वीपसमूह",
     Albania: "अल्बानिया",

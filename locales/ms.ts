@@ -49,7 +49,8 @@ export default {
   "Go back": "Pergi kembali",
   "Take me home": "Bawa saya ke rumah",
   countries: {
-    All: "Semua Negara",
+    "All": "Di mana-mana",
+  "Everywhere": "Di mana saja",
     Afghanistan: "Afghanistan",
     "Åland Islands": "Kepulauan Åland",
     Albania: "Albania",

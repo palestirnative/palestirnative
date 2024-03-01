@@ -50,7 +50,8 @@ export default {
   "Go back": "ফিরে যান",
   "Take me home": "আমাকে বাড়ি নিন",
   countries: {
-    All: "সব দেশ",
+    "All": "যেখানেই",
+  "Everywhere": "সর্বত্র",
     Afghanistan: "আফগানিস্তান",
     "Åland Islands": "অ্যালান্ড দ্বীপপুঞ্জ",
     Albania: "আলবেনিয়া",

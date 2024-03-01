@@ -48,7 +48,8 @@ export default {
   "Go back": "عد الى الوراء",
   "Take me home": "خذني إلى الصفحة الرئيسية",
   countries: {
-    All: "جميع الدول",
+    All: "في أي بلاد",
+    Everywhere: "في كل المناطق",
     Afghanistan: "أفغانستان",
     "Åland Islands": "جزر أولاند",
     Albania: "ألبانيا",

@@ -48,7 +48,8 @@ export default {
   "Go back": "Geri dön",
   "Take me home": "Beni eve götür",
   countries: {
-    All: "Tüm Ülkeler",
+    "All": "Herhangi bir yerde",
+  "Everywhere": "Her yerde",
     Afghanistan: "Afganistan",
     "Åland Islands": "Åland Adaları",
     Albania: "Arnavutluk",

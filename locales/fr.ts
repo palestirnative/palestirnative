@@ -49,7 +49,8 @@ export default {
   "Go back": "Retourner",
   "Take me home": "Mène-moi à la maison",
   countries: {
-    All: "Tous les pays",
+    All: "N'importe ou",
+    Everywhere: "Disponible partout",
     Afghanistan: "Afghanistan",
     "Åland Islands": "Îles Åland",
     Albania: "Albanie",

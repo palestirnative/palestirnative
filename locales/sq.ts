@@ -49,7 +49,8 @@ export default {
   "Go back": "Kthehu",
   "Take me home": "Më ço në shtëpi",
   countries: {
-    All: "Të Gjitha Vendet",
+    "All": "Kudo",
+  "Everywhere": "Kudo",
     Afghanistan: "Afganistan",
     "Åland Islands": "Ishujt Åland",
     Albania: "Shqipëria",
