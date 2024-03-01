@@ -214,9 +214,9 @@ export default function Layout({ state, Component }: PageProps) {
 
                 <div class="flex mt-6 -mx-2">
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/groups/8163981/"
                     class="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-                    aria-label="Reddit"
+                    aria-label="Linkedin"
                   >
                     <svg
                       class="w-5 h-5 fill-current"
