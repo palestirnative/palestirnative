@@ -29,13 +29,16 @@ export default function AlternativesGrid({ alternatives, state }) {
             {alternative.name}
           </span>
           <div class="flex my-2">
-            {alternative.countries.map((country) => (
-              <img
-                src={`/flags/${country}.svg`}
-                alt={`${country} flag`}
-                class="w-6 h-6 mx-1 rounded-full"
-              />
-            ))}
+          {alternative.countries.slice(0, 3).map((country) => (
+                            <img
+                              src={`/flags/${country}.svg`}
+                              alt={`${country} flag`}
+                              class="w-6 h-6 mx-1 rounded-full"
+                            />
+                          ))}
+                          {alternative.countries.length > 3 && (
+                            <span class="text-gray-400">...</span>
+                          )}
           </div>
           <div class="flex my-2">
             {alternative.boycotts?.length > 0 && (
