@@ -22,6 +22,6 @@ const labels = {
   ),
 };
 
-export default function LabelTag({ label }) {
+export default function LabelTag({ label }: { label: "A" | "B" | "C" }) {
   return labels[label];
 }

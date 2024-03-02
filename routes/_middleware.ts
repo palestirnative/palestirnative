@@ -1,10 +1,20 @@
 import { getCookies } from "$std/http/cookie.ts";
 import locales from "../locales/index.ts";
+import { Category } from "../types/category.ts";
+import { Locale } from "../types/locale.ts";
 import db from "../utils/db/db.ts";
-
+export interface AppState {
+  locale: Locale;
+  selectedLanguage: string;
+  categories: Category[];
+  pathname: string;
+  search?: string;
+  category?: string;
+  country?: string;
+}
 const defaultLanguage = "en";
 
-export async function handler(req, ctx) {
+export async function handler(req: Request, ctx: { state: AppState }) {
   const cookies = getCookies(req.headers);
 
   const language = cookies.language;
@@ -44,9 +54,9 @@ export async function handler(req, ctx) {
 
   const url = new URL(req.url);
   ctx.state.pathname = url.pathname;
-  ctx.state.search = url.searchParams?.get("search");
-  ctx.state.category = url.searchParams?.get("category");
-  ctx.state.country = url.searchParams?.get("country");
+  ctx.state.search = url.searchParams?.get("search") || "";
+  ctx.state.category = url.searchParams?.get("category") || "";
+  ctx.state.country = url.searchParams?.get("country") || "";
 
   const response = await ctx.next();
   return response;

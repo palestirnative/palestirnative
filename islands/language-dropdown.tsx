@@ -1,9 +1,11 @@
 import { useMemo, useState } from "preact/hooks";
 import { languages } from "../locales/index.ts";
 
-const createLanguageURL = (lang) => `/lang?language=${lang}`;
+const createLanguageURL = (lang : string) => `/lang?language=${lang}`;
 
-export default function LanguageDropdown({ currentLanguage }) {
+export default function LanguageDropdown({ currentLanguage }: {
+  currentLanguage: string;
+}) {
   const [shouldShow, setShouldShow] = useState(false);
 
   const toggleDropdown = () => {
@@ -16,7 +18,7 @@ export default function LanguageDropdown({ currentLanguage }) {
   }, [currentLanguage]);
 
   const options = useMemo(() => {
-    return languages.filter((language) => language !== currentLanguage).sort(
+    return languages.filter((language) => language.code !== currentLanguage).sort(
       (a, b) => {
         return a.code.localeCompare(b.code);
       },

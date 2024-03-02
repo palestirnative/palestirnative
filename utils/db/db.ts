@@ -6,7 +6,7 @@ const env = {
   ...Deno.env.toObject(),
 };
 
-async function getClient() {
+async function getClient(){
   if (!env.DB_URI) {
     console.warn("No DB_URI found. Please set it in your .env file.");
     return {};

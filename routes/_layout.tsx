@@ -1,12 +1,14 @@
 import { PageProps } from "$fresh/server.ts";
-import { ArrowRightStartOnRectangleOutline } from "https://esm.sh/preact-heroicons";
 import { createCategoryURL } from "../utils/create-url.ts";
 import CountryDropdown from "../islands/form/country-dropdown.tsx";
 import LanguageDropdown from "../islands/language-dropdown.tsx";
+import { AppState } from "./_middleware.ts";
 
-export default function Layout({ state, Component }: PageProps) {
-  // do something with state here
-
+// TODO: The state type should be defined by PageProps<AppState> but it doesn't work that way for now
+// This is a workaround that should be fixed in a better way
+export default function Layout(
+  { state, Component }: PageProps & { state: AppState },
+) {
   return (
     <>
       <nav class="relative bg-white shadow dark:bg-gray-800">
