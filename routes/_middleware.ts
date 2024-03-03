@@ -14,7 +14,10 @@ export interface AppState {
 }
 const defaultLanguage = "en";
 
-export async function handler(req: Request, ctx: { state: AppState }) {
+export async function handler(
+  req: Request,
+  ctx: { state: AppState; next: () => Promise<Response> },
+) {
   const cookies = getCookies(req.headers);
 
   const language = cookies.language;
@@ -49,7 +52,8 @@ export async function handler(req: Request, ctx: { state: AppState }) {
   ctx.state.locale = locales[selectedLanguage];
   ctx.state.selectedLanguage = selectedLanguage;
 
-  const categories = await db.collection("categories").find().toArray();
+  const categories = await db.collection("categories").find()
+    .toArray() as unknown as Category[];
   ctx.state.categories = categories;
 
   const url = new URL(req.url);

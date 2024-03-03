@@ -8,8 +8,7 @@ const env = {
 
 async function getClient(){
   if (!env.DB_URI) {
-    console.warn("No DB_URI found. Please set it in your .env file.");
-    return {};
+    throw new Error("Please define the DB_URI environment variable");
   }
 
   const dbClient = new MongoClient(env.DB_URI);
