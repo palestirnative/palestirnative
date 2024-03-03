@@ -1,4 +1,6 @@
-export function createCategoryURL(categorySlug: string, state) {
+import { AppState } from "../routes/_middleware.ts";
+
+export function createCategoryURL(categorySlug: string, state: AppState) {
   const params = {
     ...(state.search ? { search: state.search } : {}),
     ...(categorySlug ? { category: categorySlug } : {}),
@@ -8,7 +10,7 @@ export function createCategoryURL(categorySlug: string, state) {
   return `${state.pathname}?${new URLSearchParams(params).toString()}`;
 }
 
-export const createCountryURL = (state, countryCode: string) => {
+export const createCountryURL = (state : AppState, countryCode: string) => {
   const params = {
     ...(state.search ? { search: state.search } : {}),
     ...(state.category ? { category: state.category } : {}),

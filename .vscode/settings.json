@@ -2,6 +2,23 @@
   "deno.enable": true,
   "deno.lint": true,
   "editor.defaultFormatter": "denoland.vscode-deno",
+  "restoreTerminals.terminals": [
+    {
+      "splitTerminals": [
+        {
+          "name": "Deno server",
+          "commands": ["deno task start"]
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
+        {
+          "name": "bash"
+        }
+      ]
+    }
+  ],
   "[typescriptreact]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
