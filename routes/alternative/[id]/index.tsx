@@ -62,6 +62,16 @@ export default function BoycottPage({ data, state }) {
           {alternative.website}
         </a>
       </div>
+      <div class="flex justify-center items-center my-6 flex-wrap gap-4">
+        {alternative.countries.map((country) => (
+          <img
+            src={`/flags/${country}.svg`}
+            alt={`${country} flag`}
+            class="w-6 h-6 mx-1 rounded-full"
+          />
+        ))}
+      </div>
+      <hr class="my-4" />
       <div class="my-6">
         <div class="flex justify-between items-center">
           <div class="text-lg font-bold">{state.locale["Alternative to"]}</div>
@@ -70,15 +80,6 @@ export default function BoycottPage({ data, state }) {
             state={state}
             alternative={alternative}
           />
-          <div class="flex gap-4">
-            {alternative.countries.map((country) => (
-              <img
-                src={`/flags/${country}.svg`}
-                alt={`${country} flag`}
-                class="w-6 h-6 mx-1 rounded-full"
-              />
-            ))}
-          </div>
         </div>
         <div class="my-6">
           <div class="grid gap-4 grid-flow-col auto-cols-max">
