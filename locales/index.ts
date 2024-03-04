@@ -15,8 +15,9 @@ import de from "./de.ts";
 import pt from "./pt.ts";
 import sq from "./sq.ts";
 import it from "./it.ts";
+import { Locales } from "../types/locale.ts";
 
-export default {
+const locales: Locales = {
   en,
   ar,
   fr,
@@ -35,8 +36,8 @@ export default {
   sq,
   it,
 };
-
-export const languages = [
+type LanguageMeta = { code: string; name: string };
+export const languages: LanguageMeta[] = [
   { code: "en", name: "English" },
   { code: "fr", name: "Français" },
   { code: "ar", name: "العربية" },
@@ -55,3 +56,4 @@ export const languages = [
   { code: "sq", name: "Shqip" },
   { code: "it", name: "Italiano" },
 ];
+export default locales;

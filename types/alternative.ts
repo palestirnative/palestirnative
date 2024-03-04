@@ -1,3 +1,4 @@
+import type { ObjectId } from "mongodb";
 import { Boycott } from "./boycott.ts";
 
 export interface AlternativeCreationPayload {

@@ -11,7 +11,7 @@ export interface BoycottCreationPayload {
   name: string;
   reasonURL: string;
   logoURL: string;
-  categories: string[];
+  categories: ObjectId[];
 }
 
 export interface BoycottCreationData extends BoycottCreationPayload {

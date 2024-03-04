@@ -1,7 +1,11 @@
 import { PageProps } from "$fresh/server.ts";
-import { Navigation } from "../islands/navigation.tsx";
+import { AppState } from "./_middleware.ts";
 
-export default function Layout({ state, Component }: PageProps) {
+// TODO: The state type should be defined by PageProps<AppState> but it doesn't work that way for now
+// This is a workaround that should be fixed in a better way
+export default function Layout(
+  { state, Component }: PageProps & { state: AppState },
+) {
   return (
     <>
       <Navigation state={state} />
