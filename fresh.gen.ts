@@ -23,6 +23,7 @@ import * as $form_boycott_form from "./islands/form/boycott-form.tsx";
 import * as $form_country_dropdown from "./islands/form/country-dropdown.tsx";
 import * as $form_tag_input from "./islands/form/tag-input.tsx";
 import * as $language_dropdown from "./islands/language-dropdown.tsx";
+import * as $navigation from "./islands/navigation.tsx";
 import * as $suggest_alternative from "./islands/suggest-alternative.tsx";
 import * as $suggest_boycott from "./islands/suggest-boycott.tsx";
 import { type Manifest } from "$fresh/server.ts";
@@ -53,6 +54,7 @@ const manifest = {
     "./islands/form/country-dropdown.tsx": $form_country_dropdown,
     "./islands/form/tag-input.tsx": $form_tag_input,
     "./islands/language-dropdown.tsx": $language_dropdown,
+    "./islands/navigation.tsx": $navigation,
     "./islands/suggest-alternative.tsx": $suggest_alternative,
     "./islands/suggest-boycott.tsx": $suggest_boycott,
   },
