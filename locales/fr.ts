@@ -48,6 +48,8 @@ export default {
     "Désolé, la page que vous recherchez n'existe pas ou a été déplacée.",
   "Go back": "Retourner",
   "Take me home": "Mène-moi à la maison",
+  "Previous": "Précédents",
+  "Next": "Suivants",
   countries: {
     All: "N'importe ou",
     Everywhere: "Disponible partout",

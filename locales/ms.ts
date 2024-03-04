@@ -48,6 +48,8 @@ export default {
     "Maaf, halaman yang anda cari tidak wujud atau telah dipindahkan.",
   "Go back": "Pergi kembali",
   "Take me home": "Bawa saya ke rumah",
+  "Previous": "Sebelumnya",
+  "Next": "Seterusnya",
   countries: {
     "All": "Di mana-mana",
   "Everywhere": "Di mana saja",

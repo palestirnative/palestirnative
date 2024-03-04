@@ -47,6 +47,8 @@ export default {
     "Žao nam je, stranica koju tražite ne postoji ili je premještena.",
   "Go back": "Idi nazad",
   "Take me home": "Vodi me kući",
+  "Previous": "Prethodni",
+  "Next": "Sljedeći",
   countries: {
     "All": "Bilo gdje",
   "Everywhere": "Svuda",

@@ -48,6 +48,8 @@ export default {
     "Entschuldigung, die von Ihnen gesuchte Seite existiert nicht oder wurde verschoben.",
   "Go back": "Zurück",
   "Take me home": "Bring mich nach Hause",
+  "Previous": "Vorherige",
+  "Next": "Nächste",
   countries: {
     All: "Alle Länder",
     Afghanistan: "Afghanistan",
