@@ -55,6 +55,7 @@ export const Navigation = ({ state }) => {
                 <CountryDropdown state={state} />
               </div>
             </form>
+            
             <div class="flex lg:hidden md:hidden">
               <button
                 type="button"
