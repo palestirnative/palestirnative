@@ -1,5 +1,6 @@
 import { PageProps } from "$fresh/server.ts";
 import { AppState } from "./_middleware.ts";
+import { Navigation } from "../islands/navigation.tsx";
 
 // TODO: The state type should be defined by PageProps<AppState> but it doesn't work that way for now
 // This is a workaround that should be fixed in a better way
