@@ -63,3 +63,35 @@ deno task start
 You should now have the Palestirnative project up and running on your local machine!
 
 Happy coding! 😊👨‍💻
+
+## How to contribute
+
+### 1. Pick an issue or start your idea
+
+So first step to contribute is to know what you want to your PR to do. For that you can either work on an idea
+you have or open the list of issues to pick one.
+
+### 2. Code in your branch
+
+Make your work in your branch.
+
+### 3. Commit convention
+
+When you are about to commit, make sure your commit message follows the convention. Which is:
+```
+type: make something in the code
+```
+
+Where type is one of the following:
+* `feat`: For any new feature
+* `fix`: For any bug fix
+* `chore`: For any other changes
+
+Note that the commit message should be short, concise and in lowercase.
+
+### 3. Create a PR
+
+Create the PR and make sure it is set to be merged to `develop` branch.
+* Make sure you add a good description of your PR so that the reviewer can understand it.
+* Pick a reviewer
+* Wait until it is approved to merge it
