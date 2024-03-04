@@ -39,6 +39,7 @@ export default function Layout(
                 <div class="flex mt-6 -mx-2">
                   <a
                     href="https://www.linkedin.com/groups/8163981/"
+                    target="_blank"
                     class="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
                     aria-label="Linkedin"
                   >
@@ -112,23 +113,46 @@ export default function Layout(
                   <a
                     href="https://badeel.wiki/"
                     target="_blank"
-                    class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                    class="flex items-baseline mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                   >
+                    <img
+                      src="/similars/badeel.png"
+                      class="w-5 h-5 mx-2"
+                    />
                     {state.locale["Badeel"]}
                   </a>
                   <a
                     href="https://www.boykot.co/"
                     target="_blank"
-                    class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                    class="flex items-baseline mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                   >
+                    <img
+                      src="/similars/boykot.png"
+                      class="w-5 h-5 mx-2"
+                    />
                     Boykot
                   </a>
                   <a
                     href="https://boycott.thewitness.news/"
                     target="_blank"
-                    class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                    class="flex items-baseline mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                   >
+                    <img
+                      src="/similars/witness.png"
+                      class="w-5 h-5 mx-2"
+                    />
                     The Witness
+                  </a>
+                  <a
+                    href="https://bdnaash.com/"
+                    target="_blank"
+                    class="flex items-baseline mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                  >
+                    <img
+                      src="/similars/bdnaash.png"
+                      class="w-5 h-5 mx-2"
+                    />
+                    Bdnaash
                   </a>
                 </div>
               </div>
