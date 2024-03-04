@@ -48,6 +48,8 @@ export default {
     "Spiacenti, la pagina che stai cercando non esiste o è stata spostata.",
   "Go back": "Torna indietro",
   "Take me home": "Portami a casa",
+  "Previous": "Precedente",
+  "Next": "Successivo",
   countries: {
     "All": "Ovunque",
   "Everywhere": "Ovunque",

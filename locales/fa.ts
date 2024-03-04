@@ -47,6 +47,8 @@ export default {
     "متاسفانه صفحه ای که دنبال آن هستید وجود ندارد یا حذف شده است.",
   "Go back": "بازگشت",
   "Take me home": "برگشت به خانه",
+  "Previous": "قبلی",
+  "Next": "بعدی",
   countries: {
     "All": "همه‌جا",
   "Everywhere": "همه جا",

@@ -48,6 +48,8 @@ export default {
     "Lo sentimos, la página que está buscando no existe o ha sido movida.",
   "Go back": "Volver atrás",
   "Take me home": "Llévame a casa",
+  "Previous": "Anterior",
+  "Next": "Siguiente",
   countries: {
     "All": "En cualquier lugar",
   "Everywhere": "En todas partes",

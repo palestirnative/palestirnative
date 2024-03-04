@@ -48,6 +48,8 @@ export default {
     "Sorry, the page you are looking for doesn't exist or has been moved.",
   "Go back": "Go back",
   "Take me home": "Take me home",
+  "Previous": "Previous",
+  "Next": "Next",
   countries: {
     All: "Anywhere",
     Everywhere: "Everywhere",

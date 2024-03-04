@@ -47,6 +47,8 @@ export default {
     "Desculpe, a página que você procura não existe ou foi movida.",
   "Go back": "Voltar",
   "Take me home": "Me leve para casa",
+  "Previous": "Anterior",
+  "Next": "Próximo",
   countries: {
     "All": "Em qualquer lugar",
   "Everywhere": "Em todo lugar",

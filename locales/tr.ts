@@ -47,6 +47,8 @@ export default {
     "Üzgünüz, aradığınız sayfa mevcut değil veya taşınmış.",
   "Go back": "Geri dön",
   "Take me home": "Beni eve götür",
+  "Previous": "Önceki",
+  "Next": "Sonraki",
   countries: {
     "All": "Herhangi bir yerde",
   "Everywhere": "Her yerde",

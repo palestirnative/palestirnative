@@ -48,6 +48,8 @@ export default {
     "Na vjen keq, faqja që po kërkoni nuk ekziston ose është zhvendosur.",
   "Go back": "Kthehu",
   "Take me home": "Më ço në shtëpi",
+  "Previous": "Paraardhës",
+  "Next": "Pasues",
   countries: {
     "All": "Kudo",
   "Everywhere": "Kudo",

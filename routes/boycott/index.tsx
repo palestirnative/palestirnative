@@ -379,7 +379,7 @@ export default function Boycott({ data, state }) {
         <div class="flex items-center justify-center mt-6">
           {page > 1 && (
             <a
-              href="#"
+              href={`/boycott?page=${page + 1}`}
               class="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
             >
               <svg
@@ -398,7 +398,7 @@ export default function Boycott({ data, state }) {
               </svg>
 
               <span>
-                previous
+              {state.locale["Previous"]}
               </span>
             </a>
           )}
@@ -408,7 +408,7 @@ export default function Boycott({ data, state }) {
               pageItem.label === page
                 ? (
                   <span class="px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60">
-                    1
+                    {pageItem.label}
                   </span>
                 )
                 : (
@@ -436,7 +436,7 @@ export default function Boycott({ data, state }) {
               class="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
             >
               <span>
-                Next
+              {state.locale["Next"]}
               </span>
 
               <svg
