@@ -364,7 +364,12 @@ export default function Boycott({ data, state }) {
                             />
                           ))}
                           {alternative.countries.length > 3 && (
-                            <span class="text-gray-400">...</span>
+                            <>
+                              <span class="text-gray-400">...</span>
+                              <div class="w-6 h-6 mx-1 rounded-full bg-green-800">
+                                <span class="text-white text-xs font-bold">+{alternative.countries.length - 3}</span>
+                              </div>
+                            </>
                           )}
                         </div>
                       </a>
