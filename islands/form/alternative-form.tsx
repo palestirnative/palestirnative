@@ -2,11 +2,15 @@ import TagInput from "./tag-input.tsx";
 import { ArrowUpTraySolid } from "https://esm.sh/preact-heroicons";
 import { useMemo, useState } from "preact/hooks";
 import countries from "../../utils/countries.ts";
+import Toastify from "toastify";
 
-const indexedCountries = countries.reduce((acc, item) => ({
-  ...acc,
-  [item.code.toLowerCase()]: item.name,
-}), {});
+const indexedCountries = countries.reduce(
+  (acc, item) => ({
+    ...acc,
+    [item.code.toLowerCase()]: item.name,
+  }),
+  {}
+);
 
 const countryOptionTemplate = (country) => (
   <div class="flex items-center">
@@ -46,23 +50,25 @@ export default function AlternativeForm({ boycotts, state }) {
   const [selectedCountries, setSelectedCountries] = useState([]);
 
   const [countryOptions, setCountryOptions] = useState(
-    countries.map((country) => ({
-      value: country.code.toLowerCase(),
-      label: country.name,
-    })).filter((option) => !selectedCountries.includes(option)),
+    countries
+      .map((country) => ({
+        value: country.code.toLowerCase(),
+        label: country.name,
+      }))
+      .filter((option) => !selectedCountries.includes(option))
   );
 
   const handleSelectCountry = (country) => {
     setSelectedCountries([...selectedCountries, country]);
     setCountryOptions(
-      countryOptions.filter((option) => option.value !== country.value),
+      countryOptions.filter((option) => option.value !== country.value)
     );
   };
 
   const handleUnselectCountry = (country) => {
     setCountryOptions([...countryOptions, country]);
     setSelectedCountries(
-      selectedCountries.filter((option) => option.value !== country.value),
+      selectedCountries.filter((option) => option.value !== country.value)
     );
   };
 
@@ -73,21 +79,28 @@ export default function AlternativeForm({ boycotts, state }) {
       value: boycott._id,
       label: boycott.name,
       logoURL: boycott.logoURL,
-    })),
+    }))
   );
 
   const handleSelectBoycott = (boycott) => {
     setSelectedBoycotts([...selectedBoycotts, boycott]);
     setBoycottOptions(
-      boycottOptions.filter((option) => option.value !== boycott.value),
+      boycottOptions.filter((option) => option.value !== boycott.value)
     );
   };
 
   const handleUnselectBoycott = (boycott) => {
     setBoycottOptions([...boycottOptions, boycott]);
     setSelectedBoycotts(
-      selectedBoycotts.filter((option) => option.value !== boycott.value),
+      selectedBoycotts.filter((option) => option.value !== boycott.value)
     );
+  };
+
+  const handleResetForm = () => {
+    setSelectedCountries([]);
+    setLogoSource(null);
+    setError(null);
+    setSelectedBoycotts([]);
   };
 
   const handleSubmit = async (event) => {
@@ -97,9 +110,9 @@ export default function AlternativeForm({ boycotts, state }) {
 
     const formData = new FormData(event.target);
 
-    const countries = selectedCountries.map((country) => country.value).join(
-      ",",
-    );
+    const countries = selectedCountries
+      .map((country) => country.value)
+      .join(",");
     formData.append("countries", countries);
 
     const boycotts = selectedBoycotts.map((boycott) => boycott.value).join(",");
@@ -119,7 +132,19 @@ export default function AlternativeForm({ boycotts, state }) {
         setError(await response.text());
       }
     } else {
-      window.location.href = "/alternative";
+      Toastify({
+        text: state.locale[
+          "Thank you for your submission! We've received your suggestion and it's now in our queue for review. We'll add it as soon as possible. Your contribution is greatly appreciated!"
+        ],
+        duration: 12000,
+        newWindow: false,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        className: "toastify-success",
+      }).showToast();
+      handleResetForm();
     }
   };
 
@@ -139,9 +164,7 @@ export default function AlternativeForm({ boycotts, state }) {
         </div>
       )}
 
-      <form
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <div class="my-2 flex flex-col items-center">
           <img
             hidden={!logoSource}
