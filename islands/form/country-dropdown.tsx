@@ -1,5 +1,5 @@
 import { useMemo, useState } from "preact/hooks";
-import { createCountryURL } from "../../utils/create-url.ts";
+import { createURL } from "../../utils/create-url.ts";
 import countries from "../../utils/countries.ts";
 
 export default function CountryDropdown({ state }) {
@@ -83,7 +83,7 @@ export default function CountryDropdown({ state }) {
           {options.map((country) => (
             <li>
               <a
-                href={createCountryURL(
+                href={createURL(
                   { pathname, category, search },
                   country.code,
                 )}

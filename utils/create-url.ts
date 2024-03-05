@@ -13,7 +13,7 @@ export function createCategoryURL(categorySlug: string, state: AppState) {
   return `${formattedPath}?${new URLSearchParams(params).toString()}`;
 }
 
-export const createCountryURL = (state : AppState, countryCode: string) => {
+export const createURL = (state : AppState, countryCode: string) => {
   const params = {
     ...(state.search ? { search: state.search } : {}),
     ...(state.category ? { category: state.category } : {}),
