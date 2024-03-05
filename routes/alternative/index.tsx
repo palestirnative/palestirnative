@@ -65,7 +65,7 @@ export const handler: Handler = {
     });
 
     if (existingSlug) {
-      return new Response("Slug already exists", {
+      return new Response("Name already exists", {
         status: 400,
       });
     }
