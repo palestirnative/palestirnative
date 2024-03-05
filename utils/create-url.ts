@@ -7,7 +7,10 @@ export function createCategoryURL(categorySlug: string, state: AppState) {
     ...(state.country ? { country: state.country } : {}),
   };
 
-  return `${state.pathname}?${new URLSearchParams(params).toString()}`;
+  const secondSlashIndex = state.pathname?.indexOf('/', 1);
+  const formattedPath = secondSlashIndex !== -1 ? state.pathname?.slice(0, secondSlashIndex) : state.pathname;
+
+  return `${formattedPath}?${new URLSearchParams(params).toString()}`;
 }
 
 export const createCountryURL = (state : AppState, countryCode: string) => {
