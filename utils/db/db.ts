@@ -6,14 +6,15 @@ const env = {
   ...Deno.env.toObject(),
 };
 
-async function getClient(){
-  if (!env.DB_URI) {
-    throw new Error("Please define the DB_URI environment variable");
-  }
-
-  const dbClient = new MongoClient(env.DB_URI);
-  await dbClient.connect();
-  return dbClient.db(env.DB_NAME);
+if (!env.DB_URI) {
+  throw new Error("Please define the DB_URI environment variable");
 }
 
-export default await getClient();
+const dbClient = new MongoClient(env.DB_URI);
+await dbClient.connect();
+
+const dbName = env.ENV === "staging" ? env.DB_BACKUP_NAME : env.DB_NAME;
+
+const db = dbClient.db(dbName);
+
+export default db;
