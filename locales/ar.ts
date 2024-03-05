@@ -1,5 +1,5 @@
 export default {
-  "Thank you for your submission! We've received your suggestion and it's now in our queue for review. We'll add it as soon as possible. Your contribution is greatly appreciated!": "شكرًا لك ! لقد تلقينا اقتراحك وهو الآن في قائمة انتظارنا للمراجعة. وسنضيفه في أقرب وقت ممكن. ونقدر مساهمتك كثيرًا!",
+  "Thank you for your submission! We've received your suggestion and it's now in our queue for review. We'll add it as soon as possible. Your contribution is greatly appreciated!": "شكرًا لك ! لقد تلقينا اقتراحك وهو الآن في قائمة انتظارنا للمراجعة. وسنضيفه في أقرب وقت ممكن. نقدر مساهمتك كثيرًا!",
   "Suggest a boycott": "اقترح مقاطعة",
   "Boycotts": "المقاطعات",
   "See reason": "انظر السبب",
