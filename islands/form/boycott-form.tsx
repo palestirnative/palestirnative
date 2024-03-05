@@ -121,7 +121,7 @@ export default function BoycottForm({ categories, alternatives, state }) {
       }
     } else {
       Toastify({
-        text: state.locale["Thank you for your submission! We've received your suggestion and it's now in our queue for review. We'll add it as soon as possible. Your contribution is greatly appreciated!"],
+        text: state.translate("ThankYouForSubmission"),
         duration: 12000,
         newWindow: false,
         close: true,
@@ -149,7 +149,6 @@ export default function BoycottForm({ categories, alternatives, state }) {
           {error}
         </div>
       )}
-
       <form onSubmit={handleSubmit}>
         <div class="my-2 flex flex-col items-center">
           <img
