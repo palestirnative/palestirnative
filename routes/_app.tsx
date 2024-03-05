@@ -24,6 +24,7 @@ export default function App({ Component, state }: PageProps) {
         >
         </link>
         <link rel="stylesheet" href="/styles.css" />
+        <link rel="stylesheet" type="text/css" href="/toastify.css" />
         <link rel="icon" href="/logo.png" />
       </head>
       <body class="font-sans" f-f-client-nav>

@@ -1,9 +1,12 @@
 import TagInput from "./tag-input.tsx";
 import { ArrowUpTraySolid } from "https://esm.sh/preact-heroicons";
 import { useMemo, useState } from "preact/hooks";
+import Toastify from "toastify";
 
 const categoryTemplate = (category) => (
-  <span>{category.icon} {category.label}</span>
+  <span>
+    {category.icon} {category.label}
+  </span>
 );
 
 const alternativeTemplate = (alternative) => (
@@ -22,6 +25,20 @@ export default function BoycottForm({ categories, alternatives, state }) {
   const [isLoading, setIsLoading] = useState(false);
   const [logoSource, setLogoSource] = useState(null);
 
+  const showToast = () => {
+    // Show a simple toast
+    Toastify({
+      text: "Hello, this is a toast!",
+      duration: 6000,
+      newWindow: false,
+      close: true,
+      gravity: "top",
+      position: "right",
+      stopOnFocus: true,
+      className:'toastify-error'
+    }).showToast();
+  };
+
   const submitURL = useMemo(() => {
     return "/boycott";
   }, []);
@@ -36,20 +53,20 @@ export default function BoycottForm({ categories, alternatives, state }) {
       value: category._id,
       label: category.name,
       icon: category.icon,
-    })),
+    }))
   );
 
   const handleSelectCategory = (category) => {
     setSelectedCategories([...selectedCategories, category]);
     setCategoryOptions(
-      categoryOptions.filter((option) => option.value !== category.value),
+      categoryOptions.filter((option) => option.value !== category.value)
     );
   };
 
   const handleUnselectCategory = (category) => {
     setCategoryOptions([...categoryOptions, category]);
     setSelectedCategories(
-      selectedCategories.filter((option) => option.value !== category.value),
+      selectedCategories.filter((option) => option.value !== category.value)
     );
   };
 
@@ -59,22 +76,22 @@ export default function BoycottForm({ categories, alternatives, state }) {
       value: alternative._id,
       label: alternative.name,
       logoURL: alternative.logoURL,
-    })),
+    }))
   );
 
   const handleSelectAlternative = (alternative) => {
     setSelectedAlternatives([...selectedAlternatives, alternative]);
     setAlternativeOptions(
-      alternativeOptions.filter((option) => option.value !== alternative.value),
+      alternativeOptions.filter((option) => option.value !== alternative.value)
     );
   };
 
   const handleUnselectAlternative = (alternative) => {
     setAlternativeOptions([...alternativeOptions, alternative]);
     setSelectedAlternatives(
-      selectedAlternatives.filter((option) =>
-        option.value !== alternative.value
-      ),
+      selectedAlternatives.filter(
+        (option) => option.value !== alternative.value
+      )
     );
   };
 
@@ -85,11 +102,12 @@ export default function BoycottForm({ categories, alternatives, state }) {
 
     const formData = new FormData(event.target);
 
-    const categoryIds = selectedCategories.map((category) => category.value)
+    const categoryIds = selectedCategories
+      .map((category) => category.value)
       .join(",");
-    const alternativeIds = selectedAlternatives.map((alternative) =>
-      alternative.value
-    ).join(",");
+    const alternativeIds = selectedAlternatives
+      .map((alternative) => alternative.value)
+      .join(",");
 
     formData.append("categories", categoryIds);
     formData.append("alternatives", alternativeIds);
@@ -122,15 +140,17 @@ export default function BoycottForm({ categories, alternatives, state }) {
 
   return (
     <>
+      <div>
+        <h1>Preact Deno Toast Example</h1>
+        <button onClick={showToast}>Show Toast</button>
+      </div>
       {error && (
         <div class="p-4 my-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800">
           {error}
         </div>
       )}
 
-      <form
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <div class="my-2 flex flex-col items-center">
           <img
             hidden={!logoSource}
@@ -199,10 +219,7 @@ export default function BoycottForm({ categories, alternatives, state }) {
           </div>
 
           <div>
-            <label
-              class="text-gray-700 dark:text-gray-200"
-              for="alternatives"
-            >
+            <label class="text-gray-700 dark:text-gray-200" for="alternatives">
               {state.locale["Alternatives"]}
             </label>
             <TagInput
