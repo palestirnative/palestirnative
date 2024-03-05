@@ -25,20 +25,6 @@ export default function BoycottForm({ categories, alternatives, state }) {
   const [isLoading, setIsLoading] = useState(false);
   const [logoSource, setLogoSource] = useState(null);
 
-  const showToast = () => {
-    // Show a simple toast
-    Toastify({
-      text: "Hello, this is a toast!",
-      duration: 6000,
-      newWindow: false,
-      close: true,
-      gravity: "top",
-      position: "right",
-      stopOnFocus: true,
-      className:'toastify-error'
-    }).showToast();
-  };
-
   const submitURL = useMemo(() => {
     return "/boycott";
   }, []);
@@ -69,6 +55,7 @@ export default function BoycottForm({ categories, alternatives, state }) {
       selectedCategories.filter((option) => option.value !== category.value)
     );
   };
+  
 
   const [selectedAlternatives, setSelectedAlternatives] = useState([]);
   const [alternativeOptions, setAlternativeOptions] = useState(
@@ -94,6 +81,13 @@ export default function BoycottForm({ categories, alternatives, state }) {
       )
     );
   };
+
+  const handleResetForm = ()  => {
+    setSelectedCategories([])
+    setLogoSource(null)
+    setError(null)
+    setSelectedAlternatives([])
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -126,7 +120,17 @@ export default function BoycottForm({ categories, alternatives, state }) {
         setError(await response.text());
       }
     } else {
-      window.location.href = "/boycott";
+      Toastify({
+        text: state.locale["Thank you for your submission! We've received your alternative and it's now in our queue for review. We'll add it as soon as possible. Your contribution is greatly appreciated!"],
+        duration: 12000,
+        newWindow: false,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        className:'toastify-success'
+      }).showToast();
+      handleResetForm()
     }
   };
 
@@ -140,10 +144,6 @@ export default function BoycottForm({ categories, alternatives, state }) {
 
   return (
     <>
-      <div>
-        <h1>Preact Deno Toast Example</h1>
-        <button onClick={showToast}>Show Toast</button>
-      </div>
       {error && (
         <div class="p-4 my-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800">
           {error}
