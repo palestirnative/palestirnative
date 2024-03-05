@@ -224,7 +224,7 @@ export default function Boycott({ data, state }) {
       { label: totalPages, type: "page" },
     ]);
   }
-
+// sm:overflow-x-auto md:overflow-x-auto
   return (
     <>
       <section class="container px-4 mx-auto mt-10">
@@ -316,7 +316,7 @@ export default function Boycott({ data, state }) {
                   <span class="font-medium text-lg">
                     {state.locale["By these"]}:
                   </span>
-                  <div class="flex gap-4">
+                  <div class="flex flex-wrap gap-4 sm:gap-0">
                     {boycott.categories.map((category) => (
                       <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
                         {category.name}

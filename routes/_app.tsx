@@ -26,7 +26,7 @@ export default function App({ Component, state }: PageProps) {
         <link rel="stylesheet" href="/styles.css" />
         <link rel="icon" href="/logo.png" />
       </head>
-      <body class="font-sans" f-f-client-nav>
+      <body class="font-sans flex flex-col" f-f-client-nav>
         <Component />
       </body>
     </html>

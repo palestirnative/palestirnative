@@ -10,7 +10,7 @@ export default function Layout(
   return (
     <>
       <Navigation state={state} />
-      <div class="flex relative min-h-screen bg-gray-100 dark:bg-gray-900 pb-10">
+      <div class="relative min-h-screen bg-gray-100 dark:bg-gray-900 pb-10">
         <div class="flex-1">
           <Component />
         </div>
