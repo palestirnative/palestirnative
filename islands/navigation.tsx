@@ -113,13 +113,13 @@ export const Navigation = ({ state }) => {
                 class="my-2 text-sm leading-5 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0"
                 href="/boycott"
               >
-                🚫 Boycotts
+                🚫 {state.locale['Boycotts']}
               </a>
               <a
                 class="my-2 text-sm leading-5 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0"
                 href="/alternative"
               >
-                ✔️ Alternatives
+                ✔️ {state.locale['Alternatives']}
               </a>
               <LanguageDropdown currentLanguage={state.selectedLanguage} />
             </div>
