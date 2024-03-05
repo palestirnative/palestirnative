@@ -1,9 +1,9 @@
-name: Deploy
+name: Deploystaging
 on:
   push:
-    branches: [main]
+    branches: [develop]
   pull_request:
-    branches: [main]
+    branches: [develop]
 
 jobs:
   deploy:
@@ -35,6 +35,6 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "palestirnative" # 📝 Update the deploy project name if necessary
+          project: "palestirnative-staging" # 📝 Update the deploy project name if necessary
           entrypoint: "./main.ts" # 📝 Update the entrypoint if necessary
 
