@@ -13,7 +13,8 @@
 button {
   color: inherit;
 }
-button, [role="button"] {
+button,
+[role="button"] {
   cursor: pointer;
 }
 code {
@@ -31,7 +32,8 @@ video {
   height: auto;
 }
 
-html, .font-sans {
+html,
+.font-sans {
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
   font-family: "IBM Plex Sans Arabic" !important;
@@ -43,3 +45,11 @@ html, .font-sans {
   font-style: normal;
 }
 
+@media (max-width: 768px) {
+  .sm-10-width {
+    width: 10rem !important;
+  }
+  .sm-15-height {
+    height: 15rem !important;
+  }
+}

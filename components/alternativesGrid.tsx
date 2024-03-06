@@ -3,11 +3,14 @@ import LabelTag from "./LabelTag.tsx";
 
 export default function AlternativesGrid({ alternatives, state }) {
   return (
-    <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div 
+        //  class="grid justify-center items-center gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3"
+         class="grid grid-cols-1 justify-center items-center gap-1 xxs:grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3"
+    >
       {alternatives.map((alternative) => (
         <a
           href={`/alternative/${alternative.nameSlug}`}
-          class="relative flex flex-col bg-white rounded-xl shadow hover:bg-gray-100 cursor-pointer items-center border-x border border-gray-200 px-4 py-2 w-80 h-80 my-2"
+          class="relative flex flex-col items-center bg-white rounded-xl shadow hover:bg-gray-100 cursor-pointer border-x border border-gray-200 px-4 py-2 w-80 h-80 sm-10-width sm-15-height my-2"
           style={{
             opacity: alternative.status === AlternativeStatus.Pending ? 0.5 : 1,
           }}

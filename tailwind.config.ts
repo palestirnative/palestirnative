@@ -5,4 +5,12 @@ export default {
   content: [
     "{routes,islands,components}/**/*.{ts,tsx}",
   ],
+  theme: {
+    extend: {
+      screens: {
+        'xs': '400px',
+        'xxs': '320px',
+      },
+    },
+  },
 } satisfies Config;
