@@ -2,6 +2,7 @@ import TagInput from "./tag-input.tsx";
 import { ArrowUpTraySolid } from "https://esm.sh/preact-heroicons";
 import { useMemo, useState } from "preact/hooks";
 import Toastify from "toastify";
+import { translate } from "../../utils/translation.ts";
 
 const categoryTemplate = (category) => (
   <span>
@@ -20,7 +21,9 @@ const alternativeTemplate = (alternative) => (
   </div>
 );
 
-export default function BoycottForm({ categories, alternatives, state }) {
+export default function BoycottForm(
+  { categories, alternatives, state },
+) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [logoSource, setLogoSource] = useState(null);
@@ -39,23 +42,22 @@ export default function BoycottForm({ categories, alternatives, state }) {
       value: category._id,
       label: category.name,
       icon: category.icon,
-    }))
+    })),
   );
 
   const handleSelectCategory = (category) => {
     setSelectedCategories([...selectedCategories, category]);
     setCategoryOptions(
-      categoryOptions.filter((option) => option.value !== category.value)
+      categoryOptions.filter((option) => option.value !== category.value),
     );
   };
 
   const handleUnselectCategory = (category) => {
     setCategoryOptions([...categoryOptions, category]);
     setSelectedCategories(
-      selectedCategories.filter((option) => option.value !== category.value)
+      selectedCategories.filter((option) => option.value !== category.value),
     );
   };
-  
 
   const [selectedAlternatives, setSelectedAlternatives] = useState([]);
   const [alternativeOptions, setAlternativeOptions] = useState(
@@ -63,13 +65,13 @@ export default function BoycottForm({ categories, alternatives, state }) {
       value: alternative._id,
       label: alternative.name,
       logoURL: alternative.logoURL,
-    }))
+    })),
   );
 
   const handleSelectAlternative = (alternative) => {
     setSelectedAlternatives([...selectedAlternatives, alternative]);
     setAlternativeOptions(
-      alternativeOptions.filter((option) => option.value !== alternative.value)
+      alternativeOptions.filter((option) => option.value !== alternative.value),
     );
   };
 
@@ -77,17 +79,17 @@ export default function BoycottForm({ categories, alternatives, state }) {
     setAlternativeOptions([...alternativeOptions, alternative]);
     setSelectedAlternatives(
       selectedAlternatives.filter(
-        (option) => option.value !== alternative.value
-      )
+        (option) => option.value !== alternative.value,
+      ),
     );
   };
 
-  const handleResetForm = ()  => {
-    setSelectedCategories([])
-    setLogoSource(null)
-    setError(null)
-    setSelectedAlternatives([])
-  }
+  const handleResetForm = () => {
+    setSelectedCategories([]);
+    setLogoSource(null);
+    setError(null);
+    setSelectedAlternatives([]);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -121,16 +123,20 @@ export default function BoycottForm({ categories, alternatives, state }) {
       }
     } else {
       Toastify({
-        text: state.translate("ThankYouForSubmission"),
+        text: translate(
+          "ThankYouForSubmission",
+          state.selectedLanguage,
+          state.defaultLanguage,
+        ),
         duration: 12000,
         newWindow: false,
         close: true,
         gravity: "top",
         position: "right",
         stopOnFocus: true,
-        className:'toastify-success'
+        className: "toastify-success",
       }).showToast();
-      handleResetForm()
+      handleResetForm();
     }
   };
 
@@ -144,6 +150,8 @@ export default function BoycottForm({ categories, alternatives, state }) {
 
   return (
     <>
+      <p>
+      </p>
       {error && (
         <div class="p-4 my-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800">
           {error}

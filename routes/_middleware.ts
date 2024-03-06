@@ -4,6 +4,7 @@ import { Category } from "../types/category.ts";
 import { Locale } from "../types/locale.ts";
 import db from "../utils/db/db.ts";
 export interface AppState {
+  defaultLanguage: string;
   translate: (expressio: string) => string;
   locale: Locale;
   selectedLanguage: string;
@@ -49,12 +50,13 @@ export async function handler(
       selectedLanguage = firstExistingLanguage.languageCode;
     }
   }
-  ctx.state.locale = locales[selectedLanguage]
+  ctx.state.locale = locales[selectedLanguage];
   ctx.state.translate = (expression) => {
-    return locales[selectedLanguage][expression] as string || locales[defaultLanguage][expression] as string || 'translation not found'
-  } ;
+    return locales[selectedLanguage][expression] as string ||
+      locales[defaultLanguage][expression] as string || "translation not found";
+  };
   ctx.state.selectedLanguage = selectedLanguage;
-  
+
   const categories = await db.collection("categories").find()
     .toArray() as unknown as Category[];
   ctx.state.categories = categories;
@@ -64,6 +66,7 @@ export async function handler(
   ctx.state.search = url.searchParams?.get("search") || "";
   ctx.state.category = url.searchParams?.get("category") || "";
   ctx.state.country = url.searchParams?.get("country") || "";
+  ctx.state.defaultLanguage = defaultLanguage;
 
   const response = await ctx.next();
   return response;

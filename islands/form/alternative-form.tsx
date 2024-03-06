@@ -3,13 +3,14 @@ import { ArrowUpTraySolid } from "https://esm.sh/preact-heroicons";
 import { useMemo, useState } from "preact/hooks";
 import countries from "../../utils/countries.ts";
 import Toastify from "toastify";
+import { translate } from "../../utils/translation.ts";
 
 const indexedCountries = countries.reduce(
   (acc, item) => ({
     ...acc,
     [item.code.toLowerCase()]: item.name,
   }),
-  {}
+  {},
 );
 
 const countryOptionTemplate = (country) => (
@@ -55,20 +56,20 @@ export default function AlternativeForm({ boycotts, state }) {
         value: country.code.toLowerCase(),
         label: country.name,
       }))
-      .filter((option) => !selectedCountries.includes(option))
+      .filter((option) => !selectedCountries.includes(option)),
   );
 
   const handleSelectCountry = (country) => {
     setSelectedCountries([...selectedCountries, country]);
     setCountryOptions(
-      countryOptions.filter((option) => option.value !== country.value)
+      countryOptions.filter((option) => option.value !== country.value),
     );
   };
 
   const handleUnselectCountry = (country) => {
     setCountryOptions([...countryOptions, country]);
     setSelectedCountries(
-      selectedCountries.filter((option) => option.value !== country.value)
+      selectedCountries.filter((option) => option.value !== country.value),
     );
   };
 
@@ -79,20 +80,20 @@ export default function AlternativeForm({ boycotts, state }) {
       value: boycott._id,
       label: boycott.name,
       logoURL: boycott.logoURL,
-    }))
+    })),
   );
 
   const handleSelectBoycott = (boycott) => {
     setSelectedBoycotts([...selectedBoycotts, boycott]);
     setBoycottOptions(
-      boycottOptions.filter((option) => option.value !== boycott.value)
+      boycottOptions.filter((option) => option.value !== boycott.value),
     );
   };
 
   const handleUnselectBoycott = (boycott) => {
     setBoycottOptions([...boycottOptions, boycott]);
     setSelectedBoycotts(
-      selectedBoycotts.filter((option) => option.value !== boycott.value)
+      selectedBoycotts.filter((option) => option.value !== boycott.value),
     );
   };
 
@@ -133,7 +134,11 @@ export default function AlternativeForm({ boycotts, state }) {
       }
     } else {
       Toastify({
-        text: state.translate("ThankYouForSubmission"),
+        text: translate(
+          "ThankYouForSubmission",
+          state.selectedLanguage,
+          state.defaultLanguage,
+        ),
         duration: 12000,
         newWindow: false,
         close: true,
