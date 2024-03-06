@@ -4,11 +4,6 @@ import {
   BoycottCreationData,
   BoycottStatus,
 } from "../../types/boycott.ts";
-import {
-  CalendarSolid,
-  CheckBadgeSolid,
-  TagSolid,
-} from "https://esm.sh/preact-heroicons";
 import upload from "../../utils/upload.ts";
 import { ObjectId } from "mongodb";
 import db from "../../utils/db/db.ts";
@@ -289,7 +284,7 @@ export default function Boycott({ data, state }) {
                       <img
                         src={boycott.logoURL}
                         alt={boycott.name}
-                        class="w-36 h-36 rounded-full grayscale"
+                        class="w-36 h-36 rounded-full"
                       />
                       <span class="text-creepy text-2xl text-red-700 absolute -rotate-45 bg-white bg-opacity-50 -left-6 top-6 p-2 border-4 border-red-700">
                         CRIMINALS
