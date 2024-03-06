@@ -10,7 +10,7 @@ export default function AlternativesGrid({ alternatives, state }) {
       {alternatives.map((alternative) => (
         <a
           href={`/alternative/${alternative.nameSlug}`}
-          class="relative flex flex-col items-center bg-white rounded-xl shadow hover:bg-gray-100 cursor-pointer border-x border border-gray-200 px-4 py-2 w-80 h-80 sm-10-width sm-15-height my-2"
+          class="relative flex flex-col items-center bg-white rounded-xl shadow hover:bg-gray-100 cursor-pointer border-x border border-gray-200 px-4 py-2 sm:py-4 w-80 h-80 sm-10-width my-2"
           style={{
             opacity: alternative.status === AlternativeStatus.Pending ? 0.5 : 1,
           }}
