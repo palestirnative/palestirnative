@@ -1,4 +1,5 @@
 export default {
+  "ThankYouForSubmission": "Thank you for your submission! We've received your suggestion and it's now in our queue for review. We'll add it as soon as possible. Your contribution is greatly appreciated!",
   "Suggest a boycott": "Suggest a boycott",
   "Boycotts": "Boycotts",
   "See reason": "See reason",

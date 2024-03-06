@@ -1,9 +1,12 @@
 import TagInput from "./tag-input.tsx";
 import { ArrowUpTraySolid } from "https://esm.sh/preact-heroicons";
 import { useMemo, useState } from "preact/hooks";
+import Toastify from "toastify";
 
 const categoryTemplate = (category) => (
-  <span>{category.icon} {category.label}</span>
+  <span>
+    {category.icon} {category.label}
+  </span>
 );
 
 const alternativeTemplate = (alternative) => (
@@ -36,22 +39,23 @@ export default function BoycottForm({ categories, alternatives, state }) {
       value: category._id,
       label: category.name,
       icon: category.icon,
-    })),
+    }))
   );
 
   const handleSelectCategory = (category) => {
     setSelectedCategories([...selectedCategories, category]);
     setCategoryOptions(
-      categoryOptions.filter((option) => option.value !== category.value),
+      categoryOptions.filter((option) => option.value !== category.value)
     );
   };
 
   const handleUnselectCategory = (category) => {
     setCategoryOptions([...categoryOptions, category]);
     setSelectedCategories(
-      selectedCategories.filter((option) => option.value !== category.value),
+      selectedCategories.filter((option) => option.value !== category.value)
     );
   };
+  
 
   const [selectedAlternatives, setSelectedAlternatives] = useState([]);
   const [alternativeOptions, setAlternativeOptions] = useState(
@@ -59,24 +63,31 @@ export default function BoycottForm({ categories, alternatives, state }) {
       value: alternative._id,
       label: alternative.name,
       logoURL: alternative.logoURL,
-    })),
+    }))
   );
 
   const handleSelectAlternative = (alternative) => {
     setSelectedAlternatives([...selectedAlternatives, alternative]);
     setAlternativeOptions(
-      alternativeOptions.filter((option) => option.value !== alternative.value),
+      alternativeOptions.filter((option) => option.value !== alternative.value)
     );
   };
 
   const handleUnselectAlternative = (alternative) => {
     setAlternativeOptions([...alternativeOptions, alternative]);
     setSelectedAlternatives(
-      selectedAlternatives.filter((option) =>
-        option.value !== alternative.value
-      ),
+      selectedAlternatives.filter(
+        (option) => option.value !== alternative.value
+      )
     );
   };
+
+  const handleResetForm = ()  => {
+    setSelectedCategories([])
+    setLogoSource(null)
+    setError(null)
+    setSelectedAlternatives([])
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -85,11 +96,12 @@ export default function BoycottForm({ categories, alternatives, state }) {
 
     const formData = new FormData(event.target);
 
-    const categoryIds = selectedCategories.map((category) => category.value)
+    const categoryIds = selectedCategories
+      .map((category) => category.value)
       .join(",");
-    const alternativeIds = selectedAlternatives.map((alternative) =>
-      alternative.value
-    ).join(",");
+    const alternativeIds = selectedAlternatives
+      .map((alternative) => alternative.value)
+      .join(",");
 
     formData.append("categories", categoryIds);
     formData.append("alternatives", alternativeIds);
@@ -108,7 +120,17 @@ export default function BoycottForm({ categories, alternatives, state }) {
         setError(await response.text());
       }
     } else {
-      window.location.href = "/boycott";
+      Toastify({
+        text: state.translate("ThankYouForSubmission"),
+        duration: 12000,
+        newWindow: false,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        className:'toastify-success'
+      }).showToast();
+      handleResetForm()
     }
   };
 
@@ -127,10 +149,7 @@ export default function BoycottForm({ categories, alternatives, state }) {
           {error}
         </div>
       )}
-
-      <form
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <div class="my-2 flex flex-col items-center">
           <img
             hidden={!logoSource}
@@ -199,10 +218,7 @@ export default function BoycottForm({ categories, alternatives, state }) {
           </div>
 
           <div>
-            <label
-              class="text-gray-700 dark:text-gray-200"
-              for="alternatives"
-            >
+            <label class="text-gray-700 dark:text-gray-200" for="alternatives">
               {state.locale["Alternatives"]}
             </label>
             <TagInput
