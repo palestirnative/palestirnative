@@ -4,7 +4,6 @@ import LabelTag from "./LabelTag.tsx";
 export default function AlternativesGrid({ alternatives, state }) {
   return (
     <div 
-        //  class="grid justify-center items-center gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3"
          class="grid grid-cols-1 justify-center items-center gap-1 xxs:grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3"
     >
       {alternatives.map((alternative) => (
