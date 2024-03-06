@@ -212,7 +212,6 @@ export default function Alternative({ data, state }) {
   if (page > 3) {
     pagesToShow.unshift(...[
       { label: 1, type: "page" },
-      { label: "...", type: "ellipsis" },
     ]);
   }
   if (page < totalPages) {
@@ -223,7 +222,6 @@ export default function Alternative({ data, state }) {
   }
   if (page < totalPages - 2) {
     pagesToShow.push(...[
-      { label: "...", type: "ellipsis" },
       { label: totalPages, type: "page" },
     ]);
   }

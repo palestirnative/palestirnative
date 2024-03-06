@@ -223,7 +223,6 @@ export default function Boycott({ data, state }) {
     pagesToShow.unshift(
       ...[
         { label: 1, type: "page" },
-        { label: "...", type: "ellipsis" },
       ],
     );
   }
@@ -236,7 +235,6 @@ export default function Boycott({ data, state }) {
   if (page < totalPages - 2) {
     pagesToShow.push(
       ...[
-        { label: "...", type: "ellipsis" },
         { label: totalPages, type: "page" },
       ],
     );
