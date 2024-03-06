@@ -3,9 +3,7 @@ import LabelTag from "./LabelTag.tsx";
 
 export default function AlternativesGrid({ alternatives, state }) {
   return (
-    <div 
-         class="grid grid-cols-1 justify-center items-center gap-1 xxs:grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3"
-    >
+    <div class="grid grid-cols-1 justify-center items-center gap-1 xxs:grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
       {alternatives.map((alternative) => (
         <a
           href={`/alternative/${alternative.nameSlug}`}
@@ -31,21 +29,23 @@ export default function AlternativesGrid({ alternatives, state }) {
             {alternative.name}
           </span>
           <div class="flex my-2">
-          {alternative.countries.slice(0, 3).map((country) => (
-                            <img
-                              src={`/flags/${country}.svg`}
-                              alt={`${country} flag`}
-                              class="w-6 h-6 mx-1 rounded-full"
-                            />
-                          ))}
-                          {alternative.countries.length > 3 && (
-                            <>
-                              <span class="text-gray-400">...</span>
-                              <div class="w-6 h-6 mx-1 rounded-full bg-green-800">
-                                <span class="text-white text-xs font-bold">+{alternative.countries.length - 3}</span>
-                              </div>
-                            </>
-                          )}
+            {alternative.countries.slice(0, 3).map((country) => (
+              <img
+                src={`/flags/${country}.svg`}
+                alt={`${country} flag`}
+                class="w-6 h-6 mx-1 rounded-full"
+              />
+            ))}
+            {alternative.countries.length > 3 && (
+              <>
+                <span class="text-gray-400">...</span>
+                <div class="w-6 h-6 mx-1 rounded-full bg-green-800">
+                  <span class="text-white text-xs font-bold">
+                    +{alternative.countries.length - 3}
+                  </span>
+                </div>
+              </>
+            )}
           </div>
           <div class="flex my-2">
             {alternative.boycotts?.length > 0 && (

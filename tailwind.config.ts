@@ -8,8 +8,8 @@ export default {
   theme: {
     extend: {
       screens: {
-        'xs': '400px',
-        'xxs': '320px',
+        "xs": "400px",
+        "xxs": "320px",
       },
     },
   },
