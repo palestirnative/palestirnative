@@ -482,6 +482,32 @@ export default function Boycott({ data, state }) {
             </a>
           )}
         </div>
+        <div class="flex items-center justify-center mt-6">
+          <div class="items-center flex flex-wrap flex-row lg:hidden gap-x-3 flex-fill">
+            {pagesToShow.map((pageItem) =>
+              pageItem.label === page
+                ? (
+                  <span class="px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60">
+                    {pageItem.label}
+                  </span>
+                )
+                : pageItem.type === "page"
+                ? (
+                  <a
+                    href={`/boycott?page=${pageItem.label}`}
+                    class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                  >
+                    {pageItem.label}
+                  </a>
+                )
+                : (
+                  <span class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                    {pageItem.label}
+                  </span>
+                )
+            )}
+          </div>
+        </div>
       </section>
     </>
   );
