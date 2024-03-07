@@ -1,6 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
+import { AppState } from "./_middleware.ts";
 
-export default function Error404({ state }) {
+export default function Error404({ state }: { state: AppState }) {
   return (
     <>
       <Head>
@@ -13,7 +14,7 @@ export default function Error404({ state }) {
               {state.locale["404 error"]}
             </p>
             <h1 class="mt-3 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">
-              {["We can’t find that page"]}
+              {["We can't find that page"]}
             </h1>
             <p class="mt-4 text-gray-500 dark:text-gray-400">
               {state
@@ -24,7 +25,8 @@ export default function Error404({ state }) {
 
             <div class="flex items-center mt-6 gap-x-3">
               <button
-                onclick="history.back()"
+                // deno-lint-ignore fresh-server-event-handlers
+                onClick={() => history.back()}
                 class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700"
               >
                 <svg
