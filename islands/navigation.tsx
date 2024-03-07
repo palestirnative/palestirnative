@@ -33,11 +33,11 @@ export const Navigation = ({ state }) => {
   };
 
   const renderAlternativeBadgeClasses = () => {
-    return "rounded-full text-green-800 bg-green-100 rounded dark:bg-green-900 dark:text-green-300 mr-2 inline-flex items-center px-2 py-1 me-2 text-sm font-small rounded";
+    return "h-5 w-5 items-center justify-center rounded-full text-green-800 bg-green-100 dark:bg-green-900 dark:text-green-300 inline-flex items-center text-sm font-medium";
   };
 
   const renderBoycottBadgeClasses = () => {
-    return "rounded-full text-red-800 bg-red-100 rounded dark:bg-red-900 dark:text-red-300 mr-2 inline-flex items-center px-2 py-1 me-2 text-sm font-small rounded";
+    return "h-5 w-5 items-center justify-center rounded-full text-red-800 bg-red-100 dark:bg-red-900 dark:text-red-300 inline-flex items-center text-sm font-medium";
   };
 
   return (
@@ -80,8 +80,10 @@ export const Navigation = ({ state }) => {
                     />
                     <TagInput
                       optionTemplate={(option) => (
-                        <span>
-                          {option.label}
+                        <div class="flex-col">
+                          <span class="flex">
+                            {option.label}
+                          </span>
                           <span
                             id="badge-dismiss-default"
                             class={option?.productType === "alternative"
@@ -90,7 +92,7 @@ export const Navigation = ({ state }) => {
                           >
                             {option.productType === "alternative" ? "✔️" : "🚫"}
                           </span>
-                        </span>
+                        </div>
                       )}
                       placeholder="Search"
                       name="search"
@@ -203,8 +205,10 @@ export const Navigation = ({ state }) => {
               <div class="my-4 md:hidden">
                 <TagInput
                   optionTemplate={(option) => (
-                    <span>
-                      {option.label}
+                    <div class="flex-col">
+                      <span class="flex">
+                        {option.label}
+                      </span>
                       <span
                         id="badge-dismiss-default"
                         class={option?.productType === "alternative"
@@ -213,7 +217,7 @@ export const Navigation = ({ state }) => {
                       >
                         {option.productType === "alternative" ? "✔️" : "🚫"}
                       </span>
-                    </span>
+                    </div>
                   )}
                   placeholder="Search"
                   name="search"
