@@ -1,11 +1,6 @@
 import { Handler } from "$fresh/server.ts";
 import { AlternativeCreationData } from "../../types/alternative.ts";
 import { AlternativeStatus } from "../../types/boycott.ts";
-import {
-  CalendarSolid,
-  CheckBadgeSolid,
-  TagSolid,
-} from "https://esm.sh/preact-heroicons";
 import db from "../../utils/db/db.ts";
 import upload from "../../utils/upload.ts";
 import AlternativesGrid from "../../components/alternativesGrid.tsx";
@@ -212,6 +207,7 @@ export default function Alternative({ data, state }) {
   if (page > 3) {
     pagesToShow.unshift(...[
       { label: 1, type: "page" },
+      { label: "...", type: "ellipsis" },
     ]);
   }
   if (page < totalPages) {
@@ -222,6 +218,7 @@ export default function Alternative({ data, state }) {
   }
   if (page < totalPages - 2) {
     pagesToShow.push(...[
+      { label: "...", type: "ellipsis" },
       { label: totalPages, type: "page" },
     ]);
   }
