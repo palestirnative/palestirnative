@@ -1,9 +1,13 @@
 import { getCookies } from "$std/http/cookie.ts";
 import locales from "../locales/index.ts";
+import { Alternative } from "../types/alternative.ts";
+import { Boycott } from "../types/boycott.ts";
 import { Category } from "../types/category.ts";
 import { Locale } from "../types/locale.ts";
 import db from "../utils/db/db.ts";
 export interface AppState {
+  boycotts: Boycott[];
+  alternatives: Alternative[];
   translate: (expressio: string) => string;
   locale: Locale;
   selectedLanguage: string;
@@ -49,12 +53,13 @@ export async function handler(
       selectedLanguage = firstExistingLanguage.languageCode;
     }
   }
-  ctx.state.locale = locales[selectedLanguage]
+  ctx.state.locale = locales[selectedLanguage];
   ctx.state.translate = (expression) => {
-    return locales[selectedLanguage][expression] as string || locales[defaultLanguage][expression] as string || 'translation not found'
-  } ;
+    return locales[selectedLanguage][expression] as string ||
+      locales[defaultLanguage][expression] as string || "translation not found";
+  };
   ctx.state.selectedLanguage = selectedLanguage;
-  
+
   const categories = await db.collection("categories").find()
     .toArray() as unknown as Category[];
   ctx.state.categories = categories;
@@ -64,6 +69,14 @@ export async function handler(
   ctx.state.search = url.searchParams?.get("search") || "";
   ctx.state.category = url.searchParams?.get("category") || "";
   ctx.state.country = url.searchParams?.get("country") || "";
+
+  const boycotts = await db.collection("boycotts").find()
+    .toArray() as Boycott[];
+  const alternatives = await db.collection("alternatives").find()
+    .toArray() as Alternative[];
+
+  ctx.state.boycotts = boycotts;
+  ctx.state.alternatives = alternatives;
 
   const response = await ctx.next();
   return response;

@@ -3,12 +3,14 @@ import { useMemo, useState } from "preact/hooks";
 export default function TagInput(
   {
     name,
-    tags,
+    tags = [],
     handleSelect,
     handleRemove,
     options,
     optionTemplate,
     tagTemplate,
+    placeholder = "",
+    leftIcon = null,
   },
 ) {
   const [inputValue, setInputValue] = useState("");
@@ -45,10 +47,12 @@ export default function TagInput(
     <>
       <div class="my-2">
         <div class="w-full relative">
+          {leftIcon}
           <input
             type="text"
             name={name}
             id={name}
+            placeholder={placeholder}
             value={inputValue}
             autocomplete="new-password"
             onKeyup={handleInputChange}
@@ -59,28 +63,39 @@ export default function TagInput(
             class="absolute z-10 left-0 w-full bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600"
           >
             {filteredOptions.map((option) => (
-              <div
-                class="py-2 px-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
-                onClick={() => handleOptionClick(option)}
-              >
-                {usedOptionTemplate(option)}
+              <div class="flex flex-row items-center border-b border-b-gray-100  hover:bg-gray-100 dark:hover:bg-gray-700">
+                {option.logoURL
+                  ? (
+                    <img
+                      src={option.logoURL}
+                      alt={option.name}
+                      class="h-5 rounded-full mr-4"
+                    />
+                  )
+                  : null}
+                <div
+                  class="py-2 px-4 cursor-pointer"
+                  onClick={() => handleOptionClick(option)}
+                >
+                  {usedOptionTemplate?.(option)}
+                </div>
               </div>
             ))}
           </div>
         </div>
         <div class="w-full mt-2">
-          {tags.map((tag) => (
+          {tags?.map((tag) => (
             <span
               id="badge-dismiss-default"
               class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300"
             >
-              {usedTagTemplate(tag)}
+              {usedTagTemplate?.(tag)}
               <button
                 type="button"
                 class="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300"
                 data-dismiss-target="#badge-dismiss-default"
                 aria-label="Remove"
-                onClick={() => handleRemove(tag)}
+                onClick={() => handleRemove?.(tag)}
               >
                 <svg
                   class="w-2 h-2"
