@@ -1,5 +1,6 @@
 export default {
-  "ThankYouForSubmission": "Thank you for your submission! We've received your suggestion and it's now in our queue for review. We'll add it as soon as possible. Your contribution is greatly appreciated!",
+  "ThankYouForSubmission":
+    "Thank you for your submission! We've received your suggestion and it's now in our queue for review. We'll add it as soon as possible. Your contribution is greatly appreciated!",
   "Suggest a boycott": "Suggest a boycott",
   "Boycotts": "Boycotts",
   "See reason": "See reason",
@@ -20,7 +21,7 @@ export default {
   "Submitting...": "Submitting...",
   "Enter the alternative name": "Enter the alternative name",
   "Enter the boycott name": "Enter the boycott name",
-  "Waiting for approval": "Waiting for approval",
+  "Waiting for approval": "Unverified : Waiting for confirmation from Admin.",
   "Label A":
     "Any brand in a Non-Western country that is not involved in any kind of support to the Zionist State, or a Westerner brand that pulicly showed support to Palestine.",
   "Label B": "Any non-profit alternative",

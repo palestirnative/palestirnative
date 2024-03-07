@@ -19,7 +19,7 @@ export default {
   "Submitting...": "در حال ارسال...",
   "Enter the alternative name": "وارد کردن نام گزینه ی دیگر",
   "Enter the boycott name": "وارد کردن نام بویکوت",
-  "Waiting for approval": "در انتظار تایید",
+  "Waiting for approval": "بدون تأیید: منتظر تأیید مدیر.",
   "Label A":
     "هر برندی در کشور غیر غربی که در هرگونه پشتیبانی از حالت صهیونیستی وارد نشده است یا برندی غربی که پشتیبانی از فلسطین را عمومی کرده است.",
   "Label B": "هر گزینه ی غیر بدهکار",
@@ -51,7 +51,7 @@ export default {
   "Next": "بعدی",
   countries: {
     "All": "همه‌جا",
-  "Everywhere": "همه جا",
+    "Everywhere": "همه جا",
     Afghanistan: "افغانستان",
     "Åland Islands": "جزایر الند",
     Albania: "آلبانی",

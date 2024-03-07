@@ -48,7 +48,7 @@ export default function BoycottPage({ data, state }) {
     <div class="container mx-auto my-20">
       <div class="flex flex-col items-center gap-6 relative">
         {boycott.status === BoycottStatus.Pending && (
-          <span class="top-2 left-2 text-xs text-gray-700">
+          <span class="top-2 left-2 text-xs text-gray-700 text-center w-full">
             {state.locale["Waiting for approval"]}
           </span>
         )}

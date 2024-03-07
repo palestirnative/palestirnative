@@ -19,7 +19,7 @@ export default {
   "Submitting...": "Menghantar...",
   "Enter the alternative name": "Masukkan nama alternatif",
   "Enter the boycott name": "Masukkan nama boikot",
-  "Waiting for approval": "Menunggu kelulusan",
+  "Waiting for approval": "tidak disahkan : Menunggu pengesahan dari admin.",
   "Label A":
     "Mana-mana jenama di negara bukan Barat yang tidak terlibat dalam sebarang sokongan kepada Negara Zionis, atau jenama Barat yang secara terbuka menunjukkan sokongan kepada Palestin.",
   "Label B": "Mana-mana alternatif bukan untung",
@@ -52,7 +52,7 @@ export default {
   "Next": "Seterusnya",
   countries: {
     "All": "Di mana-mana",
-  "Everywhere": "Di mana saja",
+    "Everywhere": "Di mana saja",
     Afghanistan: "Afghanistan",
     "Åland Islands": "Kepulauan Åland",
     Albania: "Albania",

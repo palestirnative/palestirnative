@@ -19,7 +19,7 @@ export default {
   "Submitting...": "Šaljem...",
   "Enter the alternative name": "Unesi ime alternative",
   "Enter the boycott name": "Unesi ime bojkota",
-  "Waiting for approval": "Čeka se odobrenje",
+  "Waiting for approval": "Neizrežen : Čeka se potvrda od administratora.",
   "Label A":
     "Bilo koji brend u ne-zapadnoj zemlji koji nije uključen u bilo kakvu podršku Sionskoj državi, ili zapadni brend koji je javno pokazao podršku Palestini.",
   "Label B": "Bilo koja neprofitna alternativa",
@@ -51,7 +51,7 @@ export default {
   "Next": "Sljedeći",
   countries: {
     "All": "Bilo gdje",
-  "Everywhere": "Svuda",
+    "Everywhere": "Svuda",
     Afghanistan: "Afganistan",
     "Åland Islands": "Ålandski otoci",
     Albania: "Albanija",

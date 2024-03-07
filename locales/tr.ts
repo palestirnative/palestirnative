@@ -19,7 +19,7 @@ export default {
   "Submitting...": "Gönderiliyor...",
   "Enter the alternative name": "Alternatif adını girin",
   "Enter the boycott name": "Boykot adını girin",
-  "Waiting for approval": "Onay bekleniyor",
+  "Waiting for approval": "doğrulanmamış  : Yöneticiden onay beklemek.",
   "Label A":
     "Siyonist Devlet'e herhangi bir destekte bulunmayan bir Batı olmayan ülkedeki herhangi bir marka veya kamuoyunda Filistin'e destek gösteren bir Batılı marka.",
   "Label B": "Herhangi bir kar amacı gütmeyen alternatif",
@@ -51,7 +51,7 @@ export default {
   "Next": "Sonraki",
   countries: {
     "All": "Herhangi bir yerde",
-  "Everywhere": "Her yerde",
+    "Everywhere": "Her yerde",
     Afghanistan: "Afganistan",
     "Åland Islands": "Åland Adaları",
     Albania: "Arnavutluk",

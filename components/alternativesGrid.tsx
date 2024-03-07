@@ -13,7 +13,7 @@ export default function AlternativesGrid({ alternatives, state }) {
           }}
         >
           {alternative.status === AlternativeStatus.Pending && (
-            <span class="absolute top-2 left-2 text-xs text-gray-700">
+            <span class="absolute top-2 left-2 text-xs text-gray-700 text-center w-full">
               {state.locale["Waiting for approval"]}
             </span>
           )}
