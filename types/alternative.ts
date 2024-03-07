@@ -1,5 +1,6 @@
 import type { ObjectId } from "mongodb";
 import { Boycott } from "./boycott.ts";
+import { Label } from "../components/LabelTag.tsx";
 
 export interface AlternativeCreationPayload {
   name: string;
@@ -19,5 +20,6 @@ export interface Alternative {
   logoURL: string;
   countries: string[];
   boycotts: Boycott[];
+  label: Label;
   createdAt: Date;
 }

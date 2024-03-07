@@ -212,7 +212,6 @@ export default function Alternative({ data, state }) {
   if (page > 3) {
     pagesToShow.unshift(...[
       { label: 1, type: "page" },
-      { label: "...", type: "ellipsis" },
     ]);
   }
   if (page < totalPages) {
@@ -223,7 +222,6 @@ export default function Alternative({ data, state }) {
   }
   if (page < totalPages - 2) {
     pagesToShow.push(...[
-      { label: "...", type: "ellipsis" },
       { label: totalPages, type: "page" },
     ]);
   }
@@ -271,7 +269,7 @@ export default function Alternative({ data, state }) {
 
         <div class="flex flex-col mt-6">
           <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+            <div class="inline-block min-w-full py-2 align-middle px-6 md:px-6 lg:px-8">
               <AlternativesGrid alternatives={alternatives} state={state} />
             </div>
           </div>
@@ -305,30 +303,28 @@ export default function Alternative({ data, state }) {
           )}
 
           <div class="items-center hidden lg:flex gap-x-3 flex-fill">
-            {pagesToShow.map((pageItem) => (
+            {pagesToShow.map((pageItem) =>
               pageItem.label === page
                 ? (
                   <span class="px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60">
                     {pageItem.label}
                   </span>
                 )
-                : (
-                  pageItem.type === "page"
-                    ? (
-                      <a
-                        href={`/alternative?page=${pageItem.label}`}
-                        class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
-                      >
-                        {pageItem.label}
-                      </a>
-                    )
-                    : (
-                      <span class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-                        {pageItem.label}
-                      </span>
-                    )
+                : pageItem.type === "page"
+                ? (
+                  <a
+                    href={`/boycott?page=${pageItem.label}`}
+                    class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                  >
+                    {pageItem.label}
+                  </a>
                 )
-            ))}
+                : (
+                  <span class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                    {pageItem.label}
+                  </span>
+                )
+            )}
           </div>
 
           {page !== totalPages && (
@@ -337,7 +333,7 @@ export default function Alternative({ data, state }) {
               class="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
             >
               <span>
-              {state.locale["Next"]}
+                {state.locale["Next"]}
               </span>
 
               <svg
@@ -356,6 +352,32 @@ export default function Alternative({ data, state }) {
               </svg>
             </a>
           )}
+        </div>
+        <div class="flex items-center justify-center mt-6">
+          <div class="items-center flex flex-wrap flex-row lg:hidden gap-x-3 flex-fill">
+            {pagesToShow.map((pageItem) =>
+              pageItem.label === page
+                ? (
+                  <span class="px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60">
+                    {pageItem.label}
+                  </span>
+                )
+                : pageItem.type === "page"
+                ? (
+                  <a
+                    href={`/boycott?page=${pageItem.label}`}
+                    class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                  >
+                    {pageItem.label}
+                  </a>
+                )
+                : (
+                  <span class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                    {pageItem.label}
+                  </span>
+                )
+            )}
+          </div>
         </div>
       </section>
     </>

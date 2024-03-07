@@ -15,12 +15,7 @@ export const handler: Handler = {
     const url = new URL(req.url);
     const form = await req.formData();
 
-    const requiredFields = [
-      "name",
-      "reasonurl",
-      "logo",
-      "categories",
-    ];
+    const requiredFields = ["name", "reasonurl", "logo", "categories"];
 
     for (const field of requiredFields) {
       if (!form.get(field)) {
@@ -43,11 +38,13 @@ export const handler: Handler = {
       name: form.get("name"),
       nameSlug: slugify(form.get("name")),
       reasonURL: form.get("reasonurl"),
-      categories: (form.get("categories") ?? "").split(",").map((
-        category: string,
-      ) => new ObjectId(category)),
+      categories: (form.get("categories") ?? "")
+        .split(",")
+        .map((category: string) => new ObjectId(category)),
       status: BoycottStatus.Pending,
-      alternatives: formAlternatives.split(",").filter(Boolean)
+      alternatives: formAlternatives
+        .split(",")
+        .filter(Boolean)
         .map((alternative: string) => ({
           alternative,
           status: AlternativeStatus.Pending,
@@ -65,9 +62,12 @@ export const handler: Handler = {
       });
     }
 
-    const categories = await db.collection("categories").find({
-      _id: { $in: boycott.categories },
-    }).toArray();
+    const categories = await db
+      .collection("categories")
+      .find({
+        _id: { $in: boycott.categories },
+      })
+      .toArray();
 
     if (categories.length !== boycott.categories.length) {
       return new Response("Invalid category IDs", {
@@ -75,11 +75,16 @@ export const handler: Handler = {
       });
     }
 
-    const alternatives = await db.collection("alternatives").find({
-      _id: {
-        $in: boycott.alternatives.map((alternative) => alternative.alternative),
-      },
-    }).toArray();
+    const alternatives = await db
+      .collection("alternatives")
+      .find({
+        _id: {
+          $in: boycott.alternatives.map(
+            (alternative) => alternative.alternative,
+          ),
+        },
+      })
+      .toArray();
 
     if (alternatives.length !== boycott.alternatives.length) {
       return new Response("Invalid alternative IDs", {
@@ -133,58 +138,71 @@ export const handler: Handler = {
       throw new Deno.errors.NotFound();
     }
 
-    const list = await db.collection("boycotts").aggregate([
-      {
-        $lookup: {
-          from: "categories",
-          localField: "categories",
-          foreignField: "_id",
-          as: "categories",
+    const list = await db
+      .collection("boycotts")
+      .aggregate([
+        {
+          $lookup: {
+            from: "categories",
+            localField: "categories",
+            foreignField: "_id",
+            as: "categories",
+          },
         },
-      },
-      ...(ctx.state.category
-        ? [{
-          $match: {
-            "categories.nameSlug": ctx.state.category,
+        ...(ctx.state.category
+          ? [
+            {
+              $match: {
+                "categories.nameSlug": ctx.state.category,
+              },
+            },
+          ]
+          : []),
+        {
+          $lookup: {
+            from: "alternatives",
+            localField: "alternatives.alternative",
+            foreignField: "_id",
+            as: "attachedAlternatives",
           },
-        }]
-        : []),
-      {
-        $lookup: {
-          from: "alternatives",
-          localField: "alternatives.alternative",
-          foreignField: "_id",
-          as: "attachedAlternatives",
         },
-      },
-      ...(ctx.state.search
-        ? [{
-          $match: {
-            $or: [
-              { name: { $regex: ctx.state.search, $options: "i" } },
-              {
-                "attachedAlternatives.name": {
-                  $regex: ctx.state.search,
-                  $options: "i",
-                },
+        ...(ctx.state.search
+          ? [
+            {
+              $match: {
+                $or: [
+                  { name: { $regex: ctx.state.search, $options: "i" } },
+                  {
+                    "attachedAlternatives.name": {
+                      $regex: ctx.state.search,
+                      $options: "i",
+                    },
+                  },
+                  {
+                    "categories.name": {
+                      $regex: ctx.state.search,
+                      $options: "i",
+                    },
+                  },
+                ],
               },
-              {
-                "categories.name": { $regex: ctx.state.search, $options: "i" },
+            },
+          ]
+          : []),
+        ...(ctx.state.country
+          ? [
+            {
+              $match: {
+                "attachedAlternatives.countries": ctx.state.country
+                  .toLowerCase(),
               },
-            ],
-          },
-        }]
-        : []),
-      ...(ctx.state.country
-        ? [{
-          $match: {
-            "attachedAlternatives.countries": ctx.state.country.toLowerCase(),
-          },
-        }]
-        : []),
-      { $skip: (page - 1) * 10 },
-      { $limit: 10 },
-    ]).toArray();
+            },
+          ]
+          : []),
+        { $skip: (page - 1) * 10 },
+        { $limit: 10 },
+      ])
+      .toArray();
 
     return ctx.render({ boycotts: list, page, totalCount, totalPages });
   },
@@ -202,10 +220,11 @@ export default function Boycott({ data, state }) {
     pagesToShow.unshift({ label: page - 2, type: "page" });
   }
   if (page > 3) {
-    pagesToShow.unshift(...[
-      { label: 1, type: "page" },
-      { label: "...", type: "ellipsis" },
-    ]);
+    pagesToShow.unshift(
+      ...[
+        { label: 1, type: "page" },
+      ],
+    );
   }
   if (page < totalPages) {
     pagesToShow.push({ label: page + 1, type: "page" });
@@ -214,12 +233,13 @@ export default function Boycott({ data, state }) {
     pagesToShow.push({ label: page + 2, type: "page" });
   }
   if (page < totalPages - 2) {
-    pagesToShow.push(...[
-      { label: "...", type: "ellipsis" },
-      { label: totalPages, type: "page" },
-    ]);
+    pagesToShow.push(
+      ...[
+        { label: totalPages, type: "page" },
+      ],
+    );
   }
-// sm:overflow-x-auto md:overflow-x-auto
+  // sm:overflow-x-auto md:overflow-x-auto
   return (
     <>
       <section class="container px-4 mx-auto mt-10">
@@ -263,7 +283,7 @@ export default function Boycott({ data, state }) {
 
         <div class="flex flex-col my-8">
           {boycotts.map((boycott) => (
-            <div class="flex my-4 border border-gray-200 shadow-sm bg-white rounded-lg">
+            <div class="flex flex-col md:flex-row lg:flex-row my-4 border border-gray-200 shadow-sm bg-gray-200 lg:bg-white md:bg-white rounded-lg">
               <div>
                 <div class="flex items-center border-e border-gray-200 justify-center px-4 py-2">
                   <span class="font-medium text-lg w-full">
@@ -271,7 +291,7 @@ export default function Boycott({ data, state }) {
                   </span>
                 </div>
                 <div class="flex">
-                  <div class="flex flex-col justify-center items-center border-e border-gray-200 px-4 py-2 w-72 h-72 relative">
+                  <div class="flex flex-col bg-white md:transparent lg:transparent justify-center items-center border-e border-gray-200 px-4 py-2 w-72 h-72 relative">
                     {boycott.status === BoycottStatus.Pending && (
                       <span class="absolute top-2 left-2 text-xs text-gray-700">
                         {state.locale["Waiting for approval"]}
@@ -306,72 +326,82 @@ export default function Boycott({ data, state }) {
                   </div>
                 </div>
               </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between px-4 py-2 w-full">
-                  <span class="font-medium text-lg">
-                    {state.locale["By these"]}:
-                  </span>
-                  <div class="flex flex-wrap gap-4 sm:gap-0">
-                    {boycott.categories.map((category) => (
-                      <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-                        {category.name}
+              {boycott.attachedAlternatives?.length
+                ? (
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between px-4 py-2 w-full">
+                      <span class="font-medium text-lg">
+                        {state.locale["By these"]}:
                       </span>
-                    ))}
-                  </div>
-                </div>
-                <div class="flex overflow-x-auto">
-                  {boycott.attachedAlternatives.map((alternative) => {
-                    const status = boycott.alternatives.find((a) =>
-                      a.alternative.toString() === alternative._id.toString()
-                    ).status;
-                    return (
-                      <a
-                        href={`/alternative/${alternative.nameSlug}`}
-                        class="flex flex-col hover:bg-gray-100 cursor-pointer items-center border-x border-t border-gray-200 px-4 py-2 min-w-72 h-72 relative"
-                        style={{
-                          opacity: status === AlternativeStatus.Pending
-                            ? 0.5
-                            : 1,
-                        }}
-                      >
-                        {status === AlternativeStatus.Pending && (
-                          <span class="absolute top-2 left-2 text-xs text-gray-700">
-                            {state.locale["Waiting for approval"]}
+                      <div class="flex flex-wrap gap-4">
+                        {boycott.categories.map((category) => (
+                          <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
+                            {category.name}
                           </span>
-                        )}
-                        <div class="absolute top-2 right-2">
-                          {<LabelTag label={alternative.label} />}
-                        </div>
-                        <img
-                          src={alternative.logoURL}
-                          alt={alternative.name}
-                          class="w-36 h-36 rounded-full mb-2 mt-6"
-                        />
-                        <span class="font-medium text-2xl">
-                          {alternative.name}
-                        </span>
-                        <div class="flex my-2">
-                          {alternative.countries.slice(0, 3).map((country) => (
+                        ))}
+                      </div>
+                    </div>
+                    <div class="flex overflow-x-auto">
+                      {boycott.attachedAlternatives.map((alternative) => {
+                        const status = boycott.alternatives.find(
+                          (a) =>
+                            a.alternative.toString() ===
+                              alternative._id.toString(),
+                        ).status;
+                        return (
+                          <a
+                            href={`/alternative/${alternative.nameSlug}`}
+                            class="flex flex-col hover:bg-gray-100 bg-white md:transparent lg:transparent cursor-pointer items-center border-x border-t border-gray-200 px-4 py-2 min-w-72 h-72 relative"
+                            style={{
+                              opacity: status === AlternativeStatus.Pending
+                                ? 0.5
+                                : 1,
+                            }}
+                          >
+                            {status === AlternativeStatus.Pending && (
+                              <span class="absolute top-2 left-2 text-xs text-gray-700">
+                                {state.locale["Waiting for approval"]}
+                              </span>
+                            )}
+                            <div class="absolute top-2 right-2">
+                              {<LabelTag label={alternative.label} />}
+                            </div>
                             <img
-                              src={`/flags/${country}.svg`}
-                              alt={`${country} flag`}
-                              class="w-6 h-6 mx-1 rounded-full"
+                              src={alternative.logoURL}
+                              alt={alternative.name}
+                              class="w-36 h-36 rounded-full mb-2 mt-6"
                             />
-                          ))}
-                          {alternative.countries.length > 3 && (
-                            <>
-                              <span class="text-gray-400">...</span>
-                              <div class="w-6 h-6 mx-1 rounded-full bg-green-800">
-                                <span class="text-white text-xs font-bold">+{alternative.countries.length - 3}</span>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
+                            <span class="font-medium text-2xl">
+                              {alternative.name}
+                            </span>
+                            <div class="flex my-2">
+                              {alternative.countries
+                                .slice(0, 3)
+                                .map((country) => (
+                                  <img
+                                    src={`/flags/${country}.svg`}
+                                    alt={`${country} flag`}
+                                    class="w-6 h-6 mx-1 rounded-full"
+                                  />
+                                ))}
+                              {alternative.countries.length > 3 && (
+                                <>
+                                  <span class="text-gray-400">...</span>
+                                  <div class="w-6 h-6 mx-1 rounded-full bg-green-800">
+                                    <span class="text-white text-xs font-bold">
+                                      +{alternative.countries.length - 3}
+                                    </span>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )
+                : null}
             </div>
           ))}
         </div>
@@ -397,37 +427,33 @@ export default function Boycott({ data, state }) {
                 />
               </svg>
 
-              <span>
-              {state.locale["Previous"]}
-              </span>
+              <span>{state.locale["Previous"]}</span>
             </a>
           )}
 
           <div class="items-center hidden lg:flex gap-x-3 flex-fill">
-            {pagesToShow.map((pageItem) => (
+            {pagesToShow.map((pageItem) =>
               pageItem.label === page
                 ? (
                   <span class="px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60">
                     {pageItem.label}
                   </span>
                 )
-                : (
-                  pageItem.type === "page"
-                    ? (
-                      <a
-                        href={`/boycott?page=${pageItem.label}`}
-                        class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
-                      >
-                        {pageItem.label}
-                      </a>
-                    )
-                    : (
-                      <span class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-                        {pageItem.label}
-                      </span>
-                    )
+                : pageItem.type === "page"
+                ? (
+                  <a
+                    href={`/boycott?page=${pageItem.label}`}
+                    class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                  >
+                    {pageItem.label}
+                  </a>
                 )
-            ))}
+                : (
+                  <span class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                    {pageItem.label}
+                  </span>
+                )
+            )}
           </div>
 
           {page !== totalPages && (
@@ -435,9 +461,7 @@ export default function Boycott({ data, state }) {
               href={`/boycott?page=${page + 1}`}
               class="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
             >
-              <span>
-              {state.locale["Next"]}
-              </span>
+              <span>{state.locale["Next"]}</span>
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -455,6 +479,32 @@ export default function Boycott({ data, state }) {
               </svg>
             </a>
           )}
+        </div>
+        <div class="flex items-center justify-center mt-6">
+          <div class="items-center flex flex-wrap flex-row lg:hidden gap-x-3 flex-fill">
+            {pagesToShow.map((pageItem) =>
+              pageItem.label === page
+                ? (
+                  <span class="px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60">
+                    {pageItem.label}
+                  </span>
+                )
+                : pageItem.type === "page"
+                ? (
+                  <a
+                    href={`/boycott?page=${pageItem.label}`}
+                    class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                  >
+                    {pageItem.label}
+                  </a>
+                )
+                : (
+                  <span class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                    {pageItem.label}
+                  </span>
+                )
+            )}
+          </div>
         </div>
       </section>
     </>
