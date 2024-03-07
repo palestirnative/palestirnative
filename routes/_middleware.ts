@@ -6,6 +6,7 @@ import { Category } from "../types/category.ts";
 import { Locale } from "../types/locale.ts";
 import db from "../utils/db/db.ts";
 export interface AppState {
+  defaultLanguage: string;
   boycotts: Boycott[];
   alternatives: Alternative[];
   translate: (expressio: string) => string;
@@ -69,6 +70,7 @@ export async function handler(
   ctx.state.search = url.searchParams?.get("search") || "";
   ctx.state.category = url.searchParams?.get("category") || "";
   ctx.state.country = url.searchParams?.get("country") || "";
+  ctx.state.defaultLanguage = defaultLanguage;
 
   const boycotts = await db.collection("boycotts").find()
     .toArray() as Boycott[];
