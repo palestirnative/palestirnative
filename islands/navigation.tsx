@@ -12,7 +12,7 @@ export const Navigation = ({ state }) => {
 
   return (
     <nav class="relative bg-white shadow dark:bg-gray-800">
-      <div class="container px-6 py-3 mx-auto">
+      <div class="lg:container md:container px-6 py-3 mx-auto">
         <div class="flex flex-col md:flex-row md:justify-between md:items-center">
           <div class="flex items-center justify-between">
             <form action={state.pathname} method="GET">
@@ -34,7 +34,8 @@ export const Navigation = ({ state }) => {
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                        ></path>
+                        >
+                        </path>
                       </svg>
                     </span>
                     <input
@@ -55,7 +56,7 @@ export const Navigation = ({ state }) => {
                 <CountryDropdown state={state} />
               </div>
             </form>
-            
+
             <div class="flex lg:hidden md:hidden">
               <button
                 type="button"
@@ -83,7 +84,7 @@ export const Navigation = ({ state }) => {
           <div
             class={`${
               isMenuOpen ? "" : "hidden"
-            } absolute inset-x-0 z-20 w-full px-6 py-2 transition-all duration-300 ease-in-out bg-white top-12 dark:bg-gray-800 md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center`}
+            } absolute inset-x-0 z-20 w-full px-6 py-2 transition-all duration-300 ease-in-out bg-white top-2 dark:bg-gray-800 md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center`}
           >
             <button
               type="button"
@@ -113,13 +114,13 @@ export const Navigation = ({ state }) => {
                 class="my-2 text-sm leading-5 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0"
                 href="/boycott"
               >
-                🚫 {state.locale['Boycotts']}
+                🚫 {state.locale["Boycotts"]}
               </a>
               <a
                 class="my-2 text-sm leading-5 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0"
                 href="/alternative"
               >
-                ✔️ {state.locale['Alternatives']}
+                ✔️ {state.locale["Alternatives"]}
               </a>
               <LanguageDropdown currentLanguage={state.selectedLanguage} />
             </div>
@@ -137,7 +138,8 @@ export const Navigation = ({ state }) => {
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                    ></path>
+                    >
+                    </path>
                   </svg>
                 </span>
                 <input
@@ -150,37 +152,41 @@ export const Navigation = ({ state }) => {
           </div>
         </div>
         <div class="py-3 mt-3 -mx-3 overflow-y-auto whitespace-nowrap scroll-hidden">
-          {!state.category ? (
-            <span
-              class="bg-blue-100 text-blue-800 font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center"
-              href={createCategoryURL("", state)}
-            >
-              {state.locale["All"]}
-            </span>
-          ) : (
-            <a
-              class="bg-gray-100 hover:underline hover:bg-gray-200 text-gray-800 font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-400 inline-flex items-center justify-center"
-              href={createCategoryURL("", state)}
-            >
-              {state.locale["All"]}
-            </a>
-          )}
-          {state.categories.map((category) =>
-            category.nameSlug === state.category ? (
+          {!state.category
+            ? (
               <span
                 class="bg-blue-100 text-blue-800 font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center"
-                href={createCategoryURL(category.nameSlug, state)}
+                href={createCategoryURL("", state)}
               >
-                {category.icon} {category.name}
+                {state.locale["All"]}
               </span>
-            ) : (
+            )
+            : (
               <a
                 class="bg-gray-100 hover:underline hover:bg-gray-200 text-gray-800 font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-400 inline-flex items-center justify-center"
-                href={createCategoryURL(category.nameSlug, state)}
+                href={createCategoryURL("", state)}
               >
-                {category.icon} {category.name}
+                {state.locale["All"]}
               </a>
-            )
+            )}
+          {state.categories.map((category) =>
+            category.nameSlug === state.category
+              ? (
+                <span
+                  class="bg-blue-100 text-blue-800 font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center"
+                  href={createCategoryURL(category.nameSlug, state)}
+                >
+                  {category.icon} {category.name}
+                </span>
+              )
+              : (
+                <a
+                  class="bg-gray-100 hover:underline hover:bg-gray-200 text-gray-800 font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-400 inline-flex items-center justify-center"
+                  href={createCategoryURL(category.nameSlug, state)}
+                >
+                  {category.icon} {category.name}
+                </a>
+              )
           )}
         </div>
       </div>
