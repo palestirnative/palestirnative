@@ -1,11 +1,14 @@
 import { type PageProps } from "$fresh/server.ts";
+import { AppState } from "./_middleware.ts";
 
 const rtlLanguages = [
   "ar",
   "fa",
 ];
 
-export default function App({ Component, state }: PageProps) {
+export default function App(
+  { Component, state }: PageProps & { state: AppState },
+) {
   const direction = rtlLanguages.includes(state.selectedLanguage)
     ? "rtl"
     : "ltr";
@@ -17,7 +20,7 @@ export default function App({ Component, state }: PageProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Palestirnative</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Nosifer&display=swap"
           rel="stylesheet"
