@@ -1,13 +1,43 @@
 import { createCategoryURL } from "../utils/create-url.ts";
 import CountryDropdown from "./form/country-dropdown.tsx";
+import TagInput from "./form/tag-input.tsx";
 import LanguageDropdown from "./language-dropdown.tsx";
-import { useState } from "preact/hooks";
+import { useMemo, useState } from "preact/hooks";
 
 export const Navigation = ({ state }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const list = state.boycotts.concat(
+    state.alternatives.map((alternative) => ({
+      ...alternative,
+      productType: "alternative",
+    })),
+  );
+
+  const searchOptions = useMemo(() => {
+    return list
+      .map((item) => ({
+        nameSlug: item.nameSlug,
+        label: item.name,
+        value: item.name,
+        logoURL: item.logoURL,
+        productType: item.productType === "alternative"
+          ? "alternative"
+          : "boycott",
+      }));
+  }, [state.search]);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev: boolean) => !prev);
+  };
+
+  const renderAlternativeBadgeClasses = () => {
+    return "rounded-full text-green-800 bg-green-100 rounded dark:bg-green-900 dark:text-green-300 mr-2 inline-flex items-center px-2 py-1 me-2 text-sm font-small rounded";
+  };
+
+  const renderBoycottBadgeClasses = () => {
+    return "rounded-full text-red-800 bg-red-100 rounded dark:bg-red-900 dark:text-red-300 mr-2 inline-flex items-center px-2 py-1 me-2 text-sm font-small rounded";
   };
 
   return (
@@ -15,7 +45,12 @@ export const Navigation = ({ state }) => {
       <div class="container px-6 py-3 mx-auto">
         <div class="flex flex-col md:flex-row md:justify-between md:items-center">
           <div class="flex items-center justify-between">
-            <form action={state.pathname} method="GET">
+            <form
+              action={state.pathname.includes("boycott")
+                ? "/boycott"
+                : "alternative"}
+              method="GET"
+            >
               <div class="flex items-center">
                 <a href="/">
                   <img class="w-auto h-6 sm:h-7" src="/logo-long.png" alt="" />
@@ -43,12 +78,47 @@ export const Navigation = ({ state }) => {
                       value={state.category || ""}
                       name="category"
                     />
-                    <input
-                      type="text"
-                      name="search"
-                      value={state.search || ""}
-                      class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300"
+                    <TagInput
+                      optionTemplate={(option) => (
+                        <span>
+                          {option.label}
+                          <span
+                            id="badge-dismiss-default"
+                            class={option?.productType === "alternative"
+                              ? renderAlternativeBadgeClasses()
+                              : renderBoycottBadgeClasses()}
+                          >
+                            {option.productType === "alternative" ? "✔️" : "🚫"}
+                          </span>
+                        </span>
+                      )}
                       placeholder="Search"
+                      name="search"
+                      handleSelect={(item) => {
+                        setSelectedProduct(item);
+                        window.location.href =
+                          `/${item.productType}/${item.nameSlug}`;
+                      }}
+                      options={searchOptions}
+                      value={state.search}
+                      leftIcon={
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                          <svg
+                            class="w-5 h-5 text-gray-400"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path
+                              d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            >
+                            </path>
+                          </svg>
+                        </span>
+                      }
                     />
                     <input hidden type="submit" />
                   </div>
@@ -81,7 +151,12 @@ export const Navigation = ({ state }) => {
               </button>
             </div>
           </div>
-          <form action={state.pathname} method="GET">
+          <form
+            action={state.pathname.includes("boycott")
+              ? "/boycott"
+              : "alternative"}
+            method="GET"
+          >
             <div
               class={`${
                 isMenuOpen ? "" : "hidden"
@@ -126,33 +201,49 @@ export const Navigation = ({ state }) => {
                 <LanguageDropdown currentLanguage={state.selectedLanguage} />
               </div>
               <div class="my-4 md:hidden">
-                <div class="relative">
-                  <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                    <svg
-                      class="w-5 h-5 text-gray-400"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                <TagInput
+                  optionTemplate={(option) => (
+                    <span>
+                      {option.label}
+                      <span
+                        id="badge-dismiss-default"
+                        class={option?.productType === "alternative"
+                          ? renderAlternativeBadgeClasses()
+                          : renderBoycottBadgeClasses()}
                       >
-                      </path>
-                    </svg>
-                  </span>
-
-                  <input
-                    type="text"
-                    name="search"
-                    value={state.search || ""}
-                    class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300"
-                    placeholder="Search"
-                  />
-                  <input hidden type="submit" />
-                </div>
+                        {option.productType === "alternative" ? "✔️" : "🚫"}
+                      </span>
+                    </span>
+                  )}
+                  placeholder="Search"
+                  name="search"
+                  handleSelect={(item) => {
+                    setSelectedProduct(item);
+                    window.location.href =
+                      `/${item.productType}/${item.nameSlug}`;
+                  }}
+                  options={searchOptions}
+                  value={state.search}
+                  leftIcon={
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                      <svg
+                        class="w-5 h-5 text-gray-400"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                        </path>
+                      </svg>
+                    </span>
+                  }
+                />
+                <input hidden type="submit" />
               </div>
             </div>
           </form>
