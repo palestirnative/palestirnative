@@ -69,7 +69,7 @@ export default function TagInput(
                     <img
                       src={option.logoURL}
                       alt={option.name}
-                      class="h-5 w-5 rounded-full mr-4 object-contain"
+                      class="h-5 w-5 rounded-full mr-4 object-contain "
                     />
                   )
                   : null}
