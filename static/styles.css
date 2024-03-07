@@ -45,7 +45,7 @@ html,
   font-style: normal;
 }
 
-@media (max-width: 769px) and (min-width: 400px) {
+@media (max-width: 765px) and (min-width: 400px) {
   .sm-10-width {
     width: 10rem !important;
   }
