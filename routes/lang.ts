@@ -1,14 +1,15 @@
 import { setCookie } from "$std/http/cookie.ts";
+import { Handlers } from "$fresh/server.ts";
 
-export const handler: Handler = {
-  async GET(req, ctx) {
+export const handler: Handlers = {
+   GET(req, _ctx) {
     const url = new URL(req.url);
-    const language = url.searchParams.get("language");
+    const language = url.searchParams.get("language") || "en";
 
     const headers = new Headers();
     setCookie(headers, {
       name: "language",
-      value: language, // this should be a unique value for each session
+      value: language,
       // 3 years
       maxAge: 60 * 60 * 24 * 365 * 3,
       sameSite: "Lax", // this is important to prevent CSRF attacks
@@ -17,7 +18,7 @@ export const handler: Handler = {
       secure: true,
     });
 
-    headers.set("Location", req.referer || "/");
+    headers.set("Location", req.referrer || "/");
 
     return new Response(null, {
       status: 303,

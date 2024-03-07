@@ -1,4 +1,6 @@
-export default function Labels({ state }) {
+import { AppState } from "./_middleware.ts";
+
+export default function Labels({ state }: { state: AppState }) {
   return (
     <div class="container mx-auto my-20">
       <div class="flex flex-col gap-10 w-1/2 mx-auto">

@@ -42,7 +42,7 @@ export const Navigation = ({ state }) => {
 
   return (
     <nav class="relative bg-white shadow dark:bg-gray-800">
-      <div class="container px-6 py-3 mx-auto">
+      <div class="lg:container md:container px-6 py-3 mx-auto">
         <div class="flex flex-col md:flex-row md:justify-between md:items-center">
           <div class="flex items-center justify-between">
             <form

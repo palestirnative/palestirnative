@@ -1,4 +1,6 @@
-export default function FAQ({ state }) {
+import { AppState } from "./_middleware.ts";
+
+export default function FAQ({ state }: { state: AppState }) {
   return (
     <section class="bg-white dark:bg-gray-900 h-full">
       <div class="container px-6 py-12 mx-auto">
