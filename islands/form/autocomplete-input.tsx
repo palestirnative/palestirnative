@@ -12,6 +12,7 @@ export default function AutocompleteInput(
     handleSelect,
     withImage = true,
     customHeight = "md",
+    forceHide = false,
   },
 ) {
   const [inputValue, setInputValue] = useState("");
@@ -32,7 +33,11 @@ export default function AutocompleteInput(
       ));}
 
     if (value.length > 0) {
-      setShouldShowOptions(true);
+      if (forceHide) {
+        setShouldShowOptions(false);
+      } else {
+        setShouldShowOptions(true);
+      }
     } else {
       setShouldShowOptions(false);
     }
