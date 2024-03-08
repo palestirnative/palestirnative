@@ -1,7 +1,7 @@
 import { type PageProps } from "$fresh/server.ts";
 import { AppState } from "./_middleware.ts";
 
-const rtlLanguages = [
+export const rtlLanguages = [
   "ar",
   "fa",
 ];

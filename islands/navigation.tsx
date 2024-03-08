@@ -40,6 +40,13 @@ export const Navigation = ({ state }) => {
     return "h-5 w-5 items-center justify-center rounded-full text-red-800 bg-red-100 dark:bg-red-900 dark:text-red-300 inline-flex items-center text-sm font-medium";
   };
 
+  const getIconClass = () => {
+    const style = state.direction === "rtl"
+      ? `absolute inset-y-0 left-0 flex items-center pl-3`
+      : `absolute inset-y-0 right-0 flex items-center pr-3`;
+    return style;
+  };
+
   return (
     <nav class="relative bg-white shadow dark:bg-gray-800">
       <div class="lg:container md:container px-6 py-3 mx-auto">
@@ -103,8 +110,10 @@ export const Navigation = ({ state }) => {
                       }}
                       options={searchOptions}
                       value={state.search}
-                      leftIcon={
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                      icon={
+                        <span
+                          class={getIconClass()}
+                        >
                           <svg
                             class="w-5 h-5 text-gray-400"
                             viewBox="0 0 24 24"
@@ -228,8 +237,10 @@ export const Navigation = ({ state }) => {
                   }}
                   options={searchOptions}
                   value={state.search}
-                  leftIcon={
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                  icon={
+                    <span
+                      class={getIconClass()}
+                    >
                       <svg
                         class="w-5 h-5 text-gray-400"
                         viewBox="0 0 24 24"

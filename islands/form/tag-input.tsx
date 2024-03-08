@@ -10,7 +10,7 @@ export default function TagInput(
     optionTemplate,
     tagTemplate,
     placeholder = "",
-    leftIcon = null,
+    icon = null,
   },
 ) {
   const [inputValue, setInputValue] = useState("");
@@ -47,7 +47,7 @@ export default function TagInput(
     <>
       <div class="my-2">
         <div class="w-full relative">
-          {leftIcon}
+          {icon}
           <input
             type="text"
             name={name}
