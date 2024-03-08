@@ -86,6 +86,7 @@ export const Navigation = ({ state }) => {
                       name="category"
                     />
                     <TagInput
+                      direction={state.direction}
                       optionTemplate={(option) => (
                         <div class="flex-col">
                           <span class="flex">
@@ -213,6 +214,7 @@ export const Navigation = ({ state }) => {
               </div>
               <div class="my-4 md:hidden">
                 <TagInput
+                  direction={state.direction}
                   optionTemplate={(option) => (
                     <div class="flex-col">
                       <span class="flex">
