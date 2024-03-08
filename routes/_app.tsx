@@ -1,5 +1,6 @@
 import { type PageProps } from "$fresh/server.ts";
 import { AppState } from "./_middleware.ts";
+import { Partial } from "$fresh/runtime.ts";
 
 const rtlLanguages = [
   "ar",
@@ -30,8 +31,10 @@ export default function App(
         <link rel="stylesheet" type="text/css" href="/toastify.css" />
         <link rel="icon" href="/logo.png" />
       </head>
-      <body class="font-sans flex flex-col" f-f-client-nav>
-        <Component />
+      <body class="font-sans flex flex-col">
+        <Partial name="body">
+          <Component />
+        </Partial>
       </body>
     </html>
   );
