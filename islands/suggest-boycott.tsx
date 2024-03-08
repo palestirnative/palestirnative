@@ -84,7 +84,6 @@ export default function SuggestAlternative({ boycotts, state, alternative }) {
               <AutocompleteInput
                 name="alternative"
                 options={boycottsOptions}
-                optionTemplate={boycottTemplate}
                 onChange={onChange}
               />
             </div>
