@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 
 export default function AutocompleteInput(
   {
@@ -6,6 +6,11 @@ export default function AutocompleteInput(
     options,
     optionTemplate,
     onChange,
+    placeholder = "",
+    icon = null,
+    direction = "ltr",
+    handleSelect,
+    withImage = true,
   },
 ) {
   const [inputValue, setInputValue] = useState("");
@@ -33,19 +38,29 @@ export default function AutocompleteInput(
   };
 
   useEffect(() => {
-    onChange(inputValue);
+    onChange?.(inputValue);
   }, [inputValue]);
 
   const handleOptionClick = (option) => {
     setInputValue(option.label);
+    handleSelect(option);
     setShouldShowOptions(false);
+  };
+
+  const getImageClass = () => {
+    const style = direction === "rtl"
+      ? "h-5 w-5 rounded-full mr-4 object-contain"
+      : "h-5 w-5 rounded-full ml-4 object-contain";
+    return style;
   };
 
   return (
     <>
       <div class="my-2 w-full">
         <div class="w-full relative">
+          {icon}
           <input
+            placeholder={placeholder}
             type="text"
             name={name}
             id={name}
@@ -60,10 +75,21 @@ export default function AutocompleteInput(
           >
             {filteredOptions.map((option) => (
               <div
-                class="py-2 px-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="flex flex-row items-center border-b border-b-gray-100  hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
                 onClick={() => handleOptionClick(option)}
               >
-                {usedOptionTemplate(option)}
+                {option.logoURL && withImage
+                  ? (
+                    <img
+                      src={option.logoURL}
+                      alt={option.name}
+                      class={getImageClass()}
+                    />
+                  )
+                  : null}
+                <div class="py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700">
+                  {usedOptionTemplate?.(option)}
+                </div>
               </div>
             ))}
           </div>
