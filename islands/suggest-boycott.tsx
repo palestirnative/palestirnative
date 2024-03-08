@@ -4,6 +4,7 @@ import AutocompleteInput from "./form/autocomplete-input.tsx";
 export default function SuggestAlternative({ boycotts, state, alternative }) {
   const [shouldShowModal, setShouldShowModal] = useState(false);
   const [selectedBoycott, setSelectedBoycott] = useState(null);
+  const [forceHide, setForceHide] = useState(false);
 
   const boycottsOptions = useMemo(() => {
     const alternativeBoycottsIds = alternative.boycotts.map((boycott) =>
@@ -75,6 +76,8 @@ export default function SuggestAlternative({ boycotts, state, alternative }) {
                 options={boycottsOptions}
                 onChange={onChange}
                 customHeight="sm"
+                handleSelect={() => setForceHide(true)}
+                forceHide={forceHide}
               />
             </div>
 
