@@ -19,7 +19,7 @@ export default {
   "Submitting...": "सबमिट किया जा रहा है...",
   "Enter the alternative name": "वैकल्पिक नाम डालें",
   "Enter the boycott name": "बॉयकॉट नाम डालें",
-  "Waiting for approval": "मंजूरी का इंतजार है",
+  "Waiting for approval": "असमान : व्यवस्थापक से पुष्टि की प्रतीक्षा कर रहा है।",
   "Label A":
     "किसी भी ब्रांड जो किसी प्रकार से भीष्म राष्ट्र का समर्थन नहीं कर रहा है, या पश्चिमी ब्रांड जो सार्थक रूप से फिलिस्तीन का समर्थन कर चुका है।",
   "Label B": "कोई गैर-लाभ की वैकल्पिक",
@@ -51,7 +51,7 @@ export default {
   "Next": "अगला",
   countries: {
     "All": "कहीं भी",
-  "Everywhere": "हर जगह",
+    "Everywhere": "हर जगह",
     Afghanistan: "अफगानिस्तान",
     "Åland Islands": "ऑलैंड द्वीपसमूह",
     Albania: "अल्बानिया",

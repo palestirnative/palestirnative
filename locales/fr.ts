@@ -19,7 +19,7 @@ export default {
   "Submitting...": "Soumission en cours...",
   "Enter the alternative name": "Entrez le nom de l'alternative",
   "Enter the boycott name": "Entrez le nom du boycott",
-  "Waiting for approval": "En attente d'approbation",
+  "Waiting for approval": "non vérifié: en attente de confirmation de l'admin.",
   "Label A":
     "Toute marque dans un pays non occidental qui n'est pas impliquée dans un quelconque soutien à l'État sioniste, ou une marque occidentale qui a publiquement montré son soutien à la Palestine.",
   "Label B": "Toute alternative à but non lucratif",

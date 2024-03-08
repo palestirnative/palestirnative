@@ -19,7 +19,7 @@ export default {
   "Submitting...": "Enviando...",
   "Enter the alternative name": "Digite o nome da alternativa",
   "Enter the boycott name": "Digite o nome do boicote",
-  "Waiting for approval": "Aguardando aprovação",
+  "Waiting for approval": "não verificado: aguardando a confirmação do admin.",
   "Label A":
     "Qualquer marca em um país não ocidental que não esteja envolvida em qualquer tipo de apoio ao Estado Sionista, ou uma marca ocidental que tenha mostrado publicamente apoio à Palestina.",
   "Label B": "Qualquer alternativa sem fins lucrativos",
@@ -51,7 +51,7 @@ export default {
   "Next": "Próximo",
   countries: {
     "All": "Em qualquer lugar",
-  "Everywhere": "Em todo lugar",
+    "Everywhere": "Em todo lugar",
     Afghanistan: "Afeganistão",
     "Åland Islands": "Ilhas Åland",
     Albania: "Albânia",

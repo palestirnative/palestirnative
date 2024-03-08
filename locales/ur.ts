@@ -19,7 +19,7 @@ export default {
   "Submitting...": "جمع کرا رہا ہے...",
   "Enter the alternative name": "اقتداری طریقہ کا نام درج کریں",
   "Enter the boycott name": "بویکاٹ کا نام درج کریں",
-  "Waiting for approval": "منظوری کے لیے انتظار کر رہا ہے",
+  "Waiting for approval": "غیر تصدیق شدہ : ایڈمن سے تصدیق کا انتظار کرنا۔",
   "Label A":
     "کوئی غیر مغربی ملک کا برینڈ جو کوئی طرح کے زائر اور حکومت اسرائیل کی کوئی حمایت نہ کرتا ہے یا ویسٹرن برینڈ جو پاکستان کی حمایت کو عام طور پر دکھائی دی ہے।",
   "Label B": "کوئی بغیر منفعت کاری اقتداری طریقہ",
@@ -51,7 +51,7 @@ export default {
   "Next": "اگلا",
   countries: {
     "All": "کہیں بھی",
-  "Everywhere": "ہر جگہ",
+    "Everywhere": "ہر جگہ",
     Afghanistan: "افغانستان",
     "Åland Islands": "آلینڈ ایلینڈز",
     Albania: "البانیا",

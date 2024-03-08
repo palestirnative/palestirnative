@@ -1,5 +1,6 @@
 export default {
-  "ThankYouForSubmission" : "Vielen Dank für Ihre Einsendung! Wir haben Ihren Vorschlag erhalten und er befindet sich nun in unserer Warteschlange zur Überprüfung. Wir werden es so schnell wie möglich hinzufügen. Ihr Beitrag wird sehr geschätzt!",
+  "ThankYouForSubmission":
+    "Vielen Dank für Ihre Einsendung! Wir haben Ihren Vorschlag erhalten und er befindet sich nun in unserer Warteschlange zur Überprüfung. Wir werden es so schnell wie möglich hinzufügen. Ihr Beitrag wird sehr geschätzt!",
   "Suggest a boycott": "Einen Boykott vorschlagen",
   "Boycotts": "Boykotte",
   "See reason": "Grund ansehen",
@@ -20,7 +21,8 @@ export default {
   "Submitting...": "Einreichung...",
   "Enter the alternative name": "Alternativen Namen eingeben",
   "Enter the boycott name": "Boykott Namen eingeben",
-  "Waiting for approval": "Wartet auf Genehmigung",
+  "Waiting for approval":
+    "Nicht überprüft : Warten auf die Bestätigung von Admin.",
   "Label A":
     "Jede Marke in einem nicht-westlichen Land, die nicht in irgendeiner Form die Unterstützung des Zionistischen Staates betreibt, oder eine westliche Marke, die öffentlich ihre Unterstützung für Palästina gezeigt hat.",
   "Label B": "Jede gemeinnützige Alternative",

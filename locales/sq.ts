@@ -19,7 +19,8 @@ export default {
   "Submitting...": "Duke dërguar...",
   "Enter the alternative name": "Vendos emrin e alternativës",
   "Enter the boycott name": "Vendos emrin e bojkotit",
-  "Waiting for approval": "Duke pritur aprovimin",
+  "Waiting for approval":
+    "i pavepruar : Në pritje të konfirmimit nga administratori.",
   "Label A":
     "Çdo markë në një vend jashtë Perëndimit që nuk është përfshirë në ndonjë lloj mbështetjeje për Shtetin Sionist, ose një markë perëndimore që ka treguar publikisht mbështetje për Palestinën.",
   "Label B": "Çdo alternativë pa fitim",
@@ -52,7 +53,7 @@ export default {
   "Next": "Pasues",
   countries: {
     "All": "Kudo",
-  "Everywhere": "Kudo",
+    "Everywhere": "Kudo",
     Afghanistan: "Afganistan",
     "Åland Islands": "Ishujt Åland",
     Albania: "Shqipëria",

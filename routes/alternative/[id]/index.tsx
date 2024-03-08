@@ -97,14 +97,14 @@ export default function BoycottPage({ data, state }) {
                   }}
                 >
                   {status === AlternativeStatus.Pending && (
-                    <span class="absolute top-2 left-2 text-xs text-gray-700">
+                    <span class="absolute top-2 left-2 text-xs text-gray-700 text-center w-full">
                       {state.locale["Waiting for approval"]}
                     </span>
                   )}
                   <img
                     src={boycott.logoURL}
                     alt={boycott.name}
-                    class="h-36 rounded-full mb-2 mt-6 grayscale"
+                    class="h-36 rounded-full mb-2 mt-6"
                   />
                   <span class="font-medium text-2xl">
                     {boycott.name}

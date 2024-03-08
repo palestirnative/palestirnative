@@ -295,7 +295,7 @@ export default function Boycott({ data, state }) {
                 <div class="flex">
                   <div class="flex flex-col bg-white md:transparent lg:transparent justify-center items-center border-e border-gray-200 px-4 py-2 w-72 h-72 relative">
                     {boycott.status === BoycottStatus.Pending && (
-                      <span class="absolute top-2 left-2 text-xs text-gray-700">
+                      <span class="absolute top-2 left-2 text-xs text-gray-700 text-center w-full">
                         {state.locale["Waiting for approval"]}
                       </span>
                     )}
@@ -361,7 +361,7 @@ export default function Boycott({ data, state }) {
                             }}
                           >
                             {status === AlternativeStatus.Pending && (
-                              <span class="absolute top-2 left-2 text-xs text-gray-700">
+                              <span class="absolute top-2 left-2 text-xs text-gray-700 text-center w-full">
                                 {state.locale["Waiting for approval"]}
                               </span>
                             )}

@@ -16,7 +16,7 @@ export const handler: Handler = {
       "name",
       "countries",
       "logo",
-      "website",
+      // "website",
     ];
 
     for (const field of requiredFields) {

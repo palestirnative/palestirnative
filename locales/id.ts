@@ -19,7 +19,8 @@ export default {
   "Submitting...": "Mengirim...",
   "Enter the alternative name": "Masukkan nama alternatif",
   "Enter the boycott name": "Masukkan nama boikot",
-  "Waiting for approval": "Menunggu persetujuan",
+  "Waiting for approval":
+    "tidak diverifikasi : Menunggu konfirmasi dari admin.",
   "Label A":
     "Merek apa pun di negara non-Barat yang tidak terlibat dalam dukungan apa pun kepada Negara Sionis, atau merek Barat yang telah memperlihatkan dukungan mereka kepada Palestina secara umum.",
   "Label B": "Alternatif tanpa keuntungan",
