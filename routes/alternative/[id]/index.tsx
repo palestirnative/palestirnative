@@ -104,7 +104,7 @@ export default function BoycottPage({ data, state }) {
                   <img
                     src={boycott.logoURL}
                     alt={boycott.name}
-                    class="h-36 rounded-full mb-2 mt-6"
+                    class="h-36 w-36 rounded-full mb-2 mt-6"
                   />
                   <span class="font-medium text-2xl">
                     {boycott.name}
