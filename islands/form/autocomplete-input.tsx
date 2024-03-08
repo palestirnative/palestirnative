@@ -11,6 +11,7 @@ export default function AutocompleteInput(
     direction = "ltr",
     handleSelect,
     withImage = true,
+    customHeight = "md",
   },
 ) {
   const [inputValue, setInputValue] = useState("");
@@ -54,6 +55,13 @@ export default function AutocompleteInput(
     return style;
   };
 
+  const getContainerClass = () => {
+    const style = customHeight === "md"
+      ? "absolute z-10 left-0 w-full overflow-y-auto h-40 bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600"
+      : "absolute z-10 left-0 w-full overflow-y-auto h-20 bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600";
+    return style;
+  };
+
   return (
     <>
       <div class="my-2 w-full">
@@ -71,7 +79,7 @@ export default function AutocompleteInput(
           />
           <div
             hidden={!shouldShowOptions}
-            class="absolute z-10 left-0 w-full bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600"
+            class={getContainerClass()}
           >
             {filteredOptions.map((option) => (
               <div

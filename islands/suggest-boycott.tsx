@@ -1,17 +1,6 @@
 import { useMemo, useState } from "preact/hooks";
 import AutocompleteInput from "./form/autocomplete-input.tsx";
 
-const boycottTemplate = (boycott) => (
-  <div class="flex items-center">
-    <img
-      src={boycott.logoURL}
-      alt={`${boycott.label} logo`}
-      class="w-4 h-4 mr-2 rounded-full"
-    />
-    <span>{boycott.label}</span>
-  </div>
-);
-
 export default function SuggestAlternative({ boycotts, state, alternative }) {
   const [shouldShowModal, setShouldShowModal] = useState(false);
   const [selectedBoycott, setSelectedBoycott] = useState(null);
@@ -85,6 +74,7 @@ export default function SuggestAlternative({ boycotts, state, alternative }) {
                 name="alternative"
                 options={boycottsOptions}
                 onChange={onChange}
+                customHeight="sm"
               />
             </div>
 

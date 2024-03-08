@@ -79,6 +79,7 @@ export default function SuggestAlternative({ boycott, state, alternatives }) {
               <AutocompleteInput
                 name="alternative"
                 options={alternativesOptions}
+                customHeight="sm"
               />
             </div>
 
