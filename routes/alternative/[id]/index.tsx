@@ -82,7 +82,7 @@ export default function BoycottPage({ data, state }) {
           />
         </div>
         <div class="my-6">
-          <div class="grid gap-4 grid-flow-col auto-cols-max">
+          <div class="grid gap-4 grid-flow-col auto-cols-max overflow-y-auto">
             {alternative.boycotts.map((boycott) => {
               const status = boycott.alternatives.find((alt) =>
                 alt.alternative.toString() === alternative._id.toString()
