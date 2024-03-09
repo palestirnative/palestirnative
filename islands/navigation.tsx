@@ -33,7 +33,7 @@ export const Navigation = ({ state }) => {
   };
 
   const renderAlternativeBadgeClasses = () => {
-    return;
+    return "h-5 w-5 items-center justify-center rounded-full text-green-800 bg-green-100 dark:bg-green-900 dark:text-green-300 inline-flex items-center text-sm font-medium";
   };
 
   const renderBoycottBadgeClasses = () => {
