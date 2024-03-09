@@ -1,9 +1,24 @@
-import TagInput from "./tag-input.tsx";
 import { ArrowUpTraySolid } from "https://esm.sh/preact-heroicons";
+import { ObjectId } from "mongodb";
 import { useMemo, useState } from "preact/hooks";
-import countries from "../../utils/countries.ts";
+import { JSX } from "preact/jsx-runtime";
 import Toastify from "toastify";
+import { AppState } from "../../routes/_middleware.ts";
+import { Boycott } from "../../types/boycott.ts";
+import countries from "../../utils/countries.ts";
 import { translate } from "../../utils/translation.ts";
+import TagInput from "./tag-input.tsx";
+
+export type CountryOption = {
+  value: string;
+  label: string;
+};
+
+export type BoycottOption = {
+  value: ObjectId;
+  label: string;
+  logoURL: string;
+};
 
 const indexedCountries = countries.reduce(
   (acc, item) => ({
@@ -13,7 +28,7 @@ const indexedCountries = countries.reduce(
   {},
 );
 
-const countryOptionTemplate = (country) => (
+const countryOptionTemplate = (country: CountryOption): JSX.Element => (
   <div class="flex items-center">
     <img
       src={`/flags/${country.value}.svg`}
@@ -24,10 +39,13 @@ const countryOptionTemplate = (country) => (
   </div>
 );
 
-export default function AlternativeForm({ boycotts, state }) {
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [logoSource, setLogoSource] = useState(null);
+export default function AlternativeForm({ boycotts, state }: {
+  boycotts: Boycott[];
+  state: AppState;
+}) {
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [logoSource, setLogoSource] = useState<string | null>(null);
 
   const submitURL = useMemo(() => {
     return "/alternative";
@@ -37,7 +55,9 @@ export default function AlternativeForm({ boycotts, state }) {
     return "POST";
   }, []);
 
-  const [selectedCountries, setSelectedCountries] = useState([]);
+  const [selectedCountries, setSelectedCountries] = useState<CountryOption[]>(
+    [],
+  );
 
   const [countryOptions, setCountryOptions] = useState(
     countries
@@ -48,23 +68,23 @@ export default function AlternativeForm({ boycotts, state }) {
       .filter((option) => !selectedCountries.includes(option)),
   );
 
-  const handleSelectCountry = (country) => {
+  const handleSelectCountry = (country: CountryOption) => {
     setSelectedCountries([...selectedCountries, country]);
     setCountryOptions(
       countryOptions.filter((option) => option.value !== country.value),
     );
   };
 
-  const handleUnselectCountry = (country) => {
+  const handleUnselectCountry = (country: CountryOption) => {
     setCountryOptions([...countryOptions, country]);
     setSelectedCountries(
       selectedCountries.filter((option) => option.value !== country.value),
     );
   };
 
-  const [selectedBoycotts, setSelectedBoycotts] = useState([]);
+  const [selectedBoycotts, setSelectedBoycotts] = useState<BoycottOption[]>([]);
 
-  const [boycottOptions, setBoycottOptions] = useState(
+  const [boycottOptions, setBoycottOptions] = useState<BoycottOption[]>(
     boycotts.map((boycott) => ({
       value: boycott._id,
       label: boycott.name,
@@ -72,14 +92,14 @@ export default function AlternativeForm({ boycotts, state }) {
     })),
   );
 
-  const handleSelectBoycott = (boycott) => {
+  const handleSelectBoycott = (boycott: BoycottOption) => {
     setSelectedBoycotts([...selectedBoycotts, boycott]);
     setBoycottOptions(
       boycottOptions.filter((option) => option.value !== boycott.value),
     );
   };
 
-  const handleUnselectBoycott = (boycott) => {
+  const handleUnselectBoycott = (boycott: BoycottOption) => {
     setBoycottOptions([...boycottOptions, boycott]);
     setSelectedBoycotts(
       selectedBoycotts.filter((option) => option.value !== boycott.value),
@@ -93,12 +113,12 @@ export default function AlternativeForm({ boycotts, state }) {
     setSelectedBoycotts([]);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: Event) => {
     event.preventDefault();
 
     setIsLoading(true);
 
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.target as HTMLFormElement);
 
     const countries = selectedCountries
       .map((country) => country.value)
@@ -140,9 +160,10 @@ export default function AlternativeForm({ boycotts, state }) {
     }
   };
 
-  const handleLogoChange = (event) => {
-    const logo = event.target.files[0];
-
+  const handleLogoChange = (event: Event) => {
+    const input = event.target as HTMLInputElement;
+    const logo = input?.files ? input.files[0] : null;
+    
     if (logo) {
       setLogoSource(URL.createObjectURL(logo));
     }
@@ -160,7 +181,7 @@ export default function AlternativeForm({ boycotts, state }) {
         <div class="my-2 flex flex-col items-center">
           <img
             hidden={!logoSource}
-            src={logoSource}
+            src={logoSource!}
             alt="Logo"
             class="w-32 h-32 my-2 rounded-full object-contain"
           />
@@ -213,7 +234,7 @@ export default function AlternativeForm({ boycotts, state }) {
           <label class="text-gray-700 dark:text-gray-200" for="categories">
             {state.locale["Countries"]}
           </label>
-          <TagInput
+          <TagInput<CountryOption>
             name="countriesInput"
             tags={selectedCountries}
             handleSelect={handleSelectCountry}
@@ -228,7 +249,7 @@ export default function AlternativeForm({ boycotts, state }) {
           <label class="text-gray-700 dark:text-gray-200" for="categories">
             {state.locale["Boycotts"]}
           </label>
-          <TagInput
+          <TagInput<BoycottOption>
             name="boycottsInput"
             tags={selectedBoycotts}
             handleSelect={handleSelectBoycott}
