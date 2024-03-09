@@ -94,6 +94,7 @@ export default function BoycottPage({ data, state }) {
               ).status,
             }))}
             state={state}
+            horizontal
           />
         </div>
       </div>
