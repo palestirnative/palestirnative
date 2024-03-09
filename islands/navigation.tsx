@@ -52,7 +52,7 @@ export const Navigation = ({ state }) => {
               method="GET"
             >
               <div class="flex items-center">
-                <a href="/">
+                <a href="/boycott">
                   <img class="w-auto h-6 sm:h-7" src="/logo-long.png" alt="" />
                 </a>
                 <div class="hidden mx-10 md:block">
