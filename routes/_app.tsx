@@ -31,7 +31,7 @@ export default function App(
         <link rel="stylesheet" type="text/css" href="/toastify.css" />
         <link rel="icon" href="/logo.png" />
       </head>
-      <body class="font-sans flex flex-col">
+      <body class="font-sans flex flex-col" f-client-nav>
         <Partial name="body">
           <Component />
         </Partial>
