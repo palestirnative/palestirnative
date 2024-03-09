@@ -1,7 +1,6 @@
 import { createCategoryURL } from "../utils/create-url.ts";
 import AutocompleteInput from "./form/autocomplete-input.tsx";
 import CountryDropdown from "./form/country-dropdown.tsx";
-import TagInput from "./form/tag-input.tsx";
 import LanguageDropdown from "./language-dropdown.tsx";
 import { useMemo, useState } from "preact/hooks";
 
@@ -34,18 +33,11 @@ export const Navigation = ({ state }) => {
   };
 
   const renderAlternativeBadgeClasses = () => {
-    return "h-5 w-5 items-center justify-center rounded-full text-green-800 bg-green-100 dark:bg-green-900 dark:text-green-300 inline-flex items-center text-sm font-medium";
+    return;
   };
 
   const renderBoycottBadgeClasses = () => {
     return "h-5 w-5 items-center justify-center rounded-full text-red-800 bg-red-100 dark:bg-red-900 dark:text-red-300 inline-flex items-center text-sm font-medium";
-  };
-
-  const getIconClass = () => {
-    const style = state.direction === "rtl"
-      ? `absolute inset-y-0 left-0 flex items-center pl-3`
-      : `absolute inset-y-0 right-0 flex items-center pr-3`;
-    return style;
   };
 
   return (
@@ -71,7 +63,6 @@ export const Navigation = ({ state }) => {
                       name="category"
                     />
                     <AutocompleteInput
-                      direction={state.direction}
                       name="alternative"
                       options={searchOptions}
                       optionTemplate={(option) => (
@@ -95,9 +86,7 @@ export const Navigation = ({ state }) => {
                           `/${item.productType}/${item.nameSlug}`;
                       }}
                       icon={
-                        <span
-                          class={getIconClass()}
-                        >
+                        <span class="`absolute inset-y-0 end-0 flex items-center pe-3`">
                           <svg
                             class="w-5 h-5 text-gray-400"
                             viewBox="0 0 24 24"
@@ -197,7 +186,6 @@ export const Navigation = ({ state }) => {
               </div>
               <div class="my-4 block lg:hidden">
                 <AutocompleteInput
-                  direction={state.direction}
                   name="alternative"
                   options={searchOptions}
                   optionTemplate={(option) => (
@@ -221,9 +209,7 @@ export const Navigation = ({ state }) => {
                       `/${item.productType}/${item.nameSlug}`;
                   }}
                   icon={
-                    <span
-                      class={getIconClass()}
-                    >
+                    <span class="absolute inset-y-0 end-0 flex items-center pe-3">
                       <svg
                         class="w-5 h-5 text-gray-400"
                         viewBox="0 0 24 24"

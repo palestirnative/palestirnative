@@ -11,7 +11,6 @@ export default function TagInput(
     tagTemplate,
     placeholder = "",
     icon = null,
-    direction = "ltr",
     withImage = true,
     customHeight = "md",
   },
@@ -44,13 +43,6 @@ export default function TagInput(
   const handleOptionClick = (option) => {
     handleSelect(option);
     setInputValue("");
-  };
-
-  const getImageClass = () => {
-    const style = direction === "rtl"
-      ? "h-5 w-5 rounded-full mr-4 object-contain"
-      : "h-5 w-5 rounded-full ml-4 object-contain";
-    return style;
   };
 
   const getContainerClass = () => {
@@ -89,7 +81,7 @@ export default function TagInput(
                     <img
                       src={option.logoURL}
                       alt={option.name}
-                      class={getImageClass()}
+                      class="h-5 w-5 rounded-full ms-4 object-contain"
                     />
                   )
                   : null}

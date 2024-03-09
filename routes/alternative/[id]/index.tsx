@@ -1,11 +1,8 @@
-import { AlternativeStatus, BoycottStatus } from "../../../types/boycott.ts";
+import { AlternativeStatus } from "../../../types/boycott.ts";
 import { Alternative } from "../../../types/alternative.ts";
-import { ObjectId } from "mongodb";
 import db from "../../../utils/db/db.ts";
-import upload from "../../../utils/upload.ts";
 import { Handler } from "$fresh/server.ts";
 import { Boycott } from "../../../types/boycott.ts";
-import AlternativesGrid from "../../../components/alternativesGrid.tsx";
 import LabelLongTag from "../../../components/LabelLongTag.tsx";
 import SuggestBoycott from "../../../islands/suggest-boycott.tsx";
 

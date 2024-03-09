@@ -8,7 +8,6 @@ export default function AutocompleteInput(
     onChange,
     placeholder = "",
     icon = null,
-    direction = "ltr",
     handleSelect,
     withImage = true,
     customHeight = "md",
@@ -53,13 +52,6 @@ export default function AutocompleteInput(
     setShouldShowOptions(false);
   };
 
-  const getImageClass = () => {
-    const style = direction === "rtl"
-      ? "h-5 w-5 rounded-full mr-4 object-contain"
-      : "h-5 w-5 rounded-full ml-4 object-contain";
-    return style;
-  };
-
   const getContainerClass = () => {
     const style = customHeight === "md"
       ? "absolute z-10 left-0 w-full overflow-y-auto h-40 bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600"
@@ -96,7 +88,7 @@ export default function AutocompleteInput(
                     <img
                       src={option.logoURL}
                       alt={option.name}
-                      class={getImageClass()}
+                      class="h-5 w-5 rounded-full ms-4 object-contain"
                     />
                   )
                   : null}
