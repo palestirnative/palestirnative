@@ -1,6 +1,27 @@
+import { ChangeEvent } from "preact/compat";
 import { useMemo, useState } from "preact/hooks";
+import { JSX } from "preact/jsx-runtime";
 
-export default function TagInput(
+interface HasLabel {
+  label: string;
+  logoURL?: string;
+}
+
+type TagInputProps<T extends HasLabel> = {
+  name: string;
+  tags: T[];
+  handleSelect: (tag: T) => void;
+  handleRemove: (tag: T) => void;
+  options: T[];
+  optionTemplate?: (tag: T) => JSX.Element;
+  tagTemplate?: (tag: T) => JSX.Element;
+  placeholder?: string;
+  icon?: JSX.Element | null;
+  withImage?: boolean;
+  customHeight?: string;
+};
+
+export default function TagInput<T extends HasLabel>(
   {
     name,
     tags = [],
@@ -13,20 +34,21 @@ export default function TagInput(
     icon = null,
     withImage = true,
     customHeight = "md",
-  },
+  }: TagInputProps<T>,
 ) {
   const [inputValue, setInputValue] = useState("");
 
-  const usedOptionTemplate = (option) => (
+  const usedOptionTemplate = (option: T) => (
     optionTemplate ? optionTemplate(option) : <span>{option.label}</span>
   );
 
-  const usedTagTemplate = (tag) => (
+  const usedTagTemplate = (tag: T) => (
     tagTemplate ? tagTemplate(tag) : <span>{tag.label}</span>
   );
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+  const handleInputChange = (event: Event) => {
+    setInputValue((event.target as HTMLInputElement).value);
+    console.log(inputValue);
   };
 
   const shouldShowOptions = useMemo(() => {
@@ -40,7 +62,7 @@ export default function TagInput(
     );
   }, [inputValue]);
 
-  const handleOptionClick = (option) => {
+  const handleOptionClick = (option: T) => {
     handleSelect(option);
     setInputValue("");
   };
@@ -56,7 +78,11 @@ export default function TagInput(
     <>
       <div class="my-2">
         <div class="w-full relative">
-          {icon}
+          {icon && (
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
+              {icon}
+            </div>
+          )}
           <input
             type="text"
             name={name}
@@ -64,7 +90,7 @@ export default function TagInput(
             placeholder={placeholder}
             value={inputValue}
             autocomplete="new-password"
-            onKeyup={handleInputChange}
+            onKeyUp={handleInputChange}
             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
           />
           <div
@@ -80,7 +106,7 @@ export default function TagInput(
                   ? (
                     <img
                       src={option.logoURL}
-                      alt={option.name}
+                      alt={option.label}
                       class="h-5 w-5 rounded-full ms-4 object-contain"
                     />
                   )
