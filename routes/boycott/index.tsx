@@ -306,7 +306,7 @@ export default function Boycott({ data, state }) {
                       <img
                         src={boycott.logoURL}
                         alt={boycott.name}
-                        class="w-36 h-36 rounded-full"
+                        class="w-36 h-36 rounded-full object-contain"
                       />
                       <span class="text-creepy text-2xl text-red-700 absolute -rotate-45 bg-white bg-opacity-50 -left-6 top-6 p-2 border-4 border-red-700">
                         CRIMINALS
@@ -371,7 +371,7 @@ export default function Boycott({ data, state }) {
                             <img
                               src={alternative.logoURL}
                               alt={alternative.name}
-                              class="w-36 h-36 rounded-full mb-2 mt-6"
+                              class="w-36 h-36 rounded-full mb-2 mt-6 object-contain"
                             />
                             <span class="font-medium text-2xl">
                               {alternative.name}
@@ -383,7 +383,7 @@ export default function Boycott({ data, state }) {
                                   <img
                                     src={`/flags/${country}.svg`}
                                     alt={`${country} flag`}
-                                    class="w-6 h-6 mx-1 rounded-full"
+                                    class="w-6 h-6 mx-1 rounded-full object-contain"
                                   />
                                 ))}
                               {alternative.countries.length > 3 && (

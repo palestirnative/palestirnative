@@ -10,7 +10,8 @@ export default function TagInput(
     optionTemplate,
     tagTemplate,
     placeholder = "",
-    leftIcon = null,
+    icon = null,
+    direction = "ltr",
   },
 ) {
   const [inputValue, setInputValue] = useState("");
@@ -43,11 +44,18 @@ export default function TagInput(
     setInputValue("");
   };
 
+  const getImageClss = () => {
+    const style = direction === "rtl"
+      ? "h-5 w-5 rounded-full mr-4 object-contain"
+      : "h-5 w-5 rounded-full ml-4 object-contain";
+    return style;
+  };
+
   return (
     <>
       <div class="my-2">
         <div class="w-full relative">
-          {leftIcon}
+          {icon}
           <input
             type="text"
             name={name}
@@ -69,7 +77,7 @@ export default function TagInput(
                     <img
                       src={option.logoURL}
                       alt={option.name}
-                      class="h-5 w-5 rounded-full mr-4 object-contain "
+                      class={getImageClss()}
                     />
                   )
                   : null}

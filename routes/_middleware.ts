@@ -5,6 +5,7 @@ import { Boycott } from "../types/boycott.ts";
 import { Category } from "../types/category.ts";
 import { Locale } from "../types/locale.ts";
 import db from "../utils/db/db.ts";
+import { rtlLanguages } from "./_app.tsx";
 export interface AppState {
   defaultLanguage: string;
   boycotts: Boycott[];
@@ -17,6 +18,7 @@ export interface AppState {
   search?: string;
   category?: string;
   country?: string;
+  direction?: "rtl" | "ltr";
 }
 const defaultLanguage = "en";
 
@@ -79,6 +81,9 @@ export async function handler(
 
   ctx.state.boycotts = boycotts;
   ctx.state.alternatives = alternatives;
+
+  const direction = rtlLanguages.includes(selectedLanguage) ? "rtl" : "ltr";
+  ctx.state.direction = direction;
 
   const response = await ctx.next();
   return response;

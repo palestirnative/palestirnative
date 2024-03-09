@@ -44,7 +44,7 @@ export default function BoycottPage({ data, state }) {
     <div class="container mx-auto my-20">
       <div class="flex flex-col items-center gap-6">
         <img
-          class="w-36 h-36 rounded-full"
+          class="w-36 h-36 rounded-full object-contain"
           src={alternative.logoURL}
           alt={alternative.name}
         />
@@ -67,7 +67,7 @@ export default function BoycottPage({ data, state }) {
           <img
             src={`/flags/${country}.svg`}
             alt={`${country} flag`}
-            class="w-6 h-6 mx-1 rounded-full"
+            class="w-6 h-6 mx-1 rounded-full object-contain"
           />
         ))}
       </div>
@@ -104,7 +104,7 @@ export default function BoycottPage({ data, state }) {
                   <img
                     src={boycott.logoURL}
                     alt={boycott.name}
-                    class="h-36 w-36 rounded-full mb-2 mt-6"
+                    class="h-36 w-36 rounded-full mb-2 mt-6 object-contain"
                   />
                   <span class="font-medium text-2xl">
                     {boycott.name}
