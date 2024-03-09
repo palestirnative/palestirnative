@@ -1,13 +1,28 @@
 import { AlternativeStatus } from "../types/boycott.ts";
 import LabelTag from "./LabelTag.tsx";
 
-export default function AlternativesGrid({ alternatives, state }) {
+export default function AlternativesGrid(
+  { alternatives, state, horizontal = false },
+) {
+  const getContainerClass = () => {
+    const style = horizontal
+      ? "grid gap-4 grid-flow-col auto-cols-max overflow-y-auto"
+      : "grid grid-cols-1 justify-center items-center gap-1 xxs:grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3";
+    return style;
+  };
+  const getCardClass = () => {
+    const style = horizontal
+      ? "relative flex flex-col items-center bg-white rounded-xl shadow hover:bg-gray-100 cursor-pointer border-x border border-gray-200 px-4 py-2 sm:py-4 w-80 h-80 my-2"
+      : "sm-10-width relative flex flex-col items-center bg-white rounded-xl shadow hover:bg-gray-100 cursor-pointer border-x border border-gray-200 px-4 py-2 sm:py-4 w-80 h-80 my-2";
+    return style;
+  };
+
   return (
-    <div class="grid grid-cols-1 justify-center items-center gap-1 xxs:grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
+    <div class={getContainerClass()}>
       {alternatives.map((alternative) => (
         <a
           href={`/alternative/${alternative.nameSlug}`}
-          class="relative flex flex-col items-center bg-white rounded-xl shadow hover:bg-gray-100 cursor-pointer border-x border border-gray-200 px-4 py-2 sm:py-4 w-80 h-80 sm-10-width my-2"
+          class={getCardClass()}
           style={{
             opacity: alternative.status === AlternativeStatus.Pending ? 0.5 : 1,
           }}
