@@ -1,8 +1,6 @@
-import { AlternativeStatus, BoycottStatus } from "../../../types/boycott.ts";
+import { BoycottStatus } from "../../../types/boycott.ts";
 import { Alternative } from "../../../types/alternative.ts";
-import { ObjectId } from "mongodb";
 import db from "../../../utils/db/db.ts";
-import upload from "../../../utils/upload.ts";
 import { Handler } from "$fresh/server.ts";
 import { Boycott } from "../../../types/boycott.ts";
 import AlternativesGrid from "../../../components/alternativesGrid.tsx";
@@ -57,7 +55,7 @@ export default function BoycottPage({ data, state }) {
           src={boycott.logoURL}
           alt={boycott.name}
         />
-        <div class="text-3xl font-bold text-red-800 text-creepy">
+        <div class="text-3xl font-bold text-red-800 text-creepy text-center">
           {boycott.name}
         </div>
         <a
@@ -68,6 +66,7 @@ export default function BoycottPage({ data, state }) {
           {state.locale["See reason"]}...
         </a>
       </div>
+      <hr class="my-4" />
       <div class="my-6">
         <div class="flex justify-between items-center">
           <div class="text-lg font-bold">{state.locale["Alternatives"]}</div>
@@ -76,13 +75,15 @@ export default function BoycottPage({ data, state }) {
             state={state}
             alternatives={alternatives}
           />
-          <div class="flex gap-4">
+          {
+            /* <div class="flex gap-4">
             {boycott.categories.map((category) => (
               <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
                 {category.name}
               </span>
             ))}
-          </div>
+          </div> */
+          }
         </div>
         <div class="my-6">
           <AlternativesGrid

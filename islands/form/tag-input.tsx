@@ -11,7 +11,8 @@ export default function TagInput(
     tagTemplate,
     placeholder = "",
     icon = null,
-    direction = "ltr",
+    withImage = true,
+    customHeight = "md",
   },
 ) {
   const [inputValue, setInputValue] = useState("");
@@ -44,10 +45,10 @@ export default function TagInput(
     setInputValue("");
   };
 
-  const getImageClss = () => {
-    const style = direction === "rtl"
-      ? "h-5 w-5 rounded-full mr-4 object-contain"
-      : "h-5 w-5 rounded-full ml-4 object-contain";
+  const getContainerClass = () => {
+    const style = customHeight === "md"
+      ? "absolute z-10 left-0 w-full overflow-y-auto h-40 bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600"
+      : "absolute z-10 left-0 w-full overflow-y-auto h-20 bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600";
     return style;
   };
 
@@ -68,23 +69,23 @@ export default function TagInput(
           />
           <div
             hidden={!shouldShowOptions}
-            class="absolute z-10 left-0 w-full bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600"
+            class={getContainerClass()}
           >
             {filteredOptions.map((option) => (
-              <div class="flex flex-row items-center border-b border-b-gray-100  hover:bg-gray-100 dark:hover:bg-gray-700">
-                {option.logoURL
+              <div
+                class="flex flex-row items-center border-b border-b-gray-100  hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
+                onClick={() => handleOptionClick(option)}
+              >
+                {option.logoURL && withImage
                   ? (
                     <img
                       src={option.logoURL}
                       alt={option.name}
-                      class={getImageClss()}
+                      class="h-5 w-5 rounded-full ms-4 object-contain"
                     />
                   )
                   : null}
-                <div
-                  class="py-2 px-4 cursor-pointer"
-                  onClick={() => handleOptionClick(option)}
-                >
+                <div class="py-2 px-4">
                   {usedOptionTemplate?.(option)}
                 </div>
               </div>

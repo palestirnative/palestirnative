@@ -10,17 +10,6 @@ const categoryTemplate = (category) => (
   </span>
 );
 
-const alternativeTemplate = (alternative) => (
-  <div class="flex items-center">
-    <img
-      src={alternative.logoURL}
-      alt={`${alternative.label} logo`}
-      class="w-4 h-4 mr-2 rounded-full"
-    />
-    <span>{alternative.label}</span>
-  </div>
-);
-
 export default function BoycottForm(
   { categories, alternatives, state },
 ) {
@@ -235,8 +224,6 @@ export default function BoycottForm(
               handleSelect={handleSelectAlternative}
               options={alternativeOptions}
               handleRemove={handleUnselectAlternative}
-              optionTemplate={alternativeTemplate}
-              tagTemplate={alternativeTemplate}
             />
           </div>
         </div>

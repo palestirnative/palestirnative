@@ -1,20 +1,10 @@
 import { useMemo, useState } from "preact/hooks";
 import AutocompleteInput from "./form/autocomplete-input.tsx";
 
-const boycottTemplate = (boycott) => (
-  <div class="flex items-center">
-    <img
-      src={boycott.logoURL}
-      alt={`${boycott.label} logo`}
-      class="w-4 h-4 mr-2 rounded-full"
-    />
-    <span>{boycott.label}</span>
-  </div>
-);
-
 export default function SuggestAlternative({ boycotts, state, alternative }) {
   const [shouldShowModal, setShouldShowModal] = useState(false);
   const [selectedBoycott, setSelectedBoycott] = useState(null);
+  const [forceHide, setForceHide] = useState(false);
 
   const boycottsOptions = useMemo(() => {
     const alternativeBoycottsIds = alternative.boycotts.map((boycott) =>
@@ -53,7 +43,7 @@ export default function SuggestAlternative({ boycotts, state, alternative }) {
         onClick={showModal}
         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
-        {state.locale["Suggest an alternative"]}
+        {state.locale["Suggest a boycott"]}
       </button>
       <div
         hidden={!shouldShowModal}
@@ -84,8 +74,10 @@ export default function SuggestAlternative({ boycotts, state, alternative }) {
               <AutocompleteInput
                 name="alternative"
                 options={boycottsOptions}
-                optionTemplate={boycottTemplate}
                 onChange={onChange}
+                customHeight="sm"
+                handleSelect={() => setForceHide(true)}
+                forceHide={forceHide}
               />
             </div>
 

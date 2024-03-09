@@ -23,7 +23,7 @@ export default function AlternativesGrid({ alternatives, state }) {
           <img
             src={alternative.logoURL}
             alt={alternative.name}
-            class="h-36 rounded-full mb-2 mt-6"
+            class="h-36 w-36 rounded-full mb-2 mt-6"
           />
           <span class="font-medium text-2xl">
             {alternative.name}

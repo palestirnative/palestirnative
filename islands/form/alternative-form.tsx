@@ -24,17 +24,6 @@ const countryOptionTemplate = (country) => (
   </div>
 );
 
-const boycottOptionTemplate = (boycott) => (
-  <div class="flex items-center">
-    <img
-      src={boycott.logoURL}
-      alt={`${boycott.label} logo`}
-      class="w-4 h-4 mr-2 rounded-full"
-    />
-    <span>{boycott.label}</span>
-  </div>
-);
-
 export default function AlternativeForm({ boycotts, state }) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -245,8 +234,6 @@ export default function AlternativeForm({ boycotts, state }) {
             handleSelect={handleSelectBoycott}
             options={boycottOptions}
             handleRemove={handleUnselectBoycott}
-            optionTemplate={boycottOptionTemplate}
-            tagTemplate={boycottOptionTemplate}
           />
         </div>
 

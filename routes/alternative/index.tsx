@@ -310,7 +310,7 @@ export default function Alternative({ data, state }) {
                 : pageItem.type === "page"
                 ? (
                   <a
-                    href={`/boycott?page=${pageItem.label}`}
+                    href={`/alternative?page=${pageItem.label}`}
                     class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
                   >
                     {pageItem.label}

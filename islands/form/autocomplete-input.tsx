@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 
 export default function AutocompleteInput(
   {
@@ -6,6 +6,12 @@ export default function AutocompleteInput(
     options,
     optionTemplate,
     onChange,
+    placeholder = "",
+    icon = null,
+    handleSelect,
+    withImage = true,
+    customHeight = "md",
+    forceHide = false,
   },
 ) {
   const [inputValue, setInputValue] = useState("");
@@ -26,26 +32,40 @@ export default function AutocompleteInput(
       ));}
 
     if (value.length > 0) {
-      setShouldShowOptions(true);
+      if (forceHide) {
+        setShouldShowOptions(false);
+      } else {
+        setShouldShowOptions(true);
+      }
     } else {
       setShouldShowOptions(false);
     }
   };
 
   useEffect(() => {
-    onChange(inputValue);
+    onChange?.(inputValue);
   }, [inputValue]);
 
   const handleOptionClick = (option) => {
     setInputValue(option.label);
+    handleSelect(option);
     setShouldShowOptions(false);
+  };
+
+  const getContainerClass = () => {
+    const style = customHeight === "md"
+      ? "absolute z-10 left-0 w-full overflow-y-auto h-40 bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600"
+      : "absolute z-10 left-0 w-full overflow-y-auto h-20 bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600";
+    return style;
   };
 
   return (
     <>
       <div class="my-2 w-full">
         <div class="w-full relative">
+          {icon}
           <input
+            placeholder={placeholder}
             type="text"
             name={name}
             id={name}
@@ -56,14 +76,25 @@ export default function AutocompleteInput(
           />
           <div
             hidden={!shouldShowOptions}
-            class="absolute z-10 left-0 w-full bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600"
+            class={getContainerClass()}
           >
             {filteredOptions.map((option) => (
               <div
-                class="py-2 px-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="flex flex-row items-center border-b border-b-gray-100  hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
                 onClick={() => handleOptionClick(option)}
               >
-                {usedOptionTemplate(option)}
+                {option.logoURL && withImage
+                  ? (
+                    <img
+                      src={option.logoURL}
+                      alt={option.name}
+                      class="h-5 w-5 rounded-full ms-4 object-contain"
+                    />
+                  )
+                  : null}
+                <div class="py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700">
+                  {usedOptionTemplate?.(option)}
+                </div>
               </div>
             ))}
           </div>

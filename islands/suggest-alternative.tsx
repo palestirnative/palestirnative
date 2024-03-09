@@ -1,19 +1,9 @@
 import { useMemo, useState } from "preact/hooks";
 import AutocompleteInput from "./form/autocomplete-input.tsx";
 
-const alternativeTemplate = (alternative) => (
-  <div class="flex items-center">
-    <img
-      src={alternative.logoURL}
-      alt={`${alternative.label} logo`}
-      class="w-4 h-4 mr-2 rounded-full"
-    />
-    <span>{alternative.label}</span>
-  </div>
-);
-
 export default function SuggestAlternative({ boycott, state, alternatives }) {
   const [shouldShowModal, setShouldShowModal] = useState(false);
+  const [forceHide, setForceHide] = useState(false);
 
   const alternativesOptions = useMemo(() => {
     const boycottAlternativeIds = boycott.alternatives.map((alternative) =>
@@ -79,7 +69,9 @@ export default function SuggestAlternative({ boycott, state, alternatives }) {
               <AutocompleteInput
                 name="alternative"
                 options={alternativesOptions}
-                optionTemplate={alternativeTemplate}
+                customHeight="sm"
+                handleSelect={() => setForceHide(true)}
+                forceHide={forceHide}
               />
             </div>
 

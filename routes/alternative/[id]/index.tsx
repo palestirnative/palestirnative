@@ -1,11 +1,8 @@
-import { AlternativeStatus, BoycottStatus } from "../../../types/boycott.ts";
+import { AlternativeStatus } from "../../../types/boycott.ts";
 import { Alternative } from "../../../types/alternative.ts";
-import { ObjectId } from "mongodb";
 import db from "../../../utils/db/db.ts";
-import upload from "../../../utils/upload.ts";
 import { Handler } from "$fresh/server.ts";
 import { Boycott } from "../../../types/boycott.ts";
-import AlternativesGrid from "../../../components/alternativesGrid.tsx";
 import LabelLongTag from "../../../components/LabelLongTag.tsx";
 import SuggestBoycott from "../../../islands/suggest-boycott.tsx";
 
@@ -82,7 +79,7 @@ export default function BoycottPage({ data, state }) {
           />
         </div>
         <div class="my-6">
-          <div class="grid gap-4 grid-flow-col auto-cols-max">
+          <div class="grid gap-4 grid-flow-col auto-cols-max overflow-y-auto">
             {alternative.boycotts.map((boycott) => {
               const status = boycott.alternatives.find((alt) =>
                 alt.alternative.toString() === alternative._id.toString()
@@ -91,7 +88,7 @@ export default function BoycottPage({ data, state }) {
               return (
                 <a
                   href={`/boycott/${boycott.nameSlug}`}
-                  class="relative flex flex-col bg-white rounded-xl shadow hover:bg-gray-100 cursor-pointer items-center border-x border border-gray-200 px-4 py-2 w-64 h-64 my-2"
+                  class="relative justify-center flex flex-col bg-white rounded-xl shadow hover:bg-gray-100 cursor-pointer items-center border-x border border-gray-200 px-4 py-2 w-64 h-64 my-2"
                   style={{
                     opacity: status === AlternativeStatus.Pending ? 0.5 : 1,
                   }}
@@ -106,7 +103,10 @@ export default function BoycottPage({ data, state }) {
                     alt={boycott.name}
                     class="h-36 w-36 rounded-full mb-2 mt-6 object-contain"
                   />
-                  <span class="font-medium text-2xl">
+                  <span class="text-creepy text-2xl text-red-700 absolute -rotate-45 bg-white bg-opacity-50 left-6 top-24 p-2 border-4 border-red-700">
+                    CRIMINALS
+                  </span>
+                  <span class="text-creepy text-red-700">
                     {boycott.name}
                   </span>
                 </a>
