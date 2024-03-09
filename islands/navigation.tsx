@@ -86,7 +86,7 @@ export const Navigation = ({ state }) => {
                           `/${item.productType}/${item.nameSlug}`;
                       }}
                       icon={
-                        <span class="`absolute inset-y-0 end-0 flex items-center pe-3`">
+                        <span class="absolute inset-y-0 end-0 flex items-center pe-3">
                           <svg
                             class="w-5 h-5 text-gray-400"
                             viewBox="0 0 24 24"
