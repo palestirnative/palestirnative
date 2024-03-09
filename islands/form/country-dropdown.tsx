@@ -1,13 +1,11 @@
 import { useMemo, useState } from "preact/hooks";
 import { createURL } from "../../utils/create-url.ts";
 import countries from "../../utils/countries.ts";
+import { AppState } from "../../routes/_middleware.ts";
 
-export default function CountryDropdown({ state }) {
+export default function CountryDropdown({ state }: { state: AppState }) {
   const {
     locale: { countries: localeCountries },
-    search,
-    category,
-    pathname,
   } = state;
 
   const currentCountry = useMemo(() => {
@@ -47,8 +45,8 @@ export default function CountryDropdown({ state }) {
       >
         {currentOption?.code !== "all" && (
           <img
-            src={`/flags/${currentOption.code.toLowerCase()}.svg`}
-            alt={`${currentOption.name} flag`}
+            src={`/flags/${currentOption?.code.toLowerCase()}.svg`}
+            alt={`${currentOption?.name} flag`}
             class="w-4 h-4 mr-2 rounded-full"
           />
         )}
@@ -84,10 +82,11 @@ export default function CountryDropdown({ state }) {
             <li>
               <a
                 href={createURL(
-                  { pathname, category, search },
+                  state,
                   country.code,
                 )}
                 class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                onClick={toggleDropdown}
               >
                 {country.code !== "all" && (
                   <img
