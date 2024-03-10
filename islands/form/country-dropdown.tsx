@@ -47,7 +47,7 @@ export default function CountryDropdown({ state }: { state: AppState }) {
           <img
             src={`/flags/${currentOption?.code.toLowerCase()}.svg`}
             alt={`${currentOption?.name} flag`}
-            class="w-4 h-4 mr-2 rounded-full"
+            class="w-4 h-4 me-2 rounded-full"
           />
         )}
 
