@@ -1,10 +1,11 @@
 import { useMemo, useState } from "preact/hooks";
 import { languages } from "../locales/index.ts";
+import { createLanguageURL } from "../utils/create-url.ts";
+import { AppState } from "../routes/_middleware.ts";
 
-const createLanguageURL = (lang : string) => `/lang?language=${lang}`;
-
-export default function LanguageDropdown({ currentLanguage }: {
+export default function LanguageDropdown({ currentLanguage, state }: {
   currentLanguage: string;
+  state: AppState;
 }) {
   const [shouldShow, setShouldShow] = useState(false);
 
@@ -18,11 +19,12 @@ export default function LanguageDropdown({ currentLanguage }: {
   }, [currentLanguage]);
 
   const options = useMemo(() => {
-    return languages.filter((language) => language.code !== currentLanguage).sort(
-      (a, b) => {
-        return a.code.localeCompare(b.code);
-      },
-    );
+    return languages.filter((language) => language.code !== currentLanguage)
+      .sort(
+        (a, b) => {
+          return a.code.localeCompare(b.code);
+        },
+      );
   }, [currentLanguage]);
 
   return (
@@ -64,12 +66,12 @@ export default function LanguageDropdown({ currentLanguage }: {
         >
           {options.map((language) => (
             <li>
-              <a
-                href={createLanguageURL(language.code)}
-                class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              <div
+                onClick={() => createLanguageURL(language.code, state)}
+                class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
               >
                 <span>{language.name}</span>
-              </a>
+              </div>
             </li>
           ))}
         </ul>

@@ -182,7 +182,10 @@ export const Navigation = ({ state }) => {
                 >
                   ✔️ {state.locale["Alternatives"]}
                 </a>
-                <LanguageDropdown currentLanguage={state.selectedLanguage} />
+                <LanguageDropdown
+                  currentLanguage={state.selectedLanguage}
+                  state={state}
+                />
               </div>
               <div class="my-4 block lg:hidden">
                 <AutocompleteInput
