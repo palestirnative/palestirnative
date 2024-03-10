@@ -33,7 +33,7 @@ const countryOptionTemplate = (country: CountryOption): JSX.Element => (
     <img
       src={`/flags/${country.value}.svg`}
       alt={`${country.label} flag`}
-      class="w-4 h-4 mr-2 rounded-full"
+      class="w-4 h-4 me-2 rounded-full"
     />
     <span>{country.label}</span>
   </div>
@@ -163,7 +163,7 @@ export default function AlternativeForm({ boycotts, state }: {
   const handleLogoChange = (event: Event) => {
     const input = event.target as HTMLInputElement;
     const logo = input?.files ? input.files[0] : null;
-    
+
     if (logo) {
       setLogoSource(URL.createObjectURL(logo));
     }
