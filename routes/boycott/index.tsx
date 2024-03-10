@@ -15,7 +15,13 @@ export const handler: Handler = {
     const url = new URL(req.url);
     const form = await req.formData();
 
-    const requiredFields = ["name", "reasonurl", "logo", "categories"];
+    const requiredFields = [
+      "name",
+      "reasonurl",
+      "logo",
+      "categories",
+      "countries",
+    ];
 
     for (const field of requiredFields) {
       if (!form.get(field)) {
@@ -29,6 +35,16 @@ export const handler: Handler = {
 
     if ((!logo) instanceof File || !logo.type.startsWith("image/")) {
       return new Response("Invalid logo file", {
+        status: 400,
+      });
+    }
+
+    const parsedCountries = form.get("countries").split(",");
+    const allAreCountryCodes = parsedCountries.every((country) => {
+      return /^[a-z]{2}$/.test(country);
+    });
+    if (parsedCountries.length === 0 || !allAreCountryCodes) {
+      return new Response("Invalid countries", {
         status: 400,
       });
     }
@@ -50,6 +66,7 @@ export const handler: Handler = {
           status: AlternativeStatus.Pending,
         })),
       createdAt: new Date(),
+      countries: parsedCountries,
     };
 
     const existingSlug = await db.collection("boycotts").findOne({
@@ -189,15 +206,22 @@ export const handler: Handler = {
             },
           ]
           : []),
+        // ...(ctx.state.country
+        //   ? [
+        //     {
+        //       $match: {
+        //         "attachedAlternatives.countries": ctx.state.country
+        //           .toLowerCase(),
+        //       },
+        //     },
+        //   ]
+        //   : []),
         ...(ctx.state.country
-          ? [
-            {
-              $match: {
-                "attachedAlternatives.countries": ctx.state.country
-                  .toLowerCase(),
-              },
+          ? [{
+            $match: {
+              "countries": ctx.state.country.toLowerCase(),
             },
-          ]
+          }]
           : []),
         { $skip: (page - 1) * 10 },
         { $limit: 10 },

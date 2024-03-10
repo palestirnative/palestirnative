@@ -3,6 +3,13 @@ import { ArrowUpTraySolid } from "https://esm.sh/preact-heroicons";
 import { useMemo, useState } from "preact/hooks";
 import Toastify from "toastify";
 import { translate } from "../../utils/translation.ts";
+import { JSX } from "preact/jsx-runtime";
+import countries from "../../utils/countries.ts";
+
+export type CountryOption = {
+  value: string;
+  label: string;
+};
 
 const categoryTemplate = (category) => (
   <span>
@@ -25,6 +32,9 @@ export default function BoycottForm(
     return "POST";
   }, []);
 
+  const [selectedCountries, setSelectedCountries] = useState<CountryOption[]>(
+    [],
+  );
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [categoryOptions, setCategoryOptions] = useState(
     categories.map((category) => ({
@@ -32,6 +42,14 @@ export default function BoycottForm(
       label: category.name,
       icon: category.icon,
     })),
+  );
+  const [countryOptions, setCountryOptions] = useState(
+    countries
+      .map((country) => ({
+        value: country.code.toLowerCase(),
+        label: country.name,
+      }))
+      .filter((option) => !selectedCountries.includes(option)),
   );
 
   const handleSelectCategory = (category) => {
@@ -74,6 +92,7 @@ export default function BoycottForm(
   };
 
   const handleResetForm = () => {
+    setSelectedCountries([]);
     setSelectedCategories([]);
     setLogoSource(null);
     setError(null);
@@ -87,6 +106,10 @@ export default function BoycottForm(
 
     const formData = new FormData(event.target);
 
+    const countries = selectedCountries
+      .map((country) => country.value)
+      .join(",");
+    formData.append("countries", countries);
     const categoryIds = selectedCategories
       .map((category) => category.value)
       .join(",");
@@ -136,6 +159,31 @@ export default function BoycottForm(
       setLogoSource(URL.createObjectURL(logo));
     }
   };
+
+  const handleSelectCountry = (country: CountryOption) => {
+    setSelectedCountries([...selectedCountries, country]);
+    setCountryOptions(
+      countryOptions.filter((option) => option.value !== country.value),
+    );
+  };
+
+  const handleUnselectCountry = (country: CountryOption) => {
+    setCountryOptions([...countryOptions, country]);
+    setSelectedCountries(
+      selectedCountries.filter((option) => option.value !== country.value),
+    );
+  };
+
+  const countryOptionTemplate = (country: CountryOption): JSX.Element => (
+    <div class="flex items-center">
+      <img
+        src={`/flags/${country.value}.svg`}
+        alt={`${country.label} flag`}
+        class="w-4 h-4 me-2 rounded-full"
+      />
+      <span>{country.label}</span>
+    </div>
+  );
 
   return (
     <>
@@ -211,6 +259,21 @@ export default function BoycottForm(
               handleRemove={handleUnselectCategory}
               optionTemplate={categoryTemplate}
               tagTemplate={categoryTemplate}
+            />
+          </div>
+
+          <div>
+            <label class="text-gray-700 dark:text-gray-200" for="categories">
+              {state.locale["Countries"]}
+            </label>
+            <TagInput<CountryOption>
+              name="countriesInput"
+              tags={selectedCountries}
+              handleSelect={handleSelectCountry}
+              options={countryOptions}
+              handleRemove={handleUnselectCountry}
+              optionTemplate={countryOptionTemplate}
+              tagTemplate={countryOptionTemplate}
             />
           </div>
 
