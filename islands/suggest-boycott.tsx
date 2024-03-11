@@ -37,6 +37,20 @@ export default function SuggestAlternative({ boycotts, state, alternative }) {
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const response = await fetch(
+      `/boycott/${selectedBoycott._id}/suggestAlternative`,
+      {
+        method: "POST",
+        body: formData,
+      },
+    ).then((res) => {
+      window.location.reload();
+    }).catch();
+  };
+
   return (
     <>
       <button
@@ -85,6 +99,7 @@ export default function SuggestAlternative({ boycotts, state, alternative }) {
               action={`/boycott/${selectedBoycott?._id}/suggestAlternative`}
               method="POST"
               class="mt-4 sm:flex sm:items-center sm:justify-between sm:mt-6 sm:-mx-2"
+              onSubmit={handleSubmit}
             >
               <input hidden value={alternative.nameSlug} name="alternative" />
               <button

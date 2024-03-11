@@ -48,7 +48,6 @@ export default function TagInput<T extends HasLabel>(
 
   const handleInputChange = (event: Event) => {
     setInputValue((event.target as HTMLInputElement).value);
-    console.log(inputValue);
   };
 
   const shouldShowOptions = useMemo(() => {

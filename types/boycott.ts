@@ -12,6 +12,7 @@ export interface BoycottCreationPayload {
   reasonURL: string;
   logoURL: string;
   categories: ObjectId[];
+  countries: string[];
 }
 
 export interface BoycottCreationData extends BoycottCreationPayload {
@@ -38,4 +39,5 @@ export interface Boycott {
   alternatives: Record<string, AlternativeStatus>;
   loadedAlternatives?: Alternative[];
   createdAt: Date;
+  countries: string[];
 }

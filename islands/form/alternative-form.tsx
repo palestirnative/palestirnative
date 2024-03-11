@@ -127,21 +127,19 @@ export default function AlternativeForm({ boycotts, state }: {
 
     const boycotts = selectedBoycotts.map((boycott) => boycott.value).join(",");
     formData.append("boycotts", boycotts);
-
     const response = await fetch(submitURL, {
       method: submitMethod,
       body: formData,
-    });
-
-    setIsLoading(false);
-
-    if (!response.ok) {
-      if (response.status === 500) {
-        setError("Something went wrong. Please try again later.");
-      } else {
-        setError(await response.text());
+    }).then(async (res) => {
+      setIsLoading(false);
+      if (!res.ok) {
+        if (res.status === 500) {
+          setError("Something went wrong. Please try again later.");
+        } else {
+          setError(await res.text() as string);
+        }
+        return;
       }
-    } else {
       Toastify({
         text: translate(
           "ThankYouForSubmission",
@@ -155,9 +153,13 @@ export default function AlternativeForm({ boycotts, state }: {
         position: "right",
         stopOnFocus: true,
         className: "toastify-success",
+        onClick: () => window.location.reload(),
       }).showToast();
       handleResetForm();
-    }
+      setTimeout(() => {
+        window.location.reload();
+      }, 6000);
+    });
   };
 
   const handleLogoChange = (event: Event) => {
@@ -168,6 +170,17 @@ export default function AlternativeForm({ boycotts, state }: {
       setLogoSource(URL.createObjectURL(logo));
     }
   };
+
+  const optionTemplate = (option: BoycottOption): JSX.Element => (
+    <div class="flex items-center">
+      <img
+        src={option.logoURL}
+        alt={`${option.label} flag`}
+        class="w-4 h-4 me-2 rounded-full"
+      />
+      <span>{option.label}</span>
+    </div>
+  );
 
   return (
     <>
@@ -255,6 +268,7 @@ export default function AlternativeForm({ boycotts, state }: {
             handleSelect={handleSelectBoycott}
             options={boycottOptions}
             handleRemove={handleUnselectBoycott}
+            tagTemplate={optionTemplate}
           />
         </div>
 
