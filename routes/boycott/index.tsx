@@ -109,6 +109,13 @@ export const handler: Handler = {
       });
     }
 
+    boycott.alternatives = boycott.alternatives.map(
+      (alternative) => ({
+        alternative: new ObjectId(alternative.alternative),
+        status: alternative.status,
+      }),
+    );
+
     const uploadResult = await upload(logo);
     const logoURL = `https://ucarecdn.com/${uploadResult?.File}/`;
 
