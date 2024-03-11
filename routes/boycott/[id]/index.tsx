@@ -43,7 +43,12 @@ export default function BoycottPage({ data, state }) {
   const { boycott, alternatives } = data;
 
   return (
-    <div class="container mx-auto my-20">
+    <div
+      class="container mx-auto my-20"
+      style={{
+        opacity: boycott.status === BoycottStatus.Pending ? 0.5 : 1,
+      }}
+    >
       <div class="flex flex-col items-center gap-6 relative">
         {boycott.status === BoycottStatus.Pending && (
           <span class="top-2 left-2 text-xs text-gray-700 text-center w-full">

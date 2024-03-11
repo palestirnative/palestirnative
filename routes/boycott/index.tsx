@@ -299,7 +299,12 @@ export default function Boycott({ data, state }) {
 
         <div class="flex flex-col my-8">
           {boycotts.map((boycott) => (
-            <div class="flex flex-col md:flex-row lg:flex-row my-4 border border-gray-200 shadow-sm bg-gray-200 lg:bg-white md:bg-white rounded-lg">
+            <div
+              style={{
+                opacity: boycott.status === BoycottStatus.Pending ? 0.5 : 1,
+              }}
+              class="flex flex-col md:flex-row lg:flex-row my-4 border border-gray-200 shadow-sm bg-gray-200 lg:bg-white md:bg-white rounded-lg"
+            >
               <div>
                 <div class="flex items-center border-e border-gray-200 justify-center px-4 py-2">
                   <span class="font-medium text-lg w-full">

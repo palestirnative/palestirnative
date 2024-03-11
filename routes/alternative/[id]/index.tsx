@@ -39,7 +39,12 @@ export default function BoycottPage({ data, state }) {
 
   return (
     <div class="container mx-auto my-20">
-      <div class="flex flex-col items-center gap-6">
+      <div
+        class="flex flex-col items-center gap-6"
+        style={{
+          opacity: alternative.status === AlternativeStatus.Pending ? 0.5 : 1,
+        }}
+      >
         <img
           class="w-36 h-36 rounded-full object-contain"
           src={alternative.logoURL}
