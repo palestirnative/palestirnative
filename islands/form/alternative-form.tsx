@@ -131,17 +131,8 @@ export default function AlternativeForm({ boycotts, state }: {
     const response = await fetch(submitURL, {
       method: submitMethod,
       body: formData,
-    });
-
-    setIsLoading(false);
-
-    if (!response.ok) {
-      if (response.status === 500) {
-        setError("Something went wrong. Please try again later.");
-      } else {
-        setError(await response.text());
-      }
-    } else {
+    }).then(() => {
+      setIsLoading(false);
       Toastify({
         text: translate(
           "ThankYouForSubmission",
@@ -155,8 +146,20 @@ export default function AlternativeForm({ boycotts, state }: {
         position: "right",
         stopOnFocus: true,
         className: "toastify-success",
+        onClick: () => window.location.reload(),
       }).showToast();
       handleResetForm();
+      window.location.reload();
+    });
+
+    setIsLoading(false);
+
+    if (!response.ok) {
+      if (response.status === 500) {
+        setError("Something went wrong. Please try again later.");
+      } else {
+        setError(await response.text());
+      }
     }
   };
 

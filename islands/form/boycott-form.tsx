@@ -123,17 +123,8 @@ export default function BoycottForm(
     const response = await fetch(submitURL, {
       method: submitMethod,
       body: formData,
-    });
-
-    setIsLoading(false);
-
-    if (!response.ok) {
-      if (response.status === 500) {
-        setError("Something went wrong. Please try again later.");
-      } else {
-        setError(await response.text());
-      }
-    } else {
+    }).then(() => {
+      setIsLoading(false);
       Toastify({
         text: translate(
           "ThankYouForSubmission",
@@ -147,8 +138,18 @@ export default function BoycottForm(
         position: "right",
         stopOnFocus: true,
         className: "toastify-success",
+        onClick: () => window.location.reload(),
       }).showToast();
       handleResetForm();
+      window.location.reload();
+    });
+
+    if (!response.ok) {
+      if (response.status === 500) {
+        setError("Something went wrong. Please try again later.");
+      } else {
+        setError(await response.text());
+      }
     }
   };
 
