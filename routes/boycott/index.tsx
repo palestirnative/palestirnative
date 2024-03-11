@@ -97,12 +97,12 @@ export const handler: Handler = {
       .find({
         _id: {
           $in: boycott.alternatives.map(
-            (alternative) => alternative.alternative,
+            (alternative) => new ObjectId(alternative.alternative),
           ),
         },
       })
       .toArray();
-    console.log(alternatives, boycott.alternatives);
+
     if (alternatives.length !== boycott.alternatives.length) {
       return new Response("Invalid alternative IDs", {
         status: 400,
