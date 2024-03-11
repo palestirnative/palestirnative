@@ -39,7 +39,6 @@ export const Navigation = ({ state }) => {
   const renderBoycottBadgeClasses = () => {
     return "h-5 w-5 items-center justify-center rounded-full text-red-800 bg-red-100 dark:bg-red-900 dark:text-red-300 inline-flex items-center text-sm font-medium";
   };
-  console.log(state.pathname);
   return (
     <nav class="relative bg-white shadow dark:bg-gray-800">
       <div class="lg:container px-6 py-3 mx-auto">
