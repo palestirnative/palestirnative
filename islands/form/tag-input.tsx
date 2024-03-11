@@ -1,5 +1,4 @@
-import { ChangeEvent } from "preact/compat";
-import { useMemo, useState } from "preact/hooks";
+import { useMemo, useRef, useState } from "preact/hooks";
 import { JSX } from "preact/jsx-runtime";
 
 interface HasLabel {
@@ -37,6 +36,8 @@ export default function TagInput<T extends HasLabel>(
   }: TagInputProps<T>,
 ) {
   const [inputValue, setInputValue] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const usedOptionTemplate = (option: T) => (
     optionTemplate ? optionTemplate(option) : <span>{option.label}</span>
@@ -49,13 +50,11 @@ export default function TagInput<T extends HasLabel>(
   const handleInputChange = (event: Event) => {
     setInputValue((event.target as HTMLInputElement).value);
   };
-
   const shouldShowOptions = useMemo(() => {
-    return !!inputValue;
-  }, [inputValue]);
+    return isFocused || !!inputValue;
+  }, [isFocused, inputValue]);
 
   const filteredOptions = useMemo(() => {
-    if (!inputValue) return [];
     return options.filter((option) =>
       option.label.toLowerCase().includes(inputValue.toLowerCase())
     );
@@ -64,21 +63,38 @@ export default function TagInput<T extends HasLabel>(
   const handleOptionClick = (option: T) => {
     handleSelect(option);
     setInputValue("");
+    setIsFocused(false);
+  };
+
+  const handleInputFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    !shouldShowOptions && setIsFocused(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsFocused(false);
+    inputRef.current?.blur();
   };
 
   const getContainerClass = () => {
     const style = customHeight === "md"
-      ? "absolute z-10 left-0 w-full overflow-y-auto h-40 bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600"
-      : "absolute z-10 left-0 w-full overflow-y-auto h-20 bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600";
+      ? "absolute z-10 start-0 w-full overflow-y-auto h-40 bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600"
+      : "absolute z-10 start-0 w-full overflow-y-auto h-20 bg-white border border-gray-200 rounded-md shadow-sm dark:bg-gray-800 dark:border-gray-600";
     return style;
   };
 
   return (
     <>
-      <div class="my-2">
+      <div
+        class="my-2"
+        onMouseLeave={handleMouseLeave}
+      >
         <div class="w-full relative">
           {icon && (
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
+            <div class="absolute inset-y-0 start-0 ps-3 flex items-center">
               {icon}
             </div>
           )}
@@ -88,8 +104,11 @@ export default function TagInput<T extends HasLabel>(
             id={name}
             placeholder={placeholder}
             value={inputValue}
-            autocomplete="new-password"
+            autocomplete="off"
             onKeyUp={handleInputChange}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
+            ref={inputRef}
             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
           />
           <div
