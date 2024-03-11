@@ -127,12 +127,19 @@ export default function AlternativeForm({ boycotts, state }: {
 
     const boycotts = selectedBoycotts.map((boycott) => boycott.value).join(",");
     formData.append("boycotts", boycotts);
-
     const response = await fetch(submitURL, {
       method: submitMethod,
       body: formData,
-    }).then(() => {
+    }).then(async (res) => {
       setIsLoading(false);
+      if (!res.ok) {
+        if (res.status === 500) {
+          setError("Something went wrong. Please try again later.");
+        } else {
+          setError(await res.text() as string);
+        }
+        return;
+      }
       Toastify({
         text: translate(
           "ThankYouForSubmission",
@@ -149,18 +156,10 @@ export default function AlternativeForm({ boycotts, state }: {
         onClick: () => window.location.reload(),
       }).showToast();
       handleResetForm();
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 6000);
     });
-
-    setIsLoading(false);
-
-    if (!response.ok) {
-      if (response.status === 500) {
-        setError("Something went wrong. Please try again later.");
-      } else {
-        setError(await response.text());
-      }
-    }
   };
 
   const handleLogoChange = (event: Event) => {

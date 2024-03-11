@@ -20,7 +20,7 @@ const categoryTemplate = (category) => (
 export default function BoycottForm(
   { categories, alternatives, state },
 ) {
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [logoSource, setLogoSource] = useState(null);
 
@@ -123,8 +123,16 @@ export default function BoycottForm(
     const response = await fetch(submitURL, {
       method: submitMethod,
       body: formData,
-    }).then(() => {
+    }).then(async (res) => {
       setIsLoading(false);
+      if (!res.ok) {
+        if (res.status === 500) {
+          setError("Something went wrong. Please try again later.");
+        } else {
+          setError(await res.text() as string);
+        }
+        return;
+      }
       Toastify({
         text: translate(
           "ThankYouForSubmission",
@@ -141,16 +149,10 @@ export default function BoycottForm(
         onClick: () => window.location.reload(),
       }).showToast();
       handleResetForm();
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 6000);
     });
-
-    if (!response.ok) {
-      if (response.status === 500) {
-        setError("Something went wrong. Please try again later.");
-      } else {
-        setError(await response.text());
-      }
-    }
   };
 
   const handleLogoChange = (event) => {

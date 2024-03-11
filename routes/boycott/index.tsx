@@ -102,7 +102,7 @@ export const handler: Handler = {
         },
       })
       .toArray();
-
+    console.log(alternatives, boycott.alternatives);
     if (alternatives.length !== boycott.alternatives.length) {
       return new Response("Invalid alternative IDs", {
         status: 400,
