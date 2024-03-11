@@ -171,6 +171,17 @@ export default function AlternativeForm({ boycotts, state }: {
     }
   };
 
+  const optionTemplate = (option: BoycottOption): JSX.Element => (
+    <div class="flex items-center">
+      <img
+        src={option.logoURL}
+        alt={`${option.label} flag`}
+        class="w-4 h-4 me-2 rounded-full"
+      />
+      <span>{option.label}</span>
+    </div>
+  );
+
   return (
     <>
       {error && (
@@ -257,6 +268,7 @@ export default function AlternativeForm({ boycotts, state }: {
             handleSelect={handleSelectBoycott}
             options={boycottOptions}
             handleRemove={handleUnselectBoycott}
+            tagTemplate={optionTemplate}
           />
         </div>
 

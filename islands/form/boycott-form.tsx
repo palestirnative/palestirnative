@@ -10,6 +10,11 @@ export type CountryOption = {
   value: string;
   label: string;
 };
+export type Option = {
+  value: string;
+  label: string;
+  logoURL: string;
+};
 
 const categoryTemplate = (category) => (
   <span>
@@ -188,6 +193,17 @@ export default function BoycottForm(
     </div>
   );
 
+  const optionTemplate = (option: Option): JSX.Element => (
+    <div class="flex items-center">
+      <img
+        src={option.logoURL}
+        alt={`${option.label} flag`}
+        class="w-4 h-4 me-2 rounded-full"
+      />
+      <span>{option.label}</span>
+    </div>
+  );
+
   return (
     <>
       <p>
@@ -290,6 +306,7 @@ export default function BoycottForm(
               handleSelect={handleSelectAlternative}
               options={alternativeOptions}
               handleRemove={handleUnselectAlternative}
+              tagTemplate={optionTemplate}
             />
           </div>
         </div>
