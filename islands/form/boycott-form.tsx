@@ -1,33 +1,42 @@
-import TagInput from "./tag-input.tsx";
 import { ArrowUpTraySolid } from "https://esm.sh/preact-heroicons";
+import { ObjectId } from "mongodb";
 import { useMemo, useState } from "preact/hooks";
-import Toastify from "toastify";
-import { translate } from "../../utils/translation.ts";
 import { JSX } from "preact/jsx-runtime";
+import Toastify from "toastify";
+import { AppState } from "../../routes/_middleware.ts";
+import { Alternative } from "../../types/alternative.ts";
+import { Category } from "../../types/category.ts";
 import countries from "../../utils/countries.ts";
+import { translate } from "../../utils/translation.ts";
+import type { CountryOption } from "./alternative-form.tsx";
+import TagInput from "./tag-input.tsx";
 
-export type CountryOption = {
-  value: string;
+export type CategoryOption = {
+  value: ObjectId;
   label: string;
+  icon: string;
 };
-export type Option = {
-  value: string;
+export type AlternativeOption = {
+  value: ObjectId;
   label: string;
   logoURL: string;
 };
-
-const categoryTemplate = (category) => (
+const categoryTemplate = (category: CategoryOption) => (
   <span>
     {category.icon} {category.label}
   </span>
 );
 
 export default function BoycottForm(
-  { categories, alternatives, state },
+  { categories, alternatives, state }: {
+    categories: Category[];
+    alternatives: Alternative[];
+    state: AppState;
+  },
 ) {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [logoSource, setLogoSource] = useState(null);
+  const [logoSource, setLogoSource] = useState<string | null>(null);
 
   const submitURL = useMemo(() => {
     return "/boycott";
@@ -40,15 +49,17 @@ export default function BoycottForm(
   const [selectedCountries, setSelectedCountries] = useState<CountryOption[]>(
     [],
   );
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [categoryOptions, setCategoryOptions] = useState(
+  const [selectedCategories, setSelectedCategories] = useState<
+    CategoryOption[]
+  >([]);
+  const [categoryOptions, setCategoryOptions] = useState<CategoryOption[]>(
     categories.map((category) => ({
       value: category._id,
       label: category.name,
       icon: category.icon,
     })),
   );
-  const [countryOptions, setCountryOptions] = useState(
+  const [countryOptions, setCountryOptions] = useState<CountryOption[]>(
     countries
       .map((country) => ({
         value: country.code.toLowerCase(),
@@ -57,22 +68,26 @@ export default function BoycottForm(
       .filter((option) => !selectedCountries.includes(option)),
   );
 
-  const handleSelectCategory = (category) => {
+  const handleSelectCategory = (category: CategoryOption) => {
     setSelectedCategories([...selectedCategories, category]);
     setCategoryOptions(
       categoryOptions.filter((option) => option.value !== category.value),
     );
   };
 
-  const handleUnselectCategory = (category) => {
+  const handleUnselectCategory = (category: CategoryOption) => {
     setCategoryOptions([...categoryOptions, category]);
     setSelectedCategories(
       selectedCategories.filter((option) => option.value !== category.value),
     );
   };
 
-  const [selectedAlternatives, setSelectedAlternatives] = useState([]);
-  const [alternativeOptions, setAlternativeOptions] = useState(
+  const [selectedAlternatives, setSelectedAlternatives] = useState<
+    AlternativeOption[]
+  >([]);
+  const [alternativeOptions, setAlternativeOptions] = useState<
+    AlternativeOption[]
+  >(
     alternatives.map((alternative) => ({
       value: alternative._id,
       label: alternative.name,
@@ -80,14 +95,14 @@ export default function BoycottForm(
     })),
   );
 
-  const handleSelectAlternative = (alternative) => {
+  const handleSelectAlternative = (alternative: AlternativeOption) => {
     setSelectedAlternatives([...selectedAlternatives, alternative]);
     setAlternativeOptions(
       alternativeOptions.filter((option) => option.value !== alternative.value),
     );
   };
 
-  const handleUnselectAlternative = (alternative) => {
+  const handleUnselectAlternative = (alternative: AlternativeOption) => {
     setAlternativeOptions([...alternativeOptions, alternative]);
     setSelectedAlternatives(
       selectedAlternatives.filter(
@@ -104,12 +119,12 @@ export default function BoycottForm(
     setSelectedAlternatives([]);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: Event) => {
     event.preventDefault();
 
     setIsLoading(true);
 
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.target as HTMLFormElement);
 
     const countries = selectedCountries
       .map((country) => country.value)
@@ -160,8 +175,9 @@ export default function BoycottForm(
     });
   };
 
-  const handleLogoChange = (event) => {
-    const logo = event.target.files[0];
+  const handleLogoChange = (event: Event) => {
+    const input = event.target as HTMLInputElement;
+    const logo = input?.files ? input.files[0] : null;
 
     if (logo) {
       setLogoSource(URL.createObjectURL(logo));
@@ -193,7 +209,7 @@ export default function BoycottForm(
     </div>
   );
 
-  const optionTemplate = (option: Option): JSX.Element => (
+  const optionTemplate = (option : AlternativeOption): JSX.Element => (
     <div class="flex items-center">
       <img
         src={option.logoURL}
@@ -217,7 +233,7 @@ export default function BoycottForm(
         <div class="my-2 flex flex-col items-center">
           <img
             hidden={!logoSource}
-            src={logoSource}
+            src={logoSource!}
             alt="Logo"
             class="w-32 h-32 my-2 rounded-full object-contain"
           />
@@ -285,7 +301,7 @@ export default function BoycottForm(
             <label class="text-gray-700 dark:text-gray-200" for="categories">
               {state.locale["Countries"]}
             </label>
-            <TagInput<CountryOption>
+            <TagInput
               name="countriesInput"
               tags={selectedCountries}
               handleSelect={handleSelectCountry}
