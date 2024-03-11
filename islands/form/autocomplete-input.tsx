@@ -1,29 +1,49 @@
 import { useEffect, useState } from "preact/hooks";
 
-export default function AutocompleteInput(
-  {
-    name,
-    options,
-    optionTemplate,
-    onChange,
-    placeholder = "",
-    icon = null,
-    handleSelect,
-    withImage = true,
-    customHeight = "md",
-    forceHide = false,
-  },
-) {
+import { JSX } from "preact/jsx-runtime";
+
+export interface Option {
+  label: string;
+  logoURL?: string;
+  productType?: string;
+  nameSlug?: string;
+}
+
+type AutocompleteInputProps = {
+  name: string;
+  options: Option[];
+  optionTemplate?: (option: Option) => JSX.Element;
+  onChange?: (value: string) => void;
+  placeholder?: string;
+  icon?: JSX.Element | null;
+  handleSelect: (option: Option) => void;
+  withImage?: boolean;
+  customHeight?: "md" | "sm"; // if these are the only two options allowed
+  forceHide?: boolean;
+};
+
+export default function AutocompleteInput({
+  name,
+  options,
+  optionTemplate,
+  onChange,
+  placeholder = "",
+  icon = null,
+  handleSelect,
+  withImage = true,
+  customHeight = "md",
+  forceHide = false,
+}: AutocompleteInputProps) {
   const [inputValue, setInputValue] = useState("");
   const [shouldShowOptions, setShouldShowOptions] = useState(false);
-  const [filteredOptions, setFilteredOptions] = useState([]);
+  const [filteredOptions, setFilteredOptions] = useState<Option[]>([]);
 
-  const usedOptionTemplate = (option) => (
+  const usedOptionTemplate = (option : Option) => (
     optionTemplate ? optionTemplate(option) : <span>{option.label}</span>
   );
 
-  const handleInputChange = (event) => {
-    const value = event.target.value;
+  const handleInputChange = (event : Event) => {
+    const value = (event.target as HTMLInputElement).value;
     setInputValue(value);
 
     if (!value) setFilteredOptions([]);
@@ -46,7 +66,7 @@ export default function AutocompleteInput(
     onChange?.(inputValue);
   }, [inputValue]);
 
-  const handleOptionClick = (option) => {
+  const handleOptionClick = (option : Option) => {
     setInputValue(option.label);
     handleSelect(option);
     setShouldShowOptions(false);
@@ -71,7 +91,7 @@ export default function AutocompleteInput(
             id={name}
             value={inputValue}
             autocomplete="new-password"
-            onKeyup={handleInputChange}
+            onKeyUp={handleInputChange}
             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
           />
           <div
@@ -87,7 +107,7 @@ export default function AutocompleteInput(
                   ? (
                     <img
                       src={option.logoURL}
-                      alt={option.name}
+                      alt={option.label}
                       class="h-5 w-5 rounded-full ms-4 object-contain"
                     />
                   )

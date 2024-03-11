@@ -36,7 +36,7 @@ export interface Boycott {
   logoURL: string;
   reasonURL: string;
   categories: ObjectId[];
-  alternatives: Record<string, AlternativeStatus>;
+  alternatives: Record<string, AlternativeStatus>[];
   loadedAlternatives?: Alternative[];
   createdAt: Date;
   countries: string[];

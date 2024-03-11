@@ -1,12 +1,19 @@
 import { useMemo, useState } from "preact/hooks";
 import AutocompleteInput from "./form/autocomplete-input.tsx";
+import { Boycott } from "../types/boycott.ts";
+import { AppState } from "../routes/_middleware.ts";
+import { Alternative } from "../types/alternative.ts";
 
-export default function SuggestAlternative({ boycott, state, alternatives }) {
+export default function SuggestAlternative({ boycott, state, alternatives }: {
+  boycott: Boycott;
+  state: AppState;
+  alternatives: Alternative[];
+}) {
   const [shouldShowModal, setShouldShowModal] = useState(false);
   const [forceHide, setForceHide] = useState(false);
 
   const alternativesOptions = useMemo(() => {
-    const boycottAlternativeIds = boycott.alternatives.map((alternative) =>
+    const boycottAlternativeIds = boycott.alternatives.map((alternative : Record<string, string>) =>
       alternative.alternative.toString()
     );
 
@@ -23,14 +30,14 @@ export default function SuggestAlternative({ boycott, state, alternatives }) {
     setShouldShowModal(true);
   };
 
-  const hideModal = (event) => {
+  const hideModal = (event: Event) => {
     event.preventDefault();
     setShouldShowModal(false);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: Event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.target as HTMLFormElement);
     const response = await fetch(`/boycott/${boycott._id}/suggestAlternative`, {
       method: "POST",
       body: formData,

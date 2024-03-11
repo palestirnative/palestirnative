@@ -1,21 +1,33 @@
+import { useMemo, useState } from "preact/hooks";
+import { AppState } from "../routes/_middleware.ts";
 import { createCategoryURL } from "../utils/create-url.ts";
-import AutocompleteInput from "./form/autocomplete-input.tsx";
+import AutocompleteInput, { Option } from "./form/autocomplete-input.tsx";
 import CountryDropdown from "./form/country-dropdown.tsx";
 import LanguageDropdown from "./language-dropdown.tsx";
-import { useMemo, useState } from "preact/hooks";
-
-export const Navigation = ({ state }) => {
+export const Navigation = ({ state }: { state: AppState }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState<Option | null>(null);
 
-  const list = state.boycotts.concat(
-    state.alternatives.map((alternative) => ({
-      ...alternative,
+  const list = [
+    ...state.alternatives.map((item) => ({
+      ...item,
       productType: "alternative",
     })),
-  );
+    ...state.boycotts.map((item) => ({
+      ...item,
+      productType: "boycott",
+    })),
+  ];
 
-  const searchOptions = useMemo(() => {
+  type SearchOption = {
+    nameSlug: string;
+    label: string;
+    value: string;
+    logoURL: string;
+    productType: string;
+  };
+
+  const searchOptions: SearchOption[] = useMemo(() => {
     return list
       .map((item) => ({
         nameSlug: item.nameSlug,
