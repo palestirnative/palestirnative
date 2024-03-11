@@ -206,16 +206,6 @@ export const handler: Handler = {
             },
           ]
           : []),
-        // ...(ctx.state.country
-        //   ? [
-        //     {
-        //       $match: {
-        //         "attachedAlternatives.countries": ctx.state.country
-        //           .toLowerCase(),
-        //       },
-        //     },
-        //   ]
-        //   : []),
         ...(ctx.state.country
           ? [{
             $match: {
