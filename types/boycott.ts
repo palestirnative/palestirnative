@@ -1,5 +1,6 @@
 import { ObjectId } from "mongodb";
 import { Alternative } from "./alternative.ts";
+import { Category } from "./category.ts";
 
 export enum BoycottStatus {
   Pending = "Pending",
@@ -19,7 +20,7 @@ export interface BoycottCreationData extends BoycottCreationPayload {
   nameSlug: string;
   status: BoycottStatus;
   categories: ObjectId[];
-  alternatives: Record<string, AlternativeStatus>;
+  alternatives: {alternative: ObjectId, status: AlternativeStatus}[];
   createdAt: Date;
 }
 
@@ -35,9 +36,10 @@ export interface Boycott {
   nameSlug: string;
   logoURL: string;
   reasonURL: string;
-  categories: ObjectId[];
-  alternatives: Record<string, AlternativeStatus>[];
-  loadedAlternatives?: Alternative[];
+  categories: Category[];
+  alternatives: Alternative[];
+  attachedAlternatives?: Alternative[];
   createdAt: Date;
   countries: string[];
+  status: BoycottStatus;
 }

@@ -1,15 +1,15 @@
-import { AlternativeStatus, BoycottStatus } from "../../../types/boycott.ts";
-import { Alternative } from "../../../types/alternative.ts";
+import { Handlers } from "$fresh/server.ts";
 import { ObjectId } from "mongodb";
+import { Alternative } from "../../../types/alternative.ts";
+import { AlternativeStatus, Boycott } from "../../../types/boycott.ts";
 import db from "../../../utils/db/db.ts";
-import upload from "../../../utils/upload.ts";
 import slugify from "../../../utils/slugify.ts";
 
-export const handler: Handler = {
+export const handler: Handlers = {
   async POST(req, ctx) {
     const form = await req.formData();
 
-    const alternativeName = form.get("alternative");
+    const alternativeName = form.get("alternative") as string;
     const alternativeNameSlug = slugify(alternativeName)
       .toLowerCase();
     const alternative = await db

@@ -1,8 +1,14 @@
+import { AppState } from "../routes/_middleware.ts";
+import { Alternative } from "../types/alternative.ts";
 import { AlternativeStatus } from "../types/boycott.ts";
 import LabelTag from "./LabelTag.tsx";
 
 export default function AlternativesGrid(
-  { alternatives, state, horizontal = false },
+  { alternatives, state, horizontal = false }: {
+    alternatives: Alternative[];
+    state: AppState;
+    horizontal?: boolean;
+  },
 ) {
   const getContainerClass = () => {
     const style = horizontal

@@ -1,12 +1,12 @@
-import { BoycottStatus } from "../../../types/boycott.ts";
-import { Alternative } from "../../../types/alternative.ts";
-import db from "../../../utils/db/db.ts";
-import { Handler } from "$fresh/server.ts";
-import { Boycott } from "../../../types/boycott.ts";
+import { Handlers } from "$fresh/server.ts";
 import AlternativesGrid from "../../../components/alternativesGrid.tsx";
 import SuggestAlternative from "../../../islands/suggest-alternative.tsx";
+import { Alternative } from "../../../types/alternative.ts";
+import { Boycott, BoycottStatus } from "../../../types/boycott.ts";
+import db from "../../../utils/db/db.ts";
+import { AppState } from "../../_middleware.ts";
 
-export const handler: Handler = {
+export const handler: Handlers = {
   async GET(req, ctx) {
     const nameSlug = ctx.params.id;
 
@@ -39,7 +39,13 @@ export const handler: Handler = {
   },
 };
 
-export default function BoycottPage({ data, state }) {
+export default function BoycottPage({ data, state } : {
+  data: {
+    boycott: Boycott;
+    alternatives: Alternative[];
+  };
+  state: AppState;
+}) {
   const { boycott, alternatives } = data;
 
   return (
@@ -92,11 +98,11 @@ export default function BoycottPage({ data, state }) {
         </div>
         <div class="my-6">
           <AlternativesGrid
-            alternatives={boycott.attachedAlternatives.map((alternative) => ({
+            alternatives={boycott.attachedAlternatives?.map((alternative) => ({
               ...alternative,
               status: boycott.alternatives.find((a) =>
                 a.alternative.toString() === alternative._id.toString()
-              ).status,
+              )?.status,
             }))}
             state={state}
             horizontal

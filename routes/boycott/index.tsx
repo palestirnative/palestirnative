@@ -1,6 +1,7 @@
-import { Handler } from "$fresh/server.ts";
+import { Handler, Handlers } from "$fresh/server.ts";
 import {
   AlternativeStatus,
+  Boycott,
   BoycottCreationData,
   BoycottStatus,
 } from "../../types/boycott.ts";
@@ -9,8 +10,9 @@ import { ObjectId } from "mongodb";
 import db from "../../utils/db/db.ts";
 import LabelTag from "../../components/LabelTag.tsx";
 import slugify from "../../utils/slugify.ts";
+import { AppState } from "../_middleware.ts";
 
-export const handler: Handler = {
+export const handler: Handlers = {
   async POST(req, ctx) {
     const url = new URL(req.url);
     const form = await req.formData();
@@ -33,13 +35,13 @@ export const handler: Handler = {
 
     const logo = form.get("logo") as File;
 
-    if ((!logo) instanceof File || !logo.type.startsWith("image/")) {
+    if (!(logo instanceof File) || !logo.type.startsWith("image/")) {
       return new Response("Invalid logo file", {
         status: 400,
       });
     }
 
-    const parsedCountries = form.get("countries").split(",");
+    const parsedCountries = (form.get("countries") as string).split(",");
     const allAreCountryCodes = parsedCountries.every((country) => {
       return /^[a-z]{2}$/.test(country);
     });
@@ -51,10 +53,10 @@ export const handler: Handler = {
 
     const formAlternatives = form.get("alternatives") as string;
     const boycott: BoycottCreationData = {
-      name: form.get("name"),
-      nameSlug: slugify(form.get("name")),
-      reasonURL: form.get("reasonurl"),
-      categories: (form.get("categories") ?? "")
+      name: form.get("name") as string,
+      nameSlug: slugify(form.get("name") as string),
+      reasonURL: form.get("reasonurl") as string,
+      categories: (form.get("categories") as string ?? "")
         .split(",")
         .map((category: string) => new ObjectId(category)),
       status: BoycottStatus.Pending,
@@ -67,6 +69,7 @@ export const handler: Handler = {
         })),
       createdAt: new Date(),
       countries: parsedCountries,
+      logoURL: await upload(logo),
     };
 
     const existingSlug = await db.collection("boycotts").findOne({
@@ -149,7 +152,7 @@ export const handler: Handler = {
   },
   async GET(req, ctx) {
     const url = new URL(req.url);
-    let page = parseInt(url.searchParams?.get("page"));
+    let page = parseInt(url.searchParams?.get("page") ?? "1");
 
     if (isNaN(page)) {
       page = 1;
@@ -229,10 +232,21 @@ export const handler: Handler = {
   },
 };
 
-export default function Boycott({ data, state }) {
+export default function Boycott({ data, state }: {
+  data: {
+    boycotts: Boycott[];
+    page: number;
+    totalCount: number;
+    totalPages: number;
+  };
+  state: AppState;
+}) {
   const { boycotts, page, totalCount, totalPages } = data;
 
-  const pagesToShow = [{ label: page, type: "page" }];
+  const pagesToShow: { label: number | string; type: string }[] = [{
+    label: page,
+    type: "page",
+  }];
 
   if (page > 1) {
     pagesToShow.unshift({ label: page - 1, type: "page" });
@@ -375,7 +389,7 @@ export default function Boycott({ data, state }) {
                           (a) =>
                             a.alternative.toString() ===
                               alternative._id.toString(),
-                        ).status;
+                        )?.status;
                         return (
                           <a
                             href={`/alternative/${alternative.nameSlug}`}

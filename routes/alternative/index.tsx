@@ -1,13 +1,17 @@
-import { Handler } from "$fresh/server.ts";
-import { AlternativeCreationData } from "../../types/alternative.ts";
+import { Handler, Handlers } from "$fresh/server.ts";
+import {
+  Alternative,
+  AlternativeCreationData,
+} from "../../types/alternative.ts";
 import { AlternativeStatus } from "../../types/boycott.ts";
 import db from "../../utils/db/db.ts";
 import upload from "../../utils/upload.ts";
 import AlternativesGrid from "../../components/alternativesGrid.tsx";
 import { ObjectId } from "mongodb";
 import slugify from "../../utils/slugify.ts";
+import { AppState } from "../_middleware.ts";
 
-export const handler: Handler = {
+export const handler: Handlers = {
   async POST(req, ctx) {
     const url = new URL(req.url);
     const form = await req.formData();
@@ -27,7 +31,7 @@ export const handler: Handler = {
       }
     }
 
-    const parsedCountries = form.get("countries").split(",");
+    const parsedCountries = (form.get("countries") as string).split(",");
     const allAreCountryCodes = parsedCountries.every((country) => {
       return /^[a-z]{2}$/.test(country);
     });
@@ -39,18 +43,18 @@ export const handler: Handler = {
 
     const logo = form.get("logo") as File;
 
-    if ((!logo) instanceof File || !logo.type.startsWith("image/")) {
+    if (!(logo instanceof File) || !logo.type.startsWith("image/")) {
       return new Response("Invalid logo file", {
         status: 400,
       });
     }
 
     const alternative: AlternativeCreationData = {
-      name: form.get("name"),
+      name: form.get("name") as string,
       countries: parsedCountries,
-      website: form.get("website"),
-      logoURL: form.get("logoURL"),
-      nameSlug: slugify(form.get("name")),
+      website: form.get("website") as string,
+      logoURL: form.get("logoURL") as string,
+      nameSlug: slugify(form.get("name") as string),
       createdAt: new Date(),
       status: AlternativeStatus.Pending,
     };
@@ -91,7 +95,9 @@ export const handler: Handler = {
       _id: insertResult.insertedId,
     };
 
-    const boycottIds = form.get("boycotts").split(",").filter(Boolean).map((
+    const boycottIds = (form.get("boycotts") as string).split(",").filter(
+      Boolean,
+    ).map((
       boycott: string,
     ) => new ObjectId(boycott));
 
@@ -120,7 +126,7 @@ export const handler: Handler = {
     });
   },
   async GET(req, ctx) {
-    let page = parseInt(new URL(req.url).searchParams.get("page"));
+    let page = parseInt(new URL(req.url).searchParams.get("page") || "1");
 
     if (isNaN(page)) {
       page = 1;
@@ -193,10 +199,18 @@ export const handler: Handler = {
   },
 };
 
-export default function Alternative({ data, state }) {
+export default function Alternative({ data, state }: {
+  data: {
+    alternatives: Alternative[];
+    page: number;
+    totalCount: number;
+    totalPages: number;
+  };
+  state: AppState;
+}) {
   const { alternatives, page, totalCount, totalPages } = data;
 
-  const pagesToShow = [{ label: page, type: "page" }];
+  const pagesToShow : { label: number | string; type: string }[] = [{ label: page, type: "page" }];
 
   if (page > 1) {
     pagesToShow.unshift({ label: page - 1, type: "page" });

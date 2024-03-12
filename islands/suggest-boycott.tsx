@@ -1,9 +1,16 @@
 import { useMemo, useState } from "preact/hooks";
+import { AppState } from "../routes/_middleware.ts";
+import { Alternative } from "../types/alternative.ts";
+import { Boycott } from "../types/boycott.ts";
 import AutocompleteInput from "./form/autocomplete-input.tsx";
 
-export default function SuggestAlternative({ boycotts, state, alternative }) {
+export default function SuggestAlternative({ boycotts, state, alternative }: {
+  boycotts: Boycott[];
+  state: AppState;
+  alternative: Alternative;
+}) {
   const [shouldShowModal, setShouldShowModal] = useState(false);
-  const [selectedBoycott, setSelectedBoycott] = useState(null);
+  const [selectedBoycott, setSelectedBoycott] = useState<Boycott | null>(null);
   const [forceHide, setForceHide] = useState(false);
 
   const boycottsOptions = useMemo(() => {
@@ -12,7 +19,7 @@ export default function SuggestAlternative({ boycotts, state, alternative }) {
     );
 
     return boycotts.filter((boycott) =>
-      !alternativeBoycottsIds.includes(boycott._id.toString())
+      !alternativeBoycottsIds.includes(boycott._id)
     ).map((boycott) => ({
       label: boycott.name,
       value: boycott.name,
@@ -24,12 +31,12 @@ export default function SuggestAlternative({ boycotts, state, alternative }) {
     setShouldShowModal(true);
   };
 
-  const hideModal = (event) => {
+  const hideModal = (event : Event) => {
     event.preventDefault();
     setShouldShowModal(false);
   };
 
-  const onChange = (value) => {
+  const onChange = (value : string) => {
     setSelectedBoycott(null);
     const found = boycotts.find((b) => b.name === value);
     if (found) {
@@ -37,11 +44,11 @@ export default function SuggestAlternative({ boycotts, state, alternative }) {
     }
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event : Event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.target as HTMLFormElement);
     const response = await fetch(
-      `/boycott/${selectedBoycott._id}/suggestAlternative`,
+      `/boycott/${selectedBoycott?._id}/suggestAlternative`,
       {
         method: "POST",
         body: formData,

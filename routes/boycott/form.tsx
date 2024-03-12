@@ -1,6 +1,9 @@
+import { Handlers } from "$fresh/server.ts";
 import BoycottFormIsland from "../../islands/form/boycott-form.tsx";
+import { Alternative } from "../../types/alternative.ts";
+import { Category } from "../../types/category.ts";
 import db from "../../utils/db/db.ts";
-import { ObjectId } from "mongodb";
+import { AppState } from "../_middleware.ts";
 
 export const handler: Handlers = {
   async GET(req, ctx) {
@@ -11,7 +14,13 @@ export const handler: Handlers = {
   },
 };
 
-export default function BoycottForm({ data, state }) {
+export default function BoycottForm({ data, state }: {
+  data: {
+    categories: Category[];
+    alternatives: Alternative[];
+  };
+  state: AppState;
+}) {
   const { categories, alternatives } = data;
 
   return (

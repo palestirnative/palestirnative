@@ -1,12 +1,12 @@
-import { AlternativeStatus } from "../../../types/boycott.ts";
-import { Alternative } from "../../../types/alternative.ts";
-import db from "../../../utils/db/db.ts";
-import { Handler } from "$fresh/server.ts";
-import { Boycott } from "../../../types/boycott.ts";
+import { Handlers } from "$fresh/server.ts";
 import LabelLongTag from "../../../components/LabelLongTag.tsx";
 import SuggestBoycott from "../../../islands/suggest-boycott.tsx";
+import { Alternative } from "../../../types/alternative.ts";
+import { AlternativeStatus, Boycott } from "../../../types/boycott.ts";
+import db from "../../../utils/db/db.ts";
+import { AppState } from "../../_middleware.ts";
 
-export const handler: Handler = {
+export const handler: Handlers = {
   async GET(req, ctx) {
     const nameSlug = ctx.params.id;
 
@@ -34,7 +34,13 @@ export const handler: Handler = {
   },
 };
 
-export default function BoycottPage({ data, state }) {
+export default function BoycottPage({ data, state }: {
+  data: {
+    alternative: Alternative;
+    boycotts: Boycott[];
+  };
+  state: AppState;
+}) {
   const { boycotts, alternative } = data;
 
   return (
