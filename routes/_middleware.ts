@@ -66,7 +66,6 @@ export async function handler(
   const categories = await db.collection("categories").find()
     .toArray() as unknown as Category[];
   ctx.state.categories = categories;
-  console.log(categories);
   const url = new URL(req.url);
   ctx.state.pathname = url.pathname;
   ctx.state.search = url.searchParams?.get("search") || "";
