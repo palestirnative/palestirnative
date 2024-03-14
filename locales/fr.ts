@@ -1,4 +1,12 @@
 export default {
+  categories: {
+    "food": "Nourriture",
+    "beverage": "Boisson",
+    "fast food": "Fast Food",
+    "tech": "Technologie",
+    "clothing": "Vêtements",
+    "hygiene": "Hygiène",
+  },
   "Suggest a boycott": "Proposer un boycott",
   "Boycotts": "Boycotts",
   "See reason": "Voir la raison",

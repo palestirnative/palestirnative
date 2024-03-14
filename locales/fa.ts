@@ -1,4 +1,12 @@
 export default {
+  categories: {
+    "food": "غذا",
+    "beverage": "نوشیدنی",
+    "fast food": "فست فود",
+    "tech": "فن",
+    "clothing": "تن پوش",
+    "hygiene": "بهداشت",
+  },
   "Suggest a boycott": "پیشنهاد بویکوت",
   "Boycotts": "بویکوت ها",
   "See reason": "مشاهده دلیل",

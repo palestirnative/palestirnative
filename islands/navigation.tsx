@@ -260,7 +260,8 @@ export const Navigation = ({ state }) => {
                   class="bg-blue-100 text-blue-800 font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center justify-center"
                   href={createCategoryURL(category.nameSlug, state)}
                 >
-                  {category.icon} {category.name}
+                  {category.icon}{" "}
+                  {state.locale["categories"][category.name?.toLowerCase()]}
                 </span>
               )
               : (
@@ -268,7 +269,8 @@ export const Navigation = ({ state }) => {
                   class="bg-gray-100 hover:underline hover:bg-gray-200 text-gray-800 font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-400 inline-flex items-center justify-center"
                   href={createCategoryURL(category.nameSlug, state)}
                 >
-                  {category.icon} {category.name}
+                  {category.icon}{" "}
+                  {state.locale["categories"][category.name?.toLowerCase()]}
                 </a>
               )
           )}
