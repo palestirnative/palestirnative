@@ -1,4 +1,12 @@
 export default {
+  categories: {
+    "food": "Essen",
+    "beverage": "Getränk",
+    "fast food": "Fastfood",
+    "tech": "Technik",
+    "clothing": "Kleidung",
+    "hygiene": "Hygiene",
+  },
   "ThankYouForSubmission":
     "Vielen Dank für Ihre Einsendung! Wir haben Ihren Vorschlag erhalten und er befindet sich nun in unserer Warteschlange zur Überprüfung. Wir werden es so schnell wie möglich hinzufügen. Ihr Beitrag wird sehr geschätzt!",
   "Suggest a boycott": "Einen Boykott vorschlagen",

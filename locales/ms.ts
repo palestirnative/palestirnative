@@ -1,4 +1,12 @@
 export default {
+  categories: {
+    "food": "Makanan",
+    "beverage": "Minuman",
+    "fast food": "Makanan segera",
+    "tech": "Tech",
+    "clothing": "Pakaian",
+    "hygiene": "Kebersihan",
+  },
   "Suggest a boycott": "Cadangkan boikot",
   "Boycotts": "Boikot",
   "See reason": "Lihat sebab",

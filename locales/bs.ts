@@ -1,4 +1,12 @@
 export default {
+  categories: {
+    "food": "Hrana",
+    "beverage": "Pića",
+    "fast food": "Brza hrana",
+    "tech": "Tech",
+    "clothing": "Odjeća",
+    "hygiene": "Higijena",
+  },
   "Suggest a boycott": "Predloži bojkot",
   "Boycotts": "Bojkoti",
   "See reason": "Pogledaj razlog",

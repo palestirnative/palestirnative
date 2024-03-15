@@ -1,4 +1,12 @@
 export default {
+  categories: {
+    "food": "खाना",
+    "beverage": "पेय",
+    "fast food": "फास्ट फूड",
+    "tech": "तकनीक",
+    "clothing": "कपड़े",
+    "hygiene": "स्वच्छता",
+  },
   "Suggest a boycott": "बॉयकॉट सुझाएं",
   "Boycotts": "बॉयकॉट",
   "See reason": "कारण देखें",

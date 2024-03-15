@@ -1,4 +1,12 @@
 export default {
+  categories: {
+    "food": "طعام",
+    "beverage": "المشروبات",
+    "fast food": "الطعام الخفيف",
+    "tech": "تقنية",
+    "clothing": "ملابس",
+    "hygiene": "صحة",
+  },
   "ThankYouForSubmission":
     "شكرًا لك ! لقد تلقينا اقتراحك وهو الآن في قائمة انتظارنا للمراجعة. وسنضيفه في أقرب وقت ممكن. نقدر مساهمتك كثيرًا!",
   "Suggest a boycott": "اقترح مقاطعة",

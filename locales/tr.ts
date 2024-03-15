@@ -1,4 +1,12 @@
 export default {
+  categories: {
+    "food": "Yiyecek",
+    "beverage": "İçecek",
+    "fast food": "Fast food",
+    "tech": "Teknoloji",
+    "clothing": "Giyim",
+    "hygiene": "Hijyen",
+  },
   "Suggest a boycott": "Boykot öner",
   "Boycotts": "Boykotlar",
   "See reason": "Nedeni gör",

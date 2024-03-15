@@ -1,4 +1,12 @@
 export default {
+  categories: {
+    "food": "Ushqim",
+    "beverage": "Pije",
+    "fast food": "Ushqim i Shpejtë",
+    "tech": "Teknik",
+    "clothing": "Veshje",
+    "hygiene": "Higjienë",
+  },
   "Suggest a boycott": "Sugjero një bojkot",
   "Boycotts": "Bojkote",
   "See reason": "Shiko arsyen",

@@ -1,4 +1,12 @@
 export default {
+  categories: {
+    "food": "کھانا",
+    "beverage": "مشروبات",
+    "fast food": "فاسٹ فوڈ",
+    "tech": "ٹیک",
+    "clothing": "لباس",
+    "hygiene": "حفظان صحت",
+  },
   "Suggest a boycott": "بویکاٹ کا پیش کریں",
   "Boycotts": "بویکاٹس",
   "See reason": "کارن دیکھیں",
